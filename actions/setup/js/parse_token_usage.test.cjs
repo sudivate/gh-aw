@@ -1380,6 +1380,7 @@ describe("parse_token_usage", () => {
         const expectedAttributes = Object.fromEntries(
           Object.entries(expected).map(([key, value]) => [`gen_ai.usage.${key === "cache_read_tokens" ? "cache_read.input_tokens" : key === "cache_write_tokens" ? "cache_creation.input_tokens" : key}`, value])
         );
+        if ("gen_ai.usage.cache_creation.input_tokens" in expectedAttributes) expectedAttributes["gen_ai.usage.cache_write.input_tokens"] = expectedAttributes["gen_ai.usage.cache_creation.input_tokens"];
         if (total !== undefined) expectedAttributes["gen_ai.usage.total_tokens"] = total;
         expect(Object.fromEntries(attributes.map(attr => [attr.key, attr.value.intValue]))).toEqual(expectedAttributes);
       } finally {

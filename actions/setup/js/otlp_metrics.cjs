@@ -6,6 +6,8 @@ const path = require("path");
 
 const OTEL_METRICS_JSONL_PATH = "/tmp/gh-aw/otel-metrics.jsonl";
 const DEFAULT_HISTOGRAM_BUCKETS = [1, 5, 15, 30, 60, 120, 300, 600, 1800, 3600];
+// Explicit bucket boundaries for gen_ai.invoke_agent.duration (spec §11.2).
+const GEN_AI_INVOKE_AGENT_DURATION_BUCKETS = [0.1, 0.2, 0.4, 0.8, 1.6, 3.2, 6.4, 12.8, 25.6, 51.2, 102.4, 204.8, 409.6, 900, 1800, 3600, 7200, 14400, 43200, 86400];
 const PROCESS_START_MS = Date.now();
 const lastEndBySeries = new Map();
 const customMetricSeries = new Set();
@@ -154,7 +156,7 @@ function mergeCustomMetric(existing, incoming, type) {
  * @returns {any}
  */
 function buildOTLPMetricsPayload({ serviceName, scopeVersion, resourceAttributes, metrics }) {
-  const { buildOTLPResourceAttributes, parseOTELResourceAttributes } = require("./send_otlp_span.cjs");
+  const { buildOTLPResourceAttributes, parseOTELResourceAttributes, isGenAiLatestExperimental, GEN_AI_SCHEMA_URL } = require("./send_otlp_span.cjs");
   const allowedResourceAttributes = new Map();
   for (const attribute of [...parseOTELResourceAttributes(process.env.OTEL_RESOURCE_ATTRIBUTES || ""), ...(resourceAttributes || [])]) {
     if (!METRIC_RESOURCE_ATTRIBUTE_KEYS.has(attribute.key)) continue;
@@ -166,7 +168,7 @@ function buildOTLPMetricsPayload({ serviceName, scopeVersion, resourceAttributes
     resourceMetrics: [
       {
         resource: { attributes: buildOTLPResourceAttributes(serviceName, scopeVersion, [...allowedResourceAttributes.values()]) },
-        scopeMetrics: [{ scope: { name: "gh-aw", version: scopeVersion || "unknown" }, metrics }],
+        scopeMetrics: [{ scope: { name: "gh-aw", version: scopeVersion || "unknown" }, ...(isGenAiLatestExperimental() ? { schemaUrl: GEN_AI_SCHEMA_URL } : {}), metrics }],
       },
     ],
   };
@@ -374,6 +376,11 @@ async function sendOTLPMetrics(payload, traceContext) {
  *   aiCreditsRateLimitError?: boolean,
  *   exportFailures?: number,
  *   traceContext?: {traceId: string, spanId: string},
+ *   provider?: string,
+ *   agentName?: string,
+ *   agentDurationSeconds?: number,
+ *   agentErrorType?: string,
+ *   semconvLatest?: boolean,
  * }} opts
  * @returns {any[]}
  */
@@ -400,6 +407,11 @@ function buildBuiltinRunMetrics({
   aiCreditsRateLimitError = false,
   exportFailures = 0,
   traceContext,
+  provider = "",
+  agentName = "",
+  agentDurationSeconds,
+  agentErrorType = "",
+  semconvLatest = false,
 }) {
   const { buildAttr } = require("./send_otlp_span.cjs");
   const bounded = value => (typeof value === "string" ? value.slice(0, MAX_CUSTOM_METRIC_ATTRIBUTE_LENGTH) : "");
@@ -441,11 +453,61 @@ function buildBuiltinRunMetrics({
     ];
     for (const { type, alias, value } of tokenMetrics) {
       if (typeof value === "number" && Number.isFinite(value) && value >= 0) {
-        const tokenAttributes = attributes(buildAttr("gen_ai.token.type", type), ...(model ? [buildAttr("gen_ai.request.model", bounded(model))] : []), ...(engine ? [buildAttr("gh-aw.engine.id", bounded(engine))] : []));
+        const modelAndEngine = [...(model ? [buildAttr("gen_ai.request.model", bounded(model))] : []), ...(engine ? [buildAttr("gh-aw.engine.id", bounded(engine))] : [])];
+        const tokenAttributes = attributes(buildAttr("gen_ai.token.type", type), ...modelAndEngine);
+        if (semconvLatest) {
+          // gen_ai.client.token.usage is compatibility only (spec §6.7); the alias name carries the type (D14).
+          if (alias) metrics.push(buildOTLPMetric({ name: alias, type: "counter", unit: "{token}", value, attributes: attributes(...modelAndEngine), startMs, endMs, traceContext }));
+          continue;
+        }
         metrics.push(buildOTLPMetric({ name: "gen_ai.client.token.usage", type: "counter", unit: "{token}", value, attributes: tokenAttributes, startMs, endMs, traceContext }));
         if (alias) metrics.push(buildOTLPMetric({ name: alias, type: "counter", unit: "{token}", value, attributes: tokenAttributes, startMs, endMs, traceContext }));
       }
     }
+    if (provider) {
+      const num = v => (typeof v === "number" && Number.isFinite(v) ? v : undefined);
+      const input = num(inputTokens);
+      const inclusiveInput = input === undefined ? undefined : input + (num(cacheReadTokens) || 0) + (num(cacheWriteTokens) || 0);
+      const usageAttributes = attributes(
+        buildAttr("gen_ai.operation.name", "chat"),
+        buildAttr("gen_ai.provider.name", bounded(provider)),
+        buildAttr("gen_ai.token.modality", "unknown"),
+        ...(model ? [buildAttr("gen_ai.request.model", bounded(model))] : [])
+      );
+      /** @type {Array<[string, number | undefined]>} */
+      const usageCounters = [
+        ["gen_ai.client.inference.usage.input_tokens", inclusiveInput],
+        ["gen_ai.client.inference.usage.output_tokens", num(outputTokens)],
+        ["gen_ai.client.inference.usage.cache_read.input_tokens", num(cacheReadTokens)],
+        ["gen_ai.client.inference.usage.cache_write.input_tokens", num(cacheWriteTokens)],
+      ];
+      for (const [name, value] of usageCounters) {
+        if (typeof value === "number" && value > 0) {
+          metrics.push(buildOTLPMetric({ name, type: "counter", unit: "{token}", value, attributes: usageAttributes, startMs, endMs, traceContext }));
+        }
+      }
+    }
+  }
+  if (typeof agentDurationSeconds === "number" && Number.isFinite(agentDurationSeconds) && agentDurationSeconds >= 0) {
+    metrics.push(
+      buildOTLPMetric({
+        name: "gen_ai.invoke_agent.duration",
+        type: "histogram",
+        unit: "s",
+        description: "Duration of the built-in agent invocation",
+        value: agentDurationSeconds,
+        buckets: GEN_AI_INVOKE_AGENT_DURATION_BUCKETS,
+        attributes: attributes(
+          buildAttr("gen_ai.operation.name", "invoke_agent"),
+          ...(agentName ? [buildAttr("gen_ai.agent.name", bounded(agentName))] : []),
+          ...(model ? [buildAttr("gen_ai.request.model", bounded(model))] : []),
+          ...(agentErrorType ? [buildAttr("error.type", bounded(agentErrorType))] : [])
+        ),
+        startMs,
+        endMs,
+        traceContext,
+      })
+    );
   }
   if (typeof turns === "number" && Number.isFinite(turns) && turns >= 0) {
     metrics.push(buildOTLPMetric({ name: "gh_aw.agent.turns", type: "histogram", unit: "{turn}", description: "Agent turns per completed agent invocation", value: turns, attributes: commonAttributes, startMs, endMs, traceContext }));

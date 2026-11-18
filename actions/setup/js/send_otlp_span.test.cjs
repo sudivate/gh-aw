@@ -6216,14 +6216,17 @@ describe("sendJobConclusionSpan", () => {
 
     describe.each(["file", "runtime result"])("token availability from %s", source => {
       it.each([
-        { usage: { input_tokens: 0, output_tokens: 0, cache_read_tokens: 0, cache_write_tokens: 0 }, expected: { input_tokens: 0, output_tokens: 0, "cache_read.input_tokens": 0, "cache_creation.input_tokens": 0, total_tokens: 0 } },
+        {
+          usage: { input_tokens: 0, output_tokens: 0, cache_read_tokens: 0, cache_write_tokens: 0 },
+          expected: { input_tokens: 0, output_tokens: 0, "cache_read.input_tokens": 0, "cache_creation.input_tokens": 0, "cache_write.input_tokens": 0, total_tokens: 0 },
+        },
         {
           usage: { input_tokens: "0", output_tokens: "20", cache_read_input_tokens: "0", cache_creation_input_tokens: "5" },
-          expected: { input_tokens: 0, output_tokens: 20, "cache_read.input_tokens": 0, "cache_creation.input_tokens": 5, total_tokens: 20 },
+          expected: { input_tokens: 0, output_tokens: 20, "cache_read.input_tokens": 0, "cache_creation.input_tokens": 5, "cache_write.input_tokens": 5, total_tokens: 20 },
         },
         { usage: { input_tokens: 100 }, expected: { input_tokens: 100 } },
         { usage: { output_tokens: 0 }, expected: { output_tokens: 0 } },
-        { usage: { cache_read_tokens: 0, cache_write_tokens: 4 }, expected: { "cache_read.input_tokens": 0, "cache_creation.input_tokens": 4 } },
+        { usage: { cache_read_tokens: 0, cache_write_tokens: 4 }, expected: { "cache_read.input_tokens": 0, "cache_creation.input_tokens": 4, "cache_write.input_tokens": 4 } },
         { usage: { input_tokens: null, output_tokens: 0, cache_read_tokens: false, cache_write_tokens: -1 }, expected: { output_tokens: 0 } },
         { usage: { input_tokens: "NaN", output_tokens: "Infinity", cache_read_tokens: "", cache_write_tokens: " " }, expected: {} },
         { usage: { input_tokens: [], output_tokens: {}, cache_read_tokens: true, cache_write_tokens: "-1" }, expected: {} },
@@ -6444,7 +6447,8 @@ describe("sendJobConclusionSpan", () => {
       expect(owners.map(span => span.name)).toEqual(owner ? [owner] : []);
       if (owner) {
         const attrs = owners[0].attributes.filter(attr => attr.key.startsWith("gen_ai.usage."));
-        expect(attrs).toHaveLength(5);
+        // input, output, cache_read, cache_creation (compatibility), cache_write, total.
+        expect(attrs).toHaveLength(6);
         expect(attrs.every(attr => attr.value.intValue === 0)).toBe(true);
       }
     });
