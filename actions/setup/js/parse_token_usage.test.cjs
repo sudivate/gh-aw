@@ -449,6 +449,8 @@ describe("parse_token_usage", () => {
         output_tokens: 4058,
         cache_read_tokens: 112640,
         cache_write_tokens: 0,
+        // No input_tokens_include_cache flag: the AI-credits legacy default for anthropic counts cache reads as part of input.
+        input_tokens_inclusive: 38719,
       });
       const markdown = mockCore.summary.addRaw.mock.calls[0][0];
       expect(markdown).toMatch(/\|\s*38,719\s*\|\s*4,058\s*\|\s*112,640\s*\|\s*0\s*\|/);

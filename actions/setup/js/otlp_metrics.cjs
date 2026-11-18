@@ -367,6 +367,7 @@ async function sendOTLPMetrics(payload, traceContext) {
  *   outputTokens?: number,
  *   cacheReadTokens?: number,
  *   cacheWriteTokens?: number,
+ *   inclusiveInputTokens?: number,
  *   emitsTokenUsage?: boolean,
  *   turns?: number,
  *   toolCalls?: number,
@@ -398,6 +399,7 @@ function buildBuiltinRunMetrics({
   outputTokens,
   cacheReadTokens,
   cacheWriteTokens,
+  inclusiveInputTokens,
   emitsTokenUsage = false,
   turns,
   toolCalls,
@@ -466,8 +468,8 @@ function buildBuiltinRunMetrics({
     }
     if (provider) {
       const num = v => (typeof v === "number" && Number.isFinite(v) ? v : undefined);
-      const input = num(inputTokens);
-      const inclusiveInput = input === undefined ? undefined : input + (num(cacheReadTokens) || 0) + (num(cacheWriteTokens) || 0);
+      // Inclusive of cache tokens; resolved by the caller from the record's cache semantics.
+      const inclusiveInput = num(inclusiveInputTokens);
       const usageAttributes = attributes(
         buildAttr("gen_ai.operation.name", "chat"),
         buildAttr("gen_ai.provider.name", bounded(provider)),

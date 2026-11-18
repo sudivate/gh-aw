@@ -91,6 +91,22 @@ function normalizeComparableID(value) {
 }
 
 /**
+ * Input tokens including cache-read and cache-write tokens, as the OpenTelemetry GenAI
+ * conventions define `input_tokens`. Uses the same cache rule as computeInferenceCostUSD:
+ * an explicit `input_tokens_include_cache` first, then the legacy provider defaults.
+ * @param {{provider?: string, inputTokens?: number, cacheReadTokens?: number, cacheWriteTokens?: number, inputTokensIncludeCache?: boolean}} params
+ * @returns {number}
+ */
+function computeInclusiveInputTokens({ provider = "", inputTokens, cacheReadTokens, cacheWriteTokens, inputTokensIncludeCache }) {
+  const input = inputTokens || 0;
+  const cacheRead = cacheReadTokens || 0;
+  const cacheWrite = cacheWriteTokens || 0;
+  if (inputTokensIncludeCache === true) return input;
+  if (typeof inputTokensIncludeCache !== "boolean" && providerIncludesCacheReadsInInput(provider)) return input + cacheWrite;
+  return input + cacheRead + cacheWrite;
+}
+
+/**
  * @param {string} provider
  * @returns {boolean}
  */
@@ -317,6 +333,7 @@ function _resetModelCostsCache() {
 }
 
 module.exports = {
+  computeInclusiveInputTokens,
   computeInferenceAIC,
   computeInferenceCostUSD,
   findModelPricing,

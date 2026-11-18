@@ -7,7 +7,7 @@ const { getErrorMessage } = require("./error_helpers.cjs");
 const { displayDirectories } = require("./display_file_helpers.cjs");
 const { ERR_PARSE, ERR_SYSTEM } = require("./error_codes.cjs");
 const { formatModelEmojiAlias } = require("./model_aliases.cjs");
-const { computeInferenceAIC, findModelPricing, formatAIC } = require("./model_costs.cjs");
+const { computeInclusiveInputTokens, computeInferenceAIC, findModelPricing, formatAIC } = require("./model_costs.cjs");
 const { parseUnknownModelAICreditsFromAuditLog } = require("./ai_credits_context.cjs");
 const { getMcpRateLimitHint, getRpcRateLimitHint } = require("./mcp_rate_limit.cjs");
 const { MAX_STEP_SUMMARY_SIZE } = require("./log_parser_shared.cjs");
@@ -116,7 +116,7 @@ function formatAICForTable(value, source) {
  * aborts, retries, authentication, and safe outputs use separate paths.
  *
  * @param {string} jsonlContent - The token-usage.jsonl file content
- * @returns {{totalInputTokens: number, totalOutputTokens: number, totalCacheReadTokens: number, totalCacheWriteTokens: number, tokenUsage: Partial<Record<"input_tokens"|"output_tokens"|"cache_read_tokens"|"cache_write_tokens", number>>, totalRequests: number, totalDurationMs: number, totalAIC: number, aiCreditsAvailable: boolean, aiCreditsSource: "awf_reported"|"recomputed", aiCreditsWarnings: string[], ambientContextTokens: number|undefined, byModel: Record<string, any>, entries: Array} | null}
+ * @returns {{totalInputTokens: number, totalOutputTokens: number, totalCacheReadTokens: number, totalCacheWriteTokens: number, inclusiveInputTokens: number, tokenUsage: Partial<Record<"input_tokens"|"output_tokens"|"cache_read_tokens"|"cache_write_tokens", number>>, totalRequests: number, totalDurationMs: number, totalAIC: number, aiCreditsAvailable: boolean, aiCreditsSource: "awf_reported"|"recomputed", aiCreditsWarnings: string[], ambientContextTokens: number|undefined, byModel: Record<string, any>, entries: Array} | null}
  * ambientContextTokens records first-request context size as:
  * input_tokens + ((cache_read_tokens + cache_write_tokens) / 10).
  */
@@ -128,6 +128,7 @@ function parseTokenUsageJsonl(jsonlContent) {
     totalOutputTokens: 0,
     totalCacheReadTokens: 0,
     totalCacheWriteTokens: 0,
+    inclusiveInputTokens: 0,
     /** @type {Partial<Record<"input_tokens"|"output_tokens"|"cache_read_tokens"|"cache_write_tokens", number>>} */
     tokenUsage: { input_tokens: 0, output_tokens: 0, cache_read_tokens: 0, cache_write_tokens: 0 },
     totalRequests: 0,
@@ -192,6 +193,7 @@ function parseTokenUsageJsonl(jsonlContent) {
       summary.totalOutputTokens += outputTokens;
       summary.totalCacheReadTokens += cacheReadTokens;
       summary.totalCacheWriteTokens += cacheWriteTokens;
+      summary.inclusiveInputTokens += computeInclusiveInputTokens({ provider: entry.provider || "", inputTokens, cacheReadTokens, cacheWriteTokens, inputTokensIncludeCache });
       summary.totalRequests++;
       summary.totalDurationMs += durationMs;
       if (summary.ambientContextTokens === undefined) {
