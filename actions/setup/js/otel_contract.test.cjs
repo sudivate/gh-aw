@@ -22,6 +22,7 @@ const MANAGED_ENV_VARS = [
   "GITHUB_JOB",
   "GH_AW_AGENT_CONCLUSION",
   "GH_AW_AIC",
+  "OTEL_SEMCONV_STABILITY_OPT_IN",
 ];
 
 const originalEnv = {};
@@ -182,11 +183,15 @@ describe("gh-aw OpenTelemetry compatibility contract", () => {
     expect(setupAttrs["gh-aw.repository"]).toBe("github/gh-aw");
     expect(setupAttrs["gh-aw.engine.id"]).toBe("claude");
     expect(setupAttrs["gen_ai.system"]).toBe("anthropic");
+    expect(setupAttrs["gen_ai.provider.name"]).toBe("anthropic");
 
     const agentAttrs = attrsByKey(spans[1]);
     expect(agentAttrs["gen_ai.operation.name"]).toBe("chat");
     expect(agentAttrs["gen_ai.request.model"]).toBe("claude-3-5-sonnet-20241022");
     expect(agentAttrs["gen_ai.system"]).toBe("anthropic");
+    expect(agentAttrs["gen_ai.provider.name"]).toBe("anthropic");
+    expect(agentAttrs["gen_ai.agent.name"]).toBe("Customer OTEL Contract");
+    expect(agentAttrs["gen_ai.workflow.name"]).toBe("Customer OTEL Contract");
     expect(agentAttrs["gen_ai.usage.input_tokens"]).toBe(100);
     expect(agentAttrs["gen_ai.usage.output_tokens"]).toBe(25);
     expect(agentAttrs["gen_ai.usage.total_tokens"]).toBe(125);
@@ -205,6 +210,16 @@ describe("gh-aw OpenTelemetry compatibility contract", () => {
       expect(payload).not.toHaveProperty("payload");
     }
     expect(exportedPayloads.map(firstSpan).filter(span => Object.hasOwn(attrsByKey(span), "gh-aw.aic"))).toHaveLength(1);
+
+    const resourceAttrs = Object.fromEntries(mirroredPayloads[2].resourceSpans[0].resource.attributes.map(attribute => [attribute.key, attribute.value.stringValue]));
+    expect(resourceAttrs["deployment.environment"]).toBe("production");
+    expect(resourceAttrs["deployment.environment.name"]).toBe("production");
+    expect(resourceAttrs["cicd.pipeline.name"]).toBe("Customer OTEL Contract");
+    expect(resourceAttrs["cicd.pipeline.run.id"]).toBe("1234567890");
+    expect(resourceAttrs["cicd.pipeline.task.name"]).toBe("agent");
+    expect(resourceAttrs["vcs.provider.name"]).toBe("github");
+    expect(resourceAttrs["vcs.repository.url.full"]).toBe("https://github.com/github/gh-aw");
+    expect(mirroredPayloads.every(payload => !("schemaUrl" in payload.resourceSpans[0].scopeSpans[0]))).toBe(true);
   });
 
   it("exports not-evaluated eval status without fabricating UNKNOWN answers", async () => {

@@ -75,6 +75,10 @@ describe("buildBuiltinRunMetrics", () => {
       aiCreditsRateLimitError: true,
       exportFailures: 2,
       traceContext: { traceId: "1234567890abcdef1234567890abcdef", spanId: "1234567890abcdef" },
+      provider: "github",
+      agentName: "CI",
+      agentDurationSeconds: 2,
+      agentErrorType: "agent_failed",
     });
 
     expect(result.map(metric => metric.name)).toEqual([
@@ -90,6 +94,11 @@ describe("buildBuiltinRunMetrics", () => {
       "gh_aw.tokens.cache_read",
       "gen_ai.client.token.usage",
       "gh_aw.tokens.cache_write",
+      "gen_ai.client.inference.usage.input_tokens",
+      "gen_ai.client.inference.usage.output_tokens",
+      "gen_ai.client.inference.usage.cache_read.input_tokens",
+      "gen_ai.client.inference.usage.cache_write.input_tokens",
+      "gen_ai.invoke_agent.duration",
       "gh_aw.agent.turns",
       "gh_aw.tool_calls",
       "gh_aw.tool_calls",
@@ -108,10 +117,83 @@ describe("buildBuiltinRunMetrics", () => {
     expect(result[2].sum.dataPoints[0].asInt).toBe("1");
     expect(result[4].sum.dataPoints[0].attributes).toContainEqual({ key: "gen_ai.token.type", value: { stringValue: "input" } });
     expect(result[8].sum.dataPoints[0].attributes).toContainEqual({ key: "gen_ai.token.type", value: { stringValue: "input_cache_read" } });
-    expect(result[12].histogram.dataPoints[0].sum).toBe(4);
-    expect(result[13].sum.dataPoints[0].attributes).toContainEqual({ key: "gh-aw.tool.status", value: { stringValue: "ok" } });
-    expect(result[14].sum.dataPoints[0].attributes).toContainEqual({ key: "gh-aw.tool.status", value: { stringValue: "error" } });
-    expect(result[18].sum.dataPoints[0].attributes).toContainEqual({ key: "gh-aw.safe_output.type", value: { stringValue: "issue" } });
+    expect(result[17].histogram.dataPoints[0].sum).toBe(4);
+    expect(result[18].sum.dataPoints[0].attributes).toContainEqual({ key: "gh-aw.tool.status", value: { stringValue: "ok" } });
+    expect(result[19].sum.dataPoints[0].attributes).toContainEqual({ key: "gh-aw.tool.status", value: { stringValue: "error" } });
+    expect(result[23].sum.dataPoints[0].attributes).toContainEqual({ key: "gh-aw.safe_output.type", value: { stringValue: "issue" } });
+  });
+
+  const usageInput = {
+    jobName: "agent",
+    workflow: "CI",
+    engine: "copilot",
+    model: "test-model",
+    conclusion: "success",
+    startMs: 1000,
+    endMs: 3000,
+    inputTokens: 10,
+    outputTokens: 3,
+    cacheReadTokens: 5,
+    cacheWriteTokens: 2,
+    emitsTokenUsage: true,
+    provider: "github",
+  };
+  const byName = (result, name) => result.filter(metric => metric.name === name);
+  const attrsOf = point => Object.fromEntries(point.attributes.map(a => [a.key, a.value.stringValue ?? a.value.intValue]));
+
+  it("emits inclusive gen_ai.client.inference.usage.* counters with the required attributes", () => {
+    const result = buildBuiltinRunMetrics(usageInput);
+    const values = Object.fromEntries(["input_tokens", "output_tokens", "cache_read.input_tokens", "cache_write.input_tokens"].map(suffix => [suffix, byName(result, `gen_ai.client.inference.usage.${suffix}`)[0].sum.dataPoints[0].asInt]));
+    expect(values).toEqual({ input_tokens: "17", output_tokens: "3", "cache_read.input_tokens": "5", "cache_write.input_tokens": "2" });
+    for (const metric of result.filter(m => m.name.startsWith("gen_ai.client.inference.usage."))) {
+      const attrs = attrsOf(metric.sum.dataPoints[0]);
+      expect(attrs["gen_ai.operation.name"]).toBe("chat");
+      expect(attrs["gen_ai.provider.name"]).toBe("github");
+      expect(attrs["gen_ai.token.modality"]).toBe("unknown");
+      expect(attrs["gen_ai.request.model"]).toBe("test-model");
+      expect(metric.unit).toBe("{token}");
+    }
+  });
+
+  it("omits zero and missing cache usage counters while keeping the zero token-usage compatibility point", () => {
+    const result = buildBuiltinRunMetrics({ ...usageInput, cacheReadTokens: undefined, cacheWriteTokens: 0 });
+    expect(byName(result, "gen_ai.client.inference.usage.cache_write.input_tokens")).toHaveLength(0);
+    expect(byName(result, "gen_ai.client.inference.usage.cache_read.input_tokens")).toHaveLength(0);
+    const tokenUsage = byName(result, "gen_ai.client.token.usage").map(metric => metric.sum.dataPoints[0]);
+    const cacheWrite = tokenUsage.find(point => attrsOf(point)["gen_ai.token.type"] === "input_cache_write");
+    expect(cacheWrite.asInt).toBe("0");
+  });
+
+  it("omits gen_ai.client.inference.usage.* without a provider", () => {
+    const result = buildBuiltinRunMetrics({ ...usageInput, provider: undefined });
+    expect(result.some(metric => metric.name.startsWith("gen_ai.client.inference.usage."))).toBe(false);
+  });
+
+  it("emits gen_ai.invoke_agent.duration with the semantic-convention buckets and attributes", () => {
+    const result = buildBuiltinRunMetrics({ ...usageInput, agentName: "CI", agentDurationSeconds: 2, agentErrorType: "agent_failed" });
+    const [duration] = byName(result, "gen_ai.invoke_agent.duration");
+    expect(duration.unit).toBe("s");
+    const point = duration.histogram.dataPoints[0];
+    expect(point.explicitBounds).toEqual([0.1, 0.2, 0.4, 0.8, 1.6, 3.2, 6.4, 12.8, 25.6, 51.2, 102.4, 204.8, 409.6, 900, 1800, 3600, 7200, 14400, 43200, 86400]);
+    expect(point.sum).toBe(2);
+    const attrs = attrsOf(point);
+    expect(attrs["gen_ai.operation.name"]).toBe("invoke_agent");
+    expect(attrs["gen_ai.agent.name"]).toBe("CI");
+    expect(attrs["gen_ai.request.model"]).toBe("test-model");
+    expect(attrs["error.type"]).toBe("agent_failed");
+    expect(byName(buildBuiltinRunMetrics(usageInput), "gen_ai.invoke_agent.duration")).toHaveLength(0);
+  });
+
+  it("drops gen_ai.client.token.usage and the alias token type under the latest-experimental opt-in", () => {
+    const result = buildBuiltinRunMetrics({ ...usageInput, agentName: "CI", agentDurationSeconds: 2, semconvLatest: true });
+    expect(byName(result, "gen_ai.client.token.usage")).toHaveLength(0);
+    const aliases = Object.fromEntries(["input", "output", "cache_read", "cache_write"].map(kind => [kind, byName(result, `gh_aw.tokens.${kind}`)[0].sum.dataPoints[0]]));
+    expect(Object.fromEntries(Object.entries(aliases).map(([kind, point]) => [kind, point.asInt]))).toEqual({ input: "10", output: "3", cache_read: "5", cache_write: "2" });
+    for (const point of Object.values(aliases)) {
+      expect(attrsOf(point)).not.toHaveProperty("gen_ai.token.type");
+    }
+    expect(byName(result, "gen_ai.client.inference.usage.input_tokens")).toHaveLength(1);
+    expect(byName(result, "gen_ai.invoke_agent.duration")).toHaveLength(1);
   });
 
   it("omits the error counter for successful runs and unavailable usage", () => {
@@ -140,6 +222,22 @@ describe("buildBuiltinRunMetrics", () => {
     expect(attributes.map(attribute => attribute.key)).not.toContain("gh-aw.run.id");
     expect(attributes.map(attribute => attribute.key)).not.toContain("github.run_id");
     expect(attributes.map(attribute => attribute.key)).not.toContain("custom.label");
+  });
+
+  it("keeps per-run CI/CD and VCS resource attributes off the metric resource", () => {
+    const { buildAttr } = require("./send_otlp_span.cjs");
+    const payload = metrics.buildOTLPMetricsPayload({
+      serviceName: "gh-aw",
+      resourceAttributes: [buildAttr("cicd.pipeline.run.id", "123"), buildAttr("vcs.ref.head.revision", "abc123"), buildAttr("gh-aw.repository", "owner/repo")],
+      metrics: [],
+    });
+    const keys = payload.resourceMetrics[0].resource.attributes.map(attribute => attribute.key);
+    expect(keys).toContain("gh-aw.repository");
+    expect(keys).not.toContain("cicd.pipeline.run.id");
+    expect(keys).not.toContain("vcs.ref.head.revision");
+    expect(payload.resourceMetrics[0].scopeMetrics[0]).not.toHaveProperty("schemaUrl");
+    vi.stubEnv("OTEL_SEMCONV_STABILITY_OPT_IN", "gen_ai_latest_experimental");
+    expect(metrics.buildOTLPMetricsPayload({ serviceName: "gh-aw", metrics: [] }).resourceMetrics[0].scopeMetrics[0].schemaUrl).toBe("https://opentelemetry.io/schemas/1.45.0");
   });
 
   it("preserves safe token type enums and redacts secrets from ordinary string attributes", () => {
