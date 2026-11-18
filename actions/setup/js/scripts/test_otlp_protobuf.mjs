@@ -224,6 +224,63 @@ test("matches SDK protocol types for gh-aw gauge, sum, and histogram metrics wit
   assert.deepEqual(overflow.histogram.dataPoints[0].bucketCounts, ["0", "0", "0", "0", "1"]);
 });
 
+test("matches SDK protocol types for opt-in GenAI semantic-convention spans and metrics", () => {
+  const saved = process.env.OTEL_SEMCONV_STABILITY_OPT_IN;
+  process.env.OTEL_SEMCONV_STABILITY_OPT_IN = "gen_ai_latest_experimental";
+  try {
+    const { SPAN_KIND_INTERNAL, GEN_AI_SCHEMA_URL } = require("../send_otlp_span.cjs");
+    const traces = buildOTLPPayload({
+      traceId: "0123456789abcdef0123456789abcdef",
+      spanId: "0123456789abcdef",
+      parentSpanId: "fedcba9876543210",
+      spanName: "invoke_agent CI",
+      kind: SPAN_KIND_INTERNAL,
+      serviceName: "gh-aw",
+      scopeVersion: "test",
+      startMs: 1700000000000,
+      endMs: 1700000002000,
+      statusCode: 0,
+      attributes: [
+        { key: "gen_ai.operation.name", value: { stringValue: "invoke_agent" } },
+        { key: "gen_ai.provider.name", value: { stringValue: "github" } },
+        { key: "gen_ai.agent.name", value: { stringValue: "CI" } },
+        { key: "gen_ai.usage.input_tokens", value: { intValue: 17 } },
+      ],
+    });
+    assert.equal(traces.resourceSpans[0].scopeSpans[0].schemaUrl, GEN_AI_SCHEMA_URL);
+    compare(traces, ExportTraceServiceRequest.encode(ExportTraceServiceRequest.fromObject(toProtoJson(traces))).finish());
+    const decodedTraces = fromProtoJson(decode(encodeOTLPTraceRequest(traces)));
+    assert.equal(decodedTraces.resourceSpans[0].scopeSpans[0].schemaUrl, GEN_AI_SCHEMA_URL);
+    assert.equal(decodedTraces.resourceSpans[0].scopeSpans[0].spans[0].kind, SPAN_KIND_INTERNAL);
+    assert.equal(decodedTraces.resourceSpans[0].scopeSpans[0].spans[0].name, "invoke_agent CI");
+
+    const bounds = [0.1, 0.2, 0.4, 0.8, 1.6, 3.2, 6.4, 12.8, 25.6, 51.2, 102.4, 204.8, 409.6, 900, 1800, 3600, 7200, 14400, 43200, 86400];
+    const timing = { startMs: 1700000000000, endMs: 1700000002000 };
+    const metricsPayload = buildOTLPMetricsPayload({
+      serviceName: "gh-aw",
+      scopeVersion: "test",
+      metrics: [
+        buildOTLPMetric({ name: "gen_ai.client.inference.usage.input_tokens", type: "counter", unit: "{token}", value: 17, attributes: [{ key: "gen_ai.provider.name", value: { stringValue: "github" } }], ...timing }),
+        buildOTLPMetric({ name: "gen_ai.invoke_agent.duration", type: "histogram", unit: "s", value: 2, buckets: bounds, attributes: [{ key: "gen_ai.operation.name", value: { stringValue: "invoke_agent" } }], ...timing }),
+      ],
+    });
+    const actual = encodeOTLPMetricsRequest(metricsPayload);
+    const reference = ExportMetricsServiceRequest.encode(ExportMetricsServiceRequest.fromObject(toProtoJson(metricsPayload))).finish();
+    assert.deepEqual(actual, Buffer.from(reference), "wire bytes must match the SDK encoder exactly");
+    const decoded = ExportMetricsServiceRequest.toObject(ExportMetricsServiceRequest.decode(actual), { longs: String, bytes: String });
+    assert.equal(decoded.resourceMetrics[0].scopeMetrics[0].schemaUrl, GEN_AI_SCHEMA_URL);
+    const [usage, duration] = decoded.resourceMetrics[0].scopeMetrics[0].metrics;
+    assert.equal(usage.name, "gen_ai.client.inference.usage.input_tokens");
+    assert.equal(usage.sum.isMonotonic, true);
+    assert.equal(usage.sum.dataPoints[0].asInt, "17");
+    assert.equal(duration.name, "gen_ai.invoke_agent.duration");
+    assert.deepEqual(duration.histogram.dataPoints[0].explicitBounds, bounds);
+  } finally {
+    if (saved === undefined) delete process.env.OTEL_SEMCONV_STABILITY_OPT_IN;
+    else process.env.OTEL_SEMCONV_STABILITY_OPT_IN = saved;
+  }
+});
+
 test("sends SDK-decodable binary payloads through real HTTP and curl transports", async () => {
   const requests = [];
   const collector = createServer(async (request, response) => {

@@ -129,6 +129,58 @@ jobs:
         run: |
           node --test actions/setup/js/scripts/test_otlp_protobuf.mjs
 
+  otel-conformance:
+    name: OTel semantic-convention conformance
+    needs: [checkout-cache]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    concurrency:
+      group: ci-${{ github.ref }}-otel-conformance
+      cancel-in-progress: true
+    env:
+      CONFORMANCE_REF: a4321907b3768c468966538a459130ac6b095bdc
+      WEAVER_VERSION: v0.28.0
+      GENAI_REGISTRY: https://github.com/open-telemetry/semantic-conventions-genai.git@e6658f14c9d9ea0760825f029cb82e7673f48fab[model]
+    steps:
+      - name: Restore checkout
+        id: restore-checkout
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .
+          key: checkout-cjs-${{ github.run_id }}-${{ github.sha }}
+      - name: Checkout on cache miss
+        if: steps.restore-checkout.outputs.cache-hit != 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v6
+        with:
+          node-version: "24"
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install conformance runner and Weaver
+        run: |
+          git init -q "$RUNNER_TEMP/conformance"
+          git -C "$RUNNER_TEMP/conformance" fetch -q --depth 1 https://github.com/open-telemetry/semantic-conventions-conformance.git "$CONFORMANCE_REF"
+          git -C "$RUNNER_TEMP/conformance" checkout -q FETCH_HEAD
+          python -m pip install --quiet -e "$RUNNER_TEMP/conformance/tools/runner" -e "$RUNNER_TEMP/conformance/tools/gen-ai/runner"
+          mkdir -p "$RUNNER_TEMP/weaver"
+          curl -fsSL "https://github.com/open-telemetry/weaver/releases/download/${WEAVER_VERSION}/weaver-x86_64-unknown-linux-gnu.tar.xz" \
+            | tar -xJ -C "$RUNNER_TEMP/weaver" --strip-components=1
+          echo "$RUNNER_TEMP/weaver" >> "$GITHUB_PATH"
+      - name: Check gh-aw telemetry against semantic-conventions-genai
+        run: |
+          otel-conformance actions/setup/js/conformance --registry "$GENAI_REGISTRY" \
+            --report-dir "$RUNNER_TEMP/weaver-reports" --data-file "$RUNNER_TEMP/conformance-data.json"
+          node actions/setup/js/conformance/check-report.mjs "$RUNNER_TEMP/weaver-reports"
+
   js-tests:
     name: JS Tests (shard ${{ matrix.shard }}/8)
     needs: [checkout-cache]

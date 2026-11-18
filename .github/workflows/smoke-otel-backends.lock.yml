@@ -1,4 +1,4 @@
-# gh-aw-metadata: {"schema_version":"v4","frontmatter_hash":"1f08d50a8e5b2965a5e1ed79842d7ecdd138663d17892bf7bb2d2059b9e21854","body_hash":"17aff5317be9e08d74021a469b9f857c520cf280dadc9d2d02fd90f6bac8e3c6","strict":true,"agent_id":"codex","agent_model":"copilot/gpt-6-astra","engine_versions":{"codex":"0.169.0"}}
+# gh-aw-metadata: {"schema_version":"v4","frontmatter_hash":"1f08d50a8e5b2965a5e1ed79842d7ecdd138663d17892bf7bb2d2059b9e21854","body_hash":"6170d8948d4aa00748c16597fd086f8b818f5ea9d1201ead729cb9e6edaed00a","strict":true,"agent_id":"codex","agent_model":"copilot/gpt-6-astra","engine_versions":{"codex":"0.169.0"}}
 # gh-aw-manifest: {"version":1,"secrets":["COPILOT_GITHUB_TOKEN","DD_API_KEY","DD_APPLICATION_KEY","DD_APP_KEY","DD_SITE","GH_AW_GITHUB_MCP_SERVER_TOKEN","GH_AW_GITHUB_TOKEN","GH_AW_OTEL_DATADOG_API_KEY","GH_AW_OTEL_DATADOG_ENDPOINT","GH_AW_OTEL_GRAFANA_AUTHORIZATION","GH_AW_OTEL_GRAFANA_ENDPOINT","GH_AW_OTEL_SENTRY_AUTHORIZATION","GH_AW_OTEL_SENTRY_ENDPOINT","GITHUB_TOKEN","GRAFANA_SERVICE_ACCOUNT_TOKEN","GRAFANA_URL","SENTRY_ACCESS_TOKEN","SENTRY_OPENAI_API_KEY"],"actions":[{"repo":"actions/checkout","sha":"3d3c42e5aac5ba805825da76410c181273ba90b1","version":"v7.0.1"},{"repo":"actions/download-artifact","sha":"9000827ccba6bdab643e8b6fd33ac0654aef8333","version":"v8.0.2"},{"repo":"actions/github-script","sha":"3a2844b7e9c422d3c10d287c895573f7108da1b3","version":"v9.0.0"},{"repo":"actions/setup-node","sha":"949feb2413d6458794dcd2491c4babbbce0c15c1","version":"v7.1.0"},{"repo":"actions/upload-artifact","sha":"cf430e030ddbb5b0abf93d22962f4752f3646cd9","version":"v7.0.2"}],"containers":[{"image":"ghcr.io/github/gh-aw-firewall/agent:0.29.14","digest":"sha256:7f649a02f2cc235325ab512f546854e0fad32b7abdc6c24c5475ddc0639e0aaa","pinned_image":"ghcr.io/github/gh-aw-firewall/agent:0.29.14@sha256:7f649a02f2cc235325ab512f546854e0fad32b7abdc6c24c5475ddc0639e0aaa"},{"image":"ghcr.io/github/gh-aw-firewall/api-proxy:0.29.14","digest":"sha256:136785634c9207d7328c701d31d53941542ef307840bda6b348274c8842557c0","pinned_image":"ghcr.io/github/gh-aw-firewall/api-proxy:0.29.14@sha256:136785634c9207d7328c701d31d53941542ef307840bda6b348274c8842557c0"},{"image":"ghcr.io/github/gh-aw-firewall/cli-proxy:0.29.14","digest":"sha256:3f9cf5c56bfea6f845ac7a213f4bbbac8c5e16ea1587599fae898da3ab6a6e12","pinned_image":"ghcr.io/github/gh-aw-firewall/cli-proxy:0.29.14@sha256:3f9cf5c56bfea6f845ac7a213f4bbbac8c5e16ea1587599fae898da3ab6a6e12"},{"image":"ghcr.io/github/gh-aw-firewall/squid:0.29.14","digest":"sha256:878b9c1aaeca076004bf2157dd2be28586b68b2b3d69c3ff8fd2b5add2a3126c","pinned_image":"ghcr.io/github/gh-aw-firewall/squid:0.29.14@sha256:878b9c1aaeca076004bf2157dd2be28586b68b2b3d69c3ff8fd2b5add2a3126c"},{"image":"ghcr.io/github/gh-aw-mcpg:v0.5.10","digest":"sha256:629ddcd68a48ab02e7db8af527d2756c6db563b00c1d31d8aa8fcbac96f01c59","pinned_image":"ghcr.io/github/gh-aw-mcpg:v0.5.10@sha256:629ddcd68a48ab02e7db8af527d2756c6db563b00c1d31d8aa8fcbac96f01c59"},{"image":"ghcr.io/github/gh-aw-node","digest":"sha256:8735428c2d4e602f90781ba0c571c400e8ff93c7ee1508a75d71f87e34e415cc","pinned_image":"ghcr.io/github/gh-aw-node@sha256:8735428c2d4e602f90781ba0c571c400e8ff93c7ee1508a75d71f87e34e415cc"},{"image":"ghcr.io/github/github-mcp-server:v2.1.0","digest":"sha256:f6056fc10bfffcc8c81a6417a2e9ca12808647e8dd6049642a4feaadee0e0f8a","pinned_image":"ghcr.io/github/github-mcp-server:v2.1.0@sha256:f6056fc10bfffcc8c81a6417a2e9ca12808647e8dd6049642a4feaadee0e0f8a"},{"image":"grafana/mcp-grafana:1.1.0-alpine","digest":"sha256:e0eb29cdf8effbbebf115ea99a5f654a44681dfd293661b0991498d651ca6cb4","pinned_image":"grafana/mcp-grafana:1.1.0-alpine@sha256:e0eb29cdf8effbbebf115ea99a5f654a44681dfd293661b0991498d651ca6cb4"},{"image":"node:lts-alpine","digest":"sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5","pinned_image":"node:lts-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5"}],"mcp_servers":[{"name":"datadog","tools":["get_datadog_metric","get_datadog_trace","search_datadog_dashboards","search_datadog_metrics","search_datadog_slos","search_datadog_spans"]},{"name":"grafana","tools":["get_datasource","list_datasources","tempo_docs-traceql","tempo_get-attribute-names","tempo_get-attribute-values","tempo_get-trace","tempo_traceql-search"]},{"name":"safeoutputs","tools":["create_issue","noop","report_incomplete","report_missing_data","report_missing_tool"]},{"name":"sentry","tools":["analyze_issue_with_seer","find_dsns","find_organizations","find_projects","find_releases","find_teams","get_doc","get_event_attachment","get_issue_details","get_trace_details","list_events","list_issue_events","search_docs","search_events","search_issues","whoami"]}],"threat_detection":{"mode":"enabled"},"admission":true,"agent_metadata":{"03cbf8931deff21d5116":{"name":"Agentic Workflows"},"4943cffeebb6706aa8bc":{"name":"Squad","tools":["*"]},"9ea639558df913e650e4":{"name":"technical-doc-writer"},"a17c6c62ffcd7401f40f":{"name":"adr-writer"},"ad6ff0fe9219fbfa5ccc":{"name":"grumpy-reviewer","tools":["read","search"]},"e0c35a96dedfb29cb9b1":{"name":"w3c-specification-writer"}}}
 # This file was automatically generated by gh-aw. DO NOT EDIT. To debug this workflow, load the skill at https://github.com/github/gh-aw/blob/main/debug.md
 #
@@ -110,27 +110,30 @@ env:
 jobs:
   activation:
     name: activation
-    needs: pre_activation
+    needs:
+      - admission
+      - pre_activation
     if: >
-      needs.pre_activation.outputs.activated == 'true' && ((fromJSON(github.event.inputs.aw_context || '{}').event_type == 'pull_request') &&
+      ((!cancelled()) && (needs.admission.result == 'success' || needs.admission.result == 'skipped') && needs.pre_activation.result == 'success') &&
+      (needs.pre_activation.outputs.activated == 'true' && ((fromJSON(github.event.inputs.aw_context || '{}').event_type == 'pull_request') &&
       (fromJSON(github.event.inputs.aw_context || '{}').trigger_label == 'smoke') || !(fromJSON(github.event.inputs.aw_context ||
-      '{}').event_type == 'pull_request'))
+      '{}').event_type == 'pull_request')))
     runs-on: ubuntu-slim
     # Permissions for the activation job (workflow permissions default to none).
     permissions:
       actions: read # Read workflow runs and artifacts for workflow context.
       contents: read
-      id-token: write # Request an OIDC token for authenticated services.
       issues: write # Create or update issues and comments.
       pull-requests: write # Create or update pull requests and review comments.
     env:
+      GH_AW_ADMISSION_RESULT: ${{ needs.admission.outputs.result }}
       GH_AW_MAX_DAILY_AI_CREDITS: ${{ vars.GH_AW_DEFAULT_MAX_DAILY_AI_CREDITS || '5000' }}
       GH_AW_RUNTIME_FEATURES: ${{ vars.GH_AW_RUNTIME_FEATURES }}
     outputs:
-      admission-max-ai-credits: ${{ steps.admission.outputs.max-ai-credits }}
-      admission-max-ai-credits-evals: ${{ steps.admission.outputs.max-ai-credits-evals }}
-      admission-max-ai-credits-threat-detection: ${{ steps.admission.outputs.max-ai-credits-threat-detection }}
-      admission-result: ${{ steps.admission.outputs.result }}
+      admission-max-ai-credits: ${{ needs.admission.outputs.max-ai-credits }}
+      admission-max-ai-credits-evals: ${{ needs.admission.outputs.max-ai-credits-evals }}
+      admission-max-ai-credits-threat-detection: ${{ needs.admission.outputs.max-ai-credits-threat-detection }}
+      admission-result: ${{ needs.admission.outputs.result }}
       aw_context: ${{ steps.generate_aw_info.outputs.aw_context }}
       body: ${{ steps.sanitized.outputs.body }}
       comment_id: ${{ steps.add-comment.outputs.comment-id }}
@@ -171,7 +174,7 @@ jobs:
         with:
           destination: ${{ runner.temp }}/gh-aw/actions
           job-name: ${{ github.job }}
-          trace-id: ${{ needs.pre_activation.outputs.setup-trace-id }}
+          trace-id: ${{ needs.admission.outputs.trace-id || needs.pre_activation.outputs.setup-trace-id }}
           parent-span-id: ${{ needs.pre_activation.outputs.setup-parent-span-id || needs.pre_activation.outputs.setup-span-id }}
           safe-output-artifact-client: ${{ env.GH_AW_MAX_DAILY_AI_CREDITS != '' }}
         env:
@@ -181,21 +184,6 @@ jobs:
           GH_AW_INFO_AWF_VERSION: "v0.29.14"
           GH_AW_INFO_ENGINE_ID: "codex"
           GH_AW_SETUP_AW_CONTEXT: ${{ inputs.aw_context }}
-      - name: Check workflow admission
-        id: admission
-        if: vars.GH_AW_DEFAULT_ADMISSION_URL != ''
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        env:
-          GH_AW_DEFAULT_ADMISSION_URL: ${{ vars.GH_AW_DEFAULT_ADMISSION_URL }}
-          GH_AW_DEFAULT_ADMISSION_AUDIENCE: ${{ vars.GH_AW_DEFAULT_ADMISSION_AUDIENCE }}
-          GH_AW_DEFAULT_ADMISSION_ON_OUTAGE: ${{ vars.GH_AW_DEFAULT_ADMISSION_ON_OUTAGE }}
-          GH_AW_ADMISSION_WORKFLOW_HASH: "1f08d50a8e5b2965a5e1ed79842d7ecdd138663d17892bf7bb2d2059b9e21854:17aff5317be9e08d74021a469b9f857c520cf280dadc9d2d02fd90f6bac8e3c6"
-          GH_AW_INFO_WORKFLOW_ID: ${{ job.workflow_ref }}
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TRIGGERING_ACTOR: ${{ github.triggering_actor }}
-        with:
-          script: |
-            await require(require('node:path').join(process.env.RUNNER_TEMP, 'gh-aw', 'actions', 'activation_admission.cjs')).main(core, github, context, exec, io, getOctokit);
       - name: Mask OTLP telemetry headers
         run: bash "${RUNNER_TEMP}/gh-aw/actions/mask_otlp_headers.sh"
       - name: Generate agentic run info
@@ -633,11 +621,67 @@ jobs:
           if-no-files-found: ignore
           retention-days: ${{ vars.GH_AW_DEFAULT_ARTIFACT_RETENTION_DAYS || '1' }}
 
+  admission:
+    name: admission
+    needs: pre_activation
+    if: >
+      (needs.pre_activation.outputs.activated == 'true' && ((fromJSON(github.event.inputs.aw_context || '{}').event_type == 'pull_request') &&
+      (fromJSON(github.event.inputs.aw_context || '{}').trigger_label == 'smoke') || !(fromJSON(github.event.inputs.aw_context ||
+      '{}').event_type == 'pull_request'))) && (vars.GH_AW_DEFAULT_ADMISSION_URL != '')
+    runs-on: ubuntu-slim
+    # Permissions for the admission job (workflow permissions default to none).
+    permissions:
+      contents: read
+      id-token: write # Request an OIDC token for authenticated services.
+    timeout-minutes: 5
+    outputs:
+      max-ai-credits: ${{ steps.admission.outputs.max-ai-credits }}
+      max-ai-credits-evals: ${{ steps.admission.outputs.max-ai-credits-evals }}
+      max-ai-credits-threat-detection: ${{ steps.admission.outputs.max-ai-credits-threat-detection }}
+      result: ${{ steps.admission.outputs.result }}
+      trace-id: ${{ steps.admission.outputs.trace-id }}
+    steps:
+      - name: Checkout actions folder
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: github/gh-aw
+          sparse-checkout: |
+            actions
+          fetch-depth: 1
+          clean: false
+          persist-credentials: false
+      - name: Setup Scripts
+        id: setup
+        uses: ./actions/setup
+        with:
+          destination: ${{ runner.temp }}/gh-aw/actions
+          job-name: ${{ github.job }}
+          trace-id: ${{ needs.pre_activation.outputs.setup-trace-id }}
+          parent-span-id: ${{ needs.pre_activation.outputs.setup-parent-span-id || needs.pre_activation.outputs.setup-span-id }}
+        env:
+          GH_AW_SETUP_WORKFLOW_NAME: "Smoke OTEL"
+          GH_AW_CURRENT_WORKFLOW_REF: ${{ github.repository }}/.github/workflows/unknown.lock.yml@${{ github.ref }}
+      - name: Check workflow admission
+        id: admission
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          GH_AW_DEFAULT_ADMISSION_URL: ${{ vars.GH_AW_DEFAULT_ADMISSION_URL }}
+          GH_AW_DEFAULT_ADMISSION_AUDIENCE: ${{ vars.GH_AW_DEFAULT_ADMISSION_AUDIENCE }}
+          GH_AW_DEFAULT_ADMISSION_ON_OUTAGE: ${{ vars.GH_AW_DEFAULT_ADMISSION_ON_OUTAGE }}
+          GH_AW_ADMISSION_WORKFLOW_HASH: "1f08d50a8e5b2965a5e1ed79842d7ecdd138663d17892bf7bb2d2059b9e21854:6170d8948d4aa00748c16597fd086f8b818f5ea9d1201ead729cb9e6edaed00a"
+          GH_AW_INFO_WORKFLOW_ID: ${{ job.workflow_ref }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+        with:
+          script: |
+            await require(require('node:path').join(process.env.RUNNER_TEMP, 'gh-aw', 'actions', 'activation_admission.cjs')).main(core, github, context, exec, io, getOctokit);
+
   agent:
     name: agent
     needs: activation
     if: >
-      needs.activation.outputs.daily_ai_credits_exceeded != 'true' && needs.activation.outputs.daily_ai_credits_guardrail_status != 'quota_blocked'
+      ((!cancelled()) && needs.activation.result == 'success') && (needs.activation.outputs.daily_ai_credits_exceeded != 'true' &&
+      needs.activation.outputs.daily_ai_credits_guardrail_status != 'quota_blocked')
     runs-on: ubuntu-latest
     # Permissions for the agent job (workflow permissions default to none).
     permissions:
@@ -1616,6 +1660,7 @@ jobs:
     name: conclusion
     needs:
       - activation
+      - admission
       - agent
       - detection
       - safe_outputs
@@ -1629,7 +1674,6 @@ jobs:
     permissions:
       actions: read # Read workflow runs and artifacts for workflow context.
       checks: read # Read check runs for workflow context.
-      id-token: write # Request an OIDC token for authenticated services.
       issues: write # Create or update issues and comments.
       pull-requests: read # Read pull requests and review comments for workflow context.
     concurrency:
@@ -1637,16 +1681,19 @@ jobs:
       cancel-in-progress: false
       queue: max
     env:
-      GH_AW_JOB_DISPLAY_NAMES: "{\"activation\":\"activation\",\"agent\":\"agent\",\"conclusion\":\"conclusion\",\"detection\":\"detection\",\"pre_activation\":\"pre_activation\",\"safe_outputs\":\"safe_outputs\"}"
-      GH_AW_JOB_RESULTS: "{\"activation\":{\"result\":\"${{ needs.activation.result }}\"},\"agent\":{\"result\":\"${{ needs.agent.result }}\"},\"detection\":{\"result\":\"${{ needs.detection.result }}\"},\"safe_outputs\":{\"result\":\"${{ needs.safe_outputs.result }}\"}}"
-      GH_AW_JOB_TIMING_ELIGIBLE: "{\"activation\":true,\"agent\":true,\"conclusion\":true,\"detection\":true,\"pre_activation\":true,\"safe_outputs\":true}"
+      GH_AW_JOB_DISPLAY_NAMES: "{\"activation\":\"activation\",\"admission\":\"admission\",\"agent\":\"agent\",\"conclusion\":\"conclusion\",\"conclusion_admission\":\"conclusion_admission\",\"detection\":\"detection\",\"pre_activation\":\"pre_activation\",\"safe_outputs\":\"safe_outputs\"}"
+      GH_AW_JOB_RESULTS: "{\"activation\":{\"result\":\"${{ needs.activation.result }}\"},\"admission\":{\"result\":\"${{ needs.admission.result }}\"},\"agent\":{\"result\":\"${{ needs.agent.result }}\"},\"detection\":{\"result\":\"${{ needs.detection.result }}\"},\"safe_outputs\":{\"result\":\"${{ needs.safe_outputs.result }}\"}}"
+      GH_AW_JOB_TIMING_ELIGIBLE: "{\"activation\":true,\"admission\":true,\"agent\":true,\"conclusion\":true,\"conclusion_admission\":true,\"detection\":true,\"pre_activation\":true,\"safe_outputs\":true}"
       GH_AW_RUNTIME_FEATURES: ${{ vars.GH_AW_RUNTIME_FEATURES }}
     outputs:
+      admission_compact_session: ${{ steps.admission-conclusion-metadata.outputs.compact_session }}
       incomplete_count: ${{ steps.report_incomplete.outputs.incomplete_count }}
       noop_comment_body: ${{ steps.noop.outputs.noop_comment_body }}
       noop_message: ${{ steps.noop.outputs.noop_message }}
       tools_reported: ${{ steps.missing_tool.outputs.tools_reported }}
       total_count: ${{ steps.missing_tool.outputs.total_count }}
+      usage_artifact_id: ${{ steps.upload-usage-artifact.outputs.artifact-id }}
+      usage_artifact_retry_id: ${{ steps.upload-usage-artifact-retry.outputs.artifact-id }}
     steps:
       - name: Checkout actions folder
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -1949,6 +1996,17 @@ jobs:
             setupGlobals(core, github, context, exec, io, getOctokit);
             const { main } = require(path.join(actionsDir, 'generate_usage_artifacts.cjs'));
             await main();
+      - name: Prepare admission conclusion metadata
+        id: admission-conclusion-metadata
+        if: always() && vars.GH_AW_DEFAULT_ADMISSION_URL != ''
+        continue-on-error: true
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const path = require('node:path');
+            const { readCompactUnifiedSession } = require(path.join(process.env.RUNNER_TEMP, 'gh-aw', 'actions', 'compact_unified_session.cjs'));
+            const compact = readCompactUnifiedSession('/tmp/gh-aw/usage/aw_session.jsonl');
+            core.setOutput('compact_session', JSON.stringify({ version: compact.version, session: compact.session, included_events: compact.includedEvents, omitted_events: compact.omittedEvents, oversized_lines: compact.oversizedLines, scan_truncated: compact.scanTruncated, truncated: compact.truncated }));
       - name: Upload usage artifact
         id: upload-usage-artifact
         if: always()
@@ -2025,21 +2083,52 @@ jobs:
           if-no-files-found: ignore
           overwrite: true
           retention-days: ${{ vars.GH_AW_DEFAULT_ARTIFACT_RETENTION_DAYS || '0' }}
+
+  conclusion_admission:
+    name: conclusion_admission
+    needs: conclusion
+    if: always() && needs.conclusion.result != 'skipped' && vars.GH_AW_DEFAULT_ADMISSION_URL != ''
+    runs-on: ubuntu-slim
+    # Permissions for the conclusion_admission job (workflow permissions default to none).
+    permissions:
+      contents: read
+      id-token: write # Request an OIDC token for authenticated services.
+    timeout-minutes: 5
+    env:
+      GH_AW_RUNTIME_FEATURES: ${{ vars.GH_AW_RUNTIME_FEATURES }}
+    steps:
+      - name: Checkout actions folder
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: github/gh-aw
+          sparse-checkout: |
+            actions
+          fetch-depth: 1
+          clean: false
+          persist-credentials: false
+      - name: Setup Scripts
+        id: setup
+        uses: ./actions/setup
+        with:
+          destination: ${{ runner.temp }}/gh-aw/actions
+          job-name: ${{ github.job }}
+        env:
+          GH_AW_SETUP_WORKFLOW_NAME: "Smoke OTEL"
+          GH_AW_CURRENT_WORKFLOW_REF: ${{ github.repository }}/.github/workflows/unknown.lock.yml@${{ github.ref }}
       - name: Report admission conclusion
         if: always() && vars.GH_AW_DEFAULT_ADMISSION_URL != ''
-        continue-on-error: true
-        timeout-minutes: 2
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           GH_AW_DEFAULT_ADMISSION_URL: ${{ vars.GH_AW_DEFAULT_ADMISSION_URL }}
           GH_AW_DEFAULT_ADMISSION_AUDIENCE: ${{ vars.GH_AW_DEFAULT_ADMISSION_AUDIENCE }}
           GH_AW_DEFAULT_ADMISSION_ON_OUTAGE: ${{ vars.GH_AW_DEFAULT_ADMISSION_ON_OUTAGE }}
-          GH_AW_ADMISSION_WORKFLOW_HASH: "1f08d50a8e5b2965a5e1ed79842d7ecdd138663d17892bf7bb2d2059b9e21854:17aff5317be9e08d74021a469b9f857c520cf280dadc9d2d02fd90f6bac8e3c6"
+          GH_AW_ADMISSION_WORKFLOW_HASH: "1f08d50a8e5b2965a5e1ed79842d7ecdd138663d17892bf7bb2d2059b9e21854:6170d8948d4aa00748c16597fd086f8b818f5ea9d1201ead729cb9e6edaed00a"
           GH_AW_INFO_WORKFLOW_ID: ${{ job.workflow_ref }}
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TRIGGERING_ACTOR: ${{ github.triggering_actor }}
-          GH_AW_USAGE_ARTIFACT_ID: ${{ steps.upload-usage-artifact.outputs.artifact-id }}
-          GH_AW_USAGE_ARTIFACT_RETRY_ID: ${{ steps.upload-usage-artifact-retry.outputs.artifact-id }}
+          GH_AW_ADMISSION_COMPACT_SESSION: ${{ needs.conclusion.outputs.admission_compact_session }}
+          GH_AW_USAGE_ARTIFACT_ID: ${{ needs.conclusion.outputs.usage_artifact_id }}
+          GH_AW_USAGE_ARTIFACT_RETRY_ID: ${{ needs.conclusion.outputs.usage_artifact_retry_id }}
         with:
           script: |
             const { setupGlobals } = require(require('node:path').join(process.env.RUNNER_TEMP, 'gh-aw', 'actions', 'setup_globals.cjs'));
