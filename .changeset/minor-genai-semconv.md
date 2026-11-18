@@ -1,0 +1,5 @@
+---
+"gh-aw": minor
+---
+
+Align built-in OpenTelemetry output with the GenAI semantic conventions without changing existing names. Agent jobs now also emit `gen_ai.provider.name` (setup, agent and conclusion spans), `gen_ai.agent.name`, `gen_ai.usage.cache_write.input_tokens` and `error.type` on failure, the `cicd.*`, `vcs.*` and `deployment.environment.name` span resource attributes, and the `gen_ai.client.inference.usage.*` counters and `gen_ai.invoke_agent.duration` histogram. Set `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental` to switch to the latest experimental conventions: an `invoke_agent <workflow>` span of kind `INTERNAL`, `UNSET` status on success, cache-inclusive input tokens, a scope `schemaUrl` and no compatibility-only names; `gh-aw.*` attributes and `gh_aw.*` metrics stay. Check the output against `semantic-conventions-genai` with a CI-only conformance job that installs its runner and Weaver in its own job, without changing repository npm dependencies.

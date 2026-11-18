@@ -12,7 +12,7 @@ This guide describes telemetry available to downstream collectors and dashboards
 
 gh-aw exports traces over OTLP/HTTP. Built-in spans identify job setup and conclusion; agent execution can have a dedicated agent span. Other spans may describe admission checks, work-queue operations, or tool calls. Span names and attributes are useful for grouping, but are not a promise that every workflow or engine emits every span.
 
-Conclusion spans can include `exception` events. When grader or evaluation data is available, spans can include `grader.result` and `eval.result` events. Session logs are an opt-in signal using the `gh-aw.session` scope; they are not included by default. gh-aw does not currently emit metrics. Metric names mentioned in semantic-convention proposals are not evidence of an available metric stream.
+Conclusion spans can include `exception` events. When grader or evaluation data is available, spans can include `grader.result` and `eval.result` events. Session logs are an opt-in signal using the `gh-aw.session` scope; they are not included by default. Built-in metrics (`gh_aw.*` and `gen_ai.*`) are emitted only when OTLP metrics are enabled; see spec §11.5 for the list. Metric names mentioned in semantic-convention proposals but not listed there are not evidence of an available metric stream.
 
 ## Identity and measurements
 
@@ -21,7 +21,7 @@ Resource attributes identify the service and workflow run, for example `service.
 | Family | Examples |
 |---|---|
 | Workflow identity and outcome | `gh-aw.workflow.name`, `gh-aw.job.name`, `gh-aw.run.status`, `gh-aw.agent.conclusion` |
-| Model usage | `gen_ai.system`, `gen_ai.request.model`, `gen_ai.response.model`, `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens` |
+| Model usage | `gen_ai.provider.name` (compatibility: `gen_ai.system`), `gen_ai.agent.name` (compatibility: `gen_ai.workflow.name`), `gen_ai.request.model`, `gen_ai.response.model`, `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`, `gen_ai.usage.cache_write.input_tokens` |
 | Cost and budget | `gh-aw.aic`, `gh-aw.max_ai_credits`, `gh-aw.max_ai_credits_exceeded` |
 | Failures and export health | `gh-aw.error_count`, `exception`, `gh-aw.otlp.export_errors` |
 | Routing, firewall, and tools | `gh-aw.model_routing.*`, `gh-aw.firewall.*`, `gh-aw.mcp.*` |
@@ -34,6 +34,10 @@ For work-queue operation names and instrumentation availability, see [OpenTeleme
 AI credits (`gh-aw.aic`) and token usage belong to the span that owns the usage: usually the dedicated agent span, or the executing job's conclusion span when no dedicated agent span is emitted. A run can have other conclusion spans that do not own that usage. Deduplicate records by trace ID and span ID before aggregating mirrored data. Explicit numeric zero is a measured value; missing cost or token data is not zero.
 
 Work-queue attributes are point-in-time snapshots on operation spans. They are not counters and should not be summed across operations. Queue identifiers are hashed; treat remaining high-cardinality values as trace data rather than default metric dimensions.
+
+### Semantic-convention opt-in
+
+Setting `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental` switches built-in spans and metrics to the latest GenAI semantic conventions: the agent span becomes `invoke_agent <workflow>` (kind INTERNAL, sibling of the conclusion span), span `gen_ai.usage.input_tokens` includes cache tokens, successful spans keep status UNSET, the scope `schemaUrl` is set, and compatibility-only names (`gen_ai.system`, `gen_ai.workflow.name`, `gen_ai.usage.cache_creation.input_tokens`, `gen_ai.usage.total_tokens`, `gen_ai.client.token.usage`) are not emitted. `gh-aw.*` attributes and `gh_aw.*` metrics are still emitted; the `gh_aw.tokens.*` aliases drop only their `gen_ai.token.type` attribute. See spec §6.7.
 
 ## Export and local artifacts
 
@@ -75,7 +79,7 @@ Choose the owning span first, then the attribute. Missing attributes mean unknow
 |---|---|---|
 | Agent latency | Span duration of `gh-aw.<job>.agent` | Dedicated agent span, when `agent_cli_start_ms` and `agent_output.json` timing allow it |
 | Job wall time | `gh-aw.action_minutes` (minutes) | Conclusion span; computed as `(end - start) / 60000` |
-| Tokens | `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`, `gen_ai.usage.cache_read.input_tokens`, `gen_ai.usage.cache_creation.input_tokens`, `gen_ai.usage.total_tokens` | Dedicated agent span; otherwise the conclusion span of the job that owns usage. `total_tokens` is input plus output only |
+| Tokens | `gen_ai.usage.input_tokens`, `gen_ai.usage.output_tokens`, `gen_ai.usage.cache_read.input_tokens`, `gen_ai.usage.cache_write.input_tokens` (compatibility: `gen_ai.usage.cache_creation.input_tokens`), `gen_ai.usage.total_tokens`; metrics `gen_ai.client.inference.usage.*` next to the compatibility `gen_ai.client.token.usage` | Dedicated agent span; otherwise the conclusion span of the job that owns usage. `total_tokens` is input plus output only. The `gen_ai.client.inference.usage.input_tokens` counter includes cache tokens; do not add cache tokens to it or sum it with `gen_ai.client.token.usage` |
 | AI credits | `gh-aw.aic` (double) | Usage-owning span only; explicit zero is measured, absence is unknown |
 | Budget | `gh-aw.max_ai_credits`, `gh-aw.max_ai_credits_exceeded`, `gh-aw.ai_credits_rate_limit_error` | Agent conclusion path |
 | Turns | `gh-aw.turns` | Conclusion span, when the engine reports a turn count |
@@ -99,7 +103,7 @@ Source evidence is limited to implementation and tests; this table lists emitter
 |---|---|---|---|
 | Job setup | `gh-aw.<job>.setup`, `gh-aw.job.setup` | `actions/setup/js/send_otlp_span.cjs` `sendJobSetupSpan` | Signals, Identity |
 | Job conclusion | `gh-aw.<job>.conclusion`, `gh-aw.job.conclusion` | `send_otlp_span.cjs` `sendJobConclusionSpan`; `action_conclusion_otlp.cjs` | Identity, Query recipes |
-| Agent | `gh-aw.<job>.agent` (dedicated span, `kind` CLIENT) | `send_otlp_span.cjs` `sendJobConclusionSpan` (`hasDedicatedAgentSpan`) | Identity, Query recipes |
+| Agent | `gh-aw.<job>.agent` (dedicated span, `kind` CLIENT) with `gen_ai.agent.name`, `gen_ai.provider.name`, `error.type` on failure; with `OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental` the span is `invoke_agent <workflow>`, kind INTERNAL | `send_otlp_span.cjs` `sendJobConclusionSpan` (`hasDedicatedAgentSpan`) | Identity, Query recipes |
 | Exceptions | `exception` events | `send_otlp_span.cjs` `buildSpanEvents` | Signals |
 | Graders | `grader.result` events; `gh-aw.graders.*` on the agent conclusion span | `send_otlp_span.cjs` `buildGraderTelemetry`, `selectGraderOutputForJob` | Signals, Identity |
 | Evals | `eval.result`, `eval.status` events; `gh-aw.evals.*` | `send_otlp_span.cjs` `buildEvalTelemetry` | Signals |
@@ -109,19 +113,18 @@ Source evidence is limited to implementation and tests; this table lists emitter
 | Custom spans | `<toolName>.run` | `actions/setup/js/otlp.cjs` `logSpan` | Signals |
 | Session logs | `otel.log` records in the `gh-aw.session` scope | `actions/setup/js/send_otlp_session_logs.cjs` `sendSessionLogs` | Signals |
 | Usage and firewall | `gh-aw.aic`, `gen_ai.usage.*`, `gh-aw.firewall.*`, `gh-aw.mcp.*` on the owning span | `send_otlp_span.cjs` `sendJobConclusionSpan` | Measurements |
-| Resource identity | `service.*`, `github.*`, `runner.*`, `deployment.environment`, `gh-aw.*` | `send_otlp_span.cjs` `buildGitHubActionsResourceAttributes`; `pkg/workflow/observability_otlp.go` `otelResourceAttributes` | Identity |
-| Attribute names | 200 names | `specs/otel/attributes.tsp`, generated into `actions/setup/js/otel_attributes_generated.cjs` and `pkg/workflow/otel_attributes_generated.go` | Identity |
+| Resource identity | `service.*`, `github.*`, `runner.*`, `deployment.environment`, `deployment.environment.name`, `cicd.*`, `vcs.*`, `gh-aw.*` | `send_otlp_span.cjs` `buildGitHubActionsResourceAttributes`; `pkg/workflow/observability_otlp.go` `otelResourceAttributes` | Identity |
+| Attribute names | 214 names | `specs/otel/attributes.tsp`, generated into `actions/setup/js/otel_attributes_generated.cjs` and `pkg/workflow/otel_attributes_generated.go` | Identity |
 
-No OTel metric emitter exists in `actions/`, `pkg/`, `cmd/`, or `scripts/`.
+Built-in metrics are emitted by `actions/setup/js/otlp_metrics.cjs` `buildBuiltinRunMetrics`; spec §11.5 lists them.
 
 ## Discrepancies with the specification
 
 These describe current behavior. They do not change the normative specification.
 
-- **Metrics (spec §11.2–11.3):** `gh_aw.*` and `cicd.*` metric instruments are not emitted. Treat all measurements as span attributes or events.
-- **Span error type (spec §10.5):** The bare `error.type` key is not emitted. Work-queue spans use the prefixed `gh-aw.work_queue.error.type`. Built-in setup, conclusion, and agent spans use `status.code` and `exception` events.
+- **Span error type (spec §10.5):** The bare `error.type` key is emitted only on the agent job's agent and conclusion spans when the agent fails, times out or is cancelled. Work-queue spans use the prefixed `gh-aw.work_queue.error.type`. Other built-in spans use `status.code` and `exception` events.
 - **Lifecycle events (spec §10.6):** `gh_aw.job.setup.completed`, `gh_aw.agent.retry`, and related events are not emitted.
 - **Outcome spans (spec §13):** The `gh-aw.outcome.*` family appears in the public attribute reference and the spec, but no producer exists in this checkout. The corresponding formal tests in `pkg/workflow/otel_reliability_formal_test.go` are skipped.
-- **Aliases not emitted:** `gen_ai.provider.name`, `gen_ai.usage.reasoning.output_tokens`, and `cicd.*` aliases are not emitted.
+- **Aliases not emitted:** `gen_ai.usage.reasoning.output_tokens` is not emitted.
 - **Local mirror redaction (spec §14.3):** Span payloads from `sendJobSetupSpan`, `sendJobConclusionSpan` (agent and conclusion), and their mirror writes call `appendToOTLPJSONL(payload)` without `sanitizeOTLPPayload`. The wire export (`sendOTLPSpan`) and `logSpan` do sanitize. Source-observed; not confirmed by a runtime test.
-- **Validation status:** `specs/otel/attributes.tsp` already defines 200 attribute names, and they match the generated JavaScript and Go constants (verified by comparison). The TypeSpec compiler is not installed (`specs/otel/node_modules` is absent) and no lock installation is performed in this run. Compiler validation of `specs/otel/messages.tsp` is therefore deferred, and no TypeSpec file was created or changed.
+- **Validation status:** `specs/otel/attributes.tsp` defines 214 attribute names, and they match the generated JavaScript and Go constants (verified by comparison). The TypeSpec compiler is not installed (`specs/otel/node_modules` is absent) and no lock installation is performed in this run. Compiler validation of `specs/otel/messages.tsp` is therefore deferred, and no TypeSpec file was created or changed.

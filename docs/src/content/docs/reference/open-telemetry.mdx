@@ -394,9 +394,50 @@ env:
 
 The compiler injects `${{ vars.GH_AW_OTEL_METRICS || 'true' }}` unless the workflow defines `GH_AW_OTEL_METRICS` itself. To manage the Actions variable by repository, organization, or enterprise scope, use `gh aw env get` and `gh aw env update` with `default_otel_metrics: false`; deleting the variable restores the default-on behavior. Only the literal value `true` enables metrics. When enabled, metrics are sent to `/v1/metrics` as OTLP/HTTP JSON by default, or as protobuf when `OTEL_EXPORTER_OTLP_METRICS_PROTOCOL` or `OTEL_EXPORTER_OTLP_PROTOCOL` selects `http/protobuf` (see [Protobuf encoding](#protobuf-encoding-and-azure-monitor)), using the configured OTLP endpoints and their per-endpoint headers, and are mirrored to `/tmp/gh-aw/otel-metrics.jsonl` before export. The unified artifact includes the metrics mirror only when the effective runtime value is `true`. It contains metrics recorded in the agent job before artifact upload, including that job's built-in metrics; built-in metrics from other jobs are exported at post-job time and are not included in an artifact.
 
-The built-ins include `gh_aw.job.duration` (histogram, `s`) and `gh_aw.job.errors` (counter, `{job}` for failed, timed-out, and cancelled jobs), `gen_ai.client.token.usage` (counter, `{token}`, by `gen_ai.token.type` for input, output, cache-read, and cache-write tokens), `gh_aw.agent.turns` (histogram, `{turn}`), `gh_aw.tool_calls` (counter, `{call}`, by `gh-aw.tool.status`), and `gh_aw.workflow.output.items` (counter, `{item}`, by `gh-aw.safe_output.type`). AI-credit limit and rate-limit errors and OTLP export failures are also counted when known.
+The built-ins include `gh_aw.job.duration` (histogram, `s`) and `gh_aw.job.errors` (counter, `{job}` for failed, timed-out, and cancelled jobs), `gen_ai.client.token.usage` (counter, `{token}`, by `gen_ai.token.type` for input, output, cache-read, and cache-write tokens; compatibility metric, not emitted with the semantic-convention opt-in), `gh_aw.agent.turns` (histogram, `{turn}`), `gh_aw.tool_calls` (counter, `{call}`, by `gh-aw.tool.status`), and `gh_aw.workflow.output.items` (counter, `{item}`, by `gh-aw.safe_output.type`). AI-credit limit and rate-limit errors and OTLP export failures are also counted when known.
 
 For compatibility, the exporter also emits `gh_aw.run.duration`, `gh_aw.run.errors`, `gh_aw.tokens.input`, `gh_aw.tokens.output`, `gh_aw.tokens.cache_read`, `gh_aw.tokens.cache_write`, and `gh_aw.safe_outputs` aliases with the same observations. These `run` names still describe job-level measurements; query either a canonical metric or its alias, not both. Counters and histograms use delta temporality. Metric resources may include only the bounded `gh-aw.repository`, `gh-aw.engine.id`, `gh-aw.workflow.name`, `github.event_name`, and `github.job` attributes from `OTEL_RESOURCE_ATTRIBUTES`. Run IDs and other per-run identifiers are never metric dimensions. When trace context is available, data points include trace-linked exemplars.
+
+For agent jobs, gh-aw also emits the GenAI semantic-convention metrics:
+
+- `gen_ai.client.inference.usage.input_tokens`, `gen_ai.client.inference.usage.output_tokens`, `gen_ai.client.inference.usage.cache_read.input_tokens` and `gen_ai.client.inference.usage.cache_write.input_tokens` (counters, `{token}`, by `gen_ai.operation.name`, `gen_ai.provider.name`, `gen_ai.request.model` and `gen_ai.token.modality`). Zero or missing counts produce no data point.
+- `gen_ai.invoke_agent.duration` (histogram, `s`, by `gen_ai.operation.name`, `gen_ai.agent.name`, `gen_ai.request.model` and `error.type` on failure), with the 20 standard GenAI duration buckets from 0.1 s to 86400 s.
+
+:::note
+`gen_ai.client.inference.usage.input_tokens` includes cache-read and cache-write tokens. Do not add the cache counters to it, and do not sum it with `gen_ai.client.token.usage{gen_ai.token.type=input}`: that double-counts tokens.
+:::
+
+### Opting in to the latest GenAI conventions
+
+By default gh-aw keeps the span and metric shape that existing dashboards query, and adds the newer names next to the old ones. To switch built-in telemetry to the latest [GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions-genai), set:
+
+```yaml wrap
+env:
+  OTEL_SEMCONV_STABILITY_OPT_IN: gen_ai_latest_experimental
+```
+
+:::caution
+The GenAI semantic conventions are not yet stable. Names and values under this opt-in can change in a later gh-aw release when the conventions change.
+:::
+
+With the opt-in, the dedicated agent span is named `invoke_agent <workflow>` with kind `INTERNAL`, successful built-in spans keep status `UNSET`, span `gen_ai.usage.input_tokens` includes cache tokens, the instrumentation scope carries a `schemaUrl`, and the compatibility-only names in the table below are not emitted. Every `gh-aw.*` attribute and `gh_aw.*` metric is still emitted; the `gh_aw.tokens.*` aliases drop only their `gen_ai.token.type` attribute.
+
+#### Migrating queries
+
+| Old name (compatibility) | New name | Notes |
+|---|---|---|
+| `gen_ai.system` | `gen_ai.provider.name` | Values change: `github_models` → `github`, `google_vertex_ai` → `gcp.gen_ai`. |
+| `gen_ai.workflow.name` | `gen_ai.agent.name` | Same value. |
+| `gen_ai.usage.cache_creation.input_tokens` | `gen_ai.usage.cache_write.input_tokens` | Same value. |
+| `gen_ai.client.token.usage{gen_ai.token.type}` | `gen_ai.client.inference.usage.*` | The new input counter includes cache tokens. |
+| Span `gh-aw.agent.agent` (`CLIENT`, child of the conclusion span) | Span `invoke_agent <workflow>` (`INTERNAL`, sibling of the conclusion span) | Query by `gen_ai.operation.name = invoke_agent`. |
+| Span status `OK` on success | Span status `UNSET` on success | Failures still set `ERROR`. |
+
+The old names stay in the default (compatibility) shape and stop only for workflows that set the opt-in. Both shapes carry the new names, so queries can move first.
+
+### Conformance
+
+CI checks gh-aw's built-in telemetry against the GenAI semantic conventions with the [semantic-conventions-conformance](https://github.com/open-telemetry/semantic-conventions-conformance) runner and Weaver (T-OT-018). It runs an agent job's setup and conclusion steps for a success and a failure with the opt-in, and a success without it, against `semantic-conventions-genai` at commit `e6658f14c9d9ea0760825f029cb82e7673f48fab`. With the opt-in, the agent span, scope schema URL and `gen_ai.*` names must conform; the compatibility shape documents its known differences. To run it locally, install the runner and Weaver v0.28.0 as in the `otel-conformance` job of `.github/workflows/cjs.yml`, then run `make validate-otel-conformance`.
 
 Custom instrumentation can use `logMetric(name, value, options)` from `otlp.cjs`:
 
