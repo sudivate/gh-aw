@@ -379,6 +379,10 @@ for at least three minor releases and six months after the release that adds thi
 later spec version deprecate them; making the opt-in behaviour the default, which stops them, is a breaking change
 in a release after the deprecation and after semantic-conventions-genai publishes a release.
 
+Without `gen_ai_latest_experimental`, the default export MUST be a superset of the export before this section was
+added: every span (name, kind, parent, status), attribute, resource attribute, metric (type, unit, temporality) and
+data point (attributes, value) stays with the same value; only clock-dependent values may differ (T-OT-020).
+
 ---
 
 ## 7. Context Propagation
@@ -1165,6 +1169,7 @@ attribute-level checks mapped directly to Section 10 requirements:
 | **T-OT-017** | §8.1 standard resource attributes | `cicd.*`, `vcs.*` and `deployment.environment.name` are present and do not override `OTEL_RESOURCE_ATTRIBUTES`; §8.3 drops them from metrics | `send_otlp_span.test.cjs`, `otlp_metrics.test.cjs` |
 | **T-OT-018** | §6.7, §9.5, §10.5, §11.2 conformance | Built-in telemetry exported over OTLP to Weaver live-check with semantic-conventions-genai at the §18.1 commit has no undeclared violations with the opt-in; without it, every finding is declared with a reason | `actions/setup/js/conformance/` (CI) |
 | **T-OT-019** | §11.2 wire format | Opt-in GenAI spans and metrics (kind, scope `schemaUrl`, monotonic sums, 20-bound histogram) encode byte-for-byte like the reference SDK protocol types | `scripts/test_otlp_protobuf.mjs` |
+| **T-OT-020** | §6.7 backward compatibility | Without `gen_ai_latest_experimental` (unset, or another value such as `http`), the default export of a success and a failure agent job contains every fact of a golden export captured from the commit before §6.7; with it, every `gh-aw.*` and `github.*` span and resource attribute is kept | `send_otlp_span_legacy_contract.test.cjs`; golden `conformance/legacy-contract.golden.json` (`legacy-contract-capture.cjs`) |
 
 
 ### 17.2 Optional Extension Tests
@@ -1237,6 +1242,7 @@ This version follows semantic-conventions-genai at commit `e6658f1` (2026-11-06)
 - **Added**: Non-normative follow-ups for PII redaction and exporter-failure test coverage, with tracked IDs T-OT-012 and T-OT-013.
 - **Added**: The §6.7 opt-in; the §8.1 standard resource attributes; `gen_ai.provider.name`, `gen_ai.agent.name`, `gen_ai.usage.cache_write.input_tokens` and `error.type` on built-in spans; the `gen_ai.client.inference.usage.*` and `gen_ai.invoke_agent.duration` metrics.
 - **Changed**: `gen_ai.system`, `gen_ai.usage.total_tokens`, `gen_ai.usage.cache_creation.input_tokens`, `gen_ai.workflow.name` and `gen_ai.client.token.usage` are compatibility names, still supported and on by default (not deprecated, §6.7); with the opt-in, the agent span is `invoke_agent` (`INTERNAL`) and `gen_ai.usage.input_tokens` includes cache tokens.
+- **Added**: T-OT-020, a golden backward-compatibility test: the default export must stay a superset of the export before §6.7.
 
 ### Version 0.6.0 (Working Draft, November 5, 2026)
 
