@@ -433,7 +433,7 @@ With the opt-in, the dedicated agent span is named `invoke_agent <workflow>` wit
 | Span `gh-aw.agent.agent` (`CLIENT`, child of the conclusion span) | Span `invoke_agent <workflow>` (`INTERNAL`, sibling of the conclusion span) | Query by `gen_ai.operation.name = invoke_agent`. |
 | Span status `OK` on success | Span status `UNSET` on success | Failures still set `ERROR`. |
 
-The old names stay in the default (compatibility) shape and stop only for workflows that set the opt-in. Both shapes carry the new names, so queries can move first.
+The old names are deprecated but stay in the default (compatibility) shape, and stop only for workflows that set the opt-in. They remain on by default for at least three minor releases and six months (spec §6.7); a later release will make the opt-in shape the default. Both shapes carry the new names, so queries can move first.
 
 ### Conformance
 
