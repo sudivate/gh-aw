@@ -1207,6 +1207,19 @@ validate-otel-contract:
 check-otel-attributes:
 	@npm run check --prefix specs/otel
 
+# Check gh-aw's OTLP output against semantic-conventions-genai (spec §6.7, T-OT-018).
+# Needs the otel-conformance runner (open-telemetry/semantic-conventions-conformance@a4321907,
+# tools/runner and tools/gen-ai/runner) and weaver v0.28.0 on PATH. Reports go to $(OTEL_CONFORMANCE_OUT).
+OTEL_CONFORMANCE_OUT ?= /tmp/gh-aw-otel-conformance
+OTEL_CONFORMANCE_REGISTRY ?= https://github.com/open-telemetry/semantic-conventions-genai.git@e6658f14c9d9ea0760825f029cb82e7673f48fab[model]
+.PHONY: validate-otel-conformance
+validate-otel-conformance:
+	@echo "Checking gh-aw telemetry against semantic-conventions-genai..."
+	@otel-conformance actions/setup/js/conformance --registry '$(OTEL_CONFORMANCE_REGISTRY)' \
+		--report-dir "$(OTEL_CONFORMANCE_OUT)/weaver-reports" --data-file "$(OTEL_CONFORMANCE_OUT)/conformance-data.json"
+	@node actions/setup/js/conformance/check-report.mjs "$(OTEL_CONFORMANCE_OUT)/weaver-reports"
+	@echo "✓ OpenTelemetry semantic-convention conformance validated"
+
 .PHONY: generate-otel-attributes
 generate-otel-attributes:
 	npm run generate --prefix specs/otel

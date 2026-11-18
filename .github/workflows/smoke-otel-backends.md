@@ -128,6 +128,10 @@ if [ -f /tmp/gh-aw/agent/otel.jsonl ]; then
   jq -c '.resourceSpans[]?.scopeSpans[]?.spans[]? | {name, traceId}' /tmp/gh-aw/agent/otel.jsonl | head -10
   echo "=== Current run markers in local mirror ==="
   jq -c '.resourceSpans[]? as $rs | ([($rs.resource.attributes[]? | select(.key == "github.run_id") | .value.stringValue)] | first // "") as $run_id | $rs.scopeSpans[]?.spans[]? | {name, run_id: $run_id}' /tmp/gh-aw/agent/otel.jsonl | grep '"run_id":"${{ github.run_id }}"' | head -5 || true
+  echo "=== GenAI semantic-convention names on current-run spans ==="
+  # The agent span is written by the conclusion step after this agent finishes, so only the
+  # setup span is visible here: gen_ai.provider.name must be present, gen_ai.agent.name may not be yet.
+  jq -c '.resourceSpans[]? as $rs | ([($rs.resource.attributes[]? | select(.key == "github.run_id") | .value.stringValue)] | first // "") as $run_id | select($run_id == "${{ github.run_id }}") | $rs.scopeSpans[]?.spans[]? | {name, provider: ([.attributes[]? | select(.key == "gen_ai.provider.name") | .value.stringValue] | first), agent: ([.attributes[]? | select(.key == "gen_ai.agent.name") | .value.stringValue] | first)}' /tmp/gh-aw/agent/otel.jsonl | head -5 || true
 else
   echo "otel.jsonl missing"
 fi
@@ -146,7 +150,7 @@ fi
 
 Decide:
 
-- `send_status = pass` only if OTEL env vars are present and `/tmp/gh-aw/agent/otel.jsonl` exists with at least one span for `${{ github.run_id }}`.
+- `send_status = pass` only if OTEL env vars are present and `/tmp/gh-aw/agent/otel.jsonl` exists with at least one span for `${{ github.run_id }}`, and at least one current-run span listed under "GenAI semantic-convention names" has a non-null `provider`.
 - `send_status = inconclusive` if spans exist locally but none for `${{ github.run_id }}` can be confirmed.
 - Otherwise set `send_status = fail` and record the exact missing artifact or error.
 
