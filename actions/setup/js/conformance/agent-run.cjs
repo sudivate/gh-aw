@@ -57,7 +57,7 @@ for (const stale of [
   fs.rmSync(path.join(dir, stale), { force: true });
 }
 fs.writeFileSync(path.join(dir, "aw_info.json"), JSON.stringify({ engine_id: "copilot", workflow_name: "CI", model: "gpt-5", staged: false }));
-fs.writeFileSync(path.join(dir, "agent_usage.json"), JSON.stringify({ input_tokens: 10, output_tokens: 3, cache_read_tokens: 5, cache_write_tokens: 2 }));
+fs.writeFileSync(path.join(dir, "agent_usage.json"), JSON.stringify({ input_tokens: 10, output_tokens: 3, cache_read_tokens: 5, cache_write_tokens: 2, input_tokens_inclusive: 17 }));
 
 const { sendJobSetupSpan, sendJobConclusionSpan } = require("../send_otlp_span.cjs");
 

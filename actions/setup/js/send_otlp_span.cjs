@@ -2091,7 +2091,7 @@ function getErrorMessage(errorEntry) {
  * @property {number | undefined} turns
  * @property {string | undefined} stopReason
  * @property {string | undefined} resolvedModel
- * @property {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, ai_credits?: number} | undefined} tokenUsage
+ * @property {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, ai_credits?: number, input_tokens_inclusive?: number, input_tokens_include_cache?: boolean} | undefined} tokenUsage
  * @property {number} warningCount
  * @property {number} permissionDeniedCount
  * @property {number} steeringEventCount
@@ -2120,16 +2120,16 @@ function normalizeNonNegativeNumber(rawValue) {
  * Normalize token usage counters from an engine result event usage block.
  *
  * @param {unknown} rawUsage
- * @returns {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, ai_credits?: number} | undefined}
+ * @returns {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, ai_credits?: number, input_tokens_inclusive?: number, input_tokens_include_cache?: boolean} | undefined}
  */
 function normalizeRuntimeTokenUsage(rawUsage) {
   if (!rawUsage || typeof rawUsage !== "object" || Array.isArray(rawUsage)) {
     return undefined;
   }
 
-  /** @type {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, cache_read_input_tokens?: number, cache_creation_input_tokens?: number, ai_credits?: number}} */
+  /** @type {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, cache_read_input_tokens?: number, cache_creation_input_tokens?: number, ai_credits?: number, input_tokens_inclusive?: number, input_tokens_include_cache?: boolean}} */
   const usage = rawUsage;
-  /** @type {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, ai_credits?: number}} */
+  /** @type {{input_tokens?: number, output_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, ai_credits?: number, input_tokens_inclusive?: number, input_tokens_include_cache?: boolean}} */
   const normalized = {};
 
   const inputTokens = normalizeNonNegativeNumber(usage.input_tokens);
@@ -2156,7 +2156,30 @@ function normalizeRuntimeTokenUsage(rawUsage) {
     normalized.ai_credits = aiCredits;
   }
 
+  const inclusiveInputTokens = normalizeNonNegativeNumber(usage.input_tokens_inclusive);
+  if (typeof inclusiveInputTokens === "number") {
+    normalized.input_tokens_inclusive = inclusiveInputTokens;
+  }
+  if (typeof usage.input_tokens_include_cache === "boolean") {
+    normalized.input_tokens_include_cache = usage.input_tokens_include_cache;
+  }
+
   return Object.keys(normalized).length > 0 ? normalized : undefined;
+}
+
+/**
+ * Input tokens including cache tokens, as semantic-conventions-genai defines `input_tokens`.
+ * Undefined when the source does not say whether its input count already includes cache tokens.
+ * @param {{input_tokens?: number, cache_read_tokens?: number, cache_write_tokens?: number, input_tokens_inclusive?: number, input_tokens_include_cache?: boolean}} usage
+ * @returns {number | undefined}
+ */
+function resolveInclusiveInputTokens(usage) {
+  if (typeof usage.input_tokens_inclusive === "number") return usage.input_tokens_inclusive;
+  if (typeof usage.input_tokens !== "number") return undefined;
+  const cache = (usage.cache_read_tokens || 0) + (usage.cache_write_tokens || 0);
+  if (usage.input_tokens_include_cache === true || cache === 0) return usage.input_tokens;
+  if (usage.input_tokens_include_cache === false) return usage.input_tokens + cache;
+  return undefined;
 }
 
 /**
@@ -2813,11 +2836,11 @@ async function sendJobConclusionSpan(spanName, options = {}) {
   if (typeof aiCredits === "number") {
     usageAttrs.push(buildDoubleAttr("gh-aw.aic", aiCredits));
   }
-  if (typeof agentUsage.input_tokens === "number") {
-    // With the §6.7 opt-in, input_tokens includes cache tokens (semantic-conventions-genai).
-    const finiteOrZero = v => (typeof v === "number" && Number.isFinite(v) ? v : 0);
-    const inputTokens = optIn ? agentUsage.input_tokens + finiteOrZero(agentUsage.cache_read_tokens) + finiteOrZero(agentUsage.cache_write_tokens) : agentUsage.input_tokens;
-    usageAttrs.push(buildAttr("gen_ai.usage.input_tokens", inputTokens));
+  // With the §6.7 opt-in, input_tokens includes cache tokens (semantic-conventions-genai); it is
+  // omitted when the source does not say whether its count already includes them.
+  const spanInputTokens = optIn ? resolveInclusiveInputTokens(agentUsage) : agentUsage.input_tokens;
+  if (typeof spanInputTokens === "number") {
+    usageAttrs.push(buildAttr("gen_ai.usage.input_tokens", spanInputTokens));
   }
   if (typeof agentUsage.output_tokens === "number") {
     usageAttrs.push(buildAttr("gen_ai.usage.output_tokens", agentUsage.output_tokens));
@@ -2967,6 +2990,7 @@ async function sendJobConclusionSpan(spanName, options = {}) {
         outputTokens: agentUsage.output_tokens,
         cacheReadTokens: agentUsage.cache_read_tokens,
         cacheWriteTokens: agentUsage.cache_write_tokens,
+        inclusiveInputTokens: resolveInclusiveInputTokens(agentUsage),
         emitsTokenUsage: jobEmitsOwnTokenUsage,
         turns: jobName === "agent" ? runtimeMetrics.turns : undefined,
         toolCalls: gatewayMetrics?.total_calls,

@@ -66,6 +66,7 @@ describe("buildBuiltinRunMetrics", () => {
       outputTokens: 3,
       cacheReadTokens: 5,
       cacheWriteTokens: 2,
+      inclusiveInputTokens: 17,
       emitsTokenUsage: true,
       turns: 4,
       toolCalls: 4,
@@ -135,6 +136,7 @@ describe("buildBuiltinRunMetrics", () => {
     outputTokens: 3,
     cacheReadTokens: 5,
     cacheWriteTokens: 2,
+    inclusiveInputTokens: 17,
     emitsTokenUsage: true,
     provider: "github",
   };
@@ -162,6 +164,14 @@ describe("buildBuiltinRunMetrics", () => {
     const tokenUsage = byName(result, "gen_ai.client.token.usage").map(metric => metric.sum.dataPoints[0]);
     const cacheWrite = tokenUsage.find(point => attrsOf(point)["gen_ai.token.type"] === "input_cache_write");
     expect(cacheWrite.asInt).toBe("0");
+  });
+
+  it("takes the inclusive input counter from the caller and omits it when unknown", () => {
+    const inclusive = byName(buildBuiltinRunMetrics({ ...usageInput, inclusiveInputTokens: 10 }), "gen_ai.client.inference.usage.input_tokens");
+    expect(inclusive[0].sum.dataPoints[0].asInt).toBe("10");
+    const unknown = buildBuiltinRunMetrics({ ...usageInput, inclusiveInputTokens: undefined });
+    expect(byName(unknown, "gen_ai.client.inference.usage.input_tokens")).toHaveLength(0);
+    expect(byName(unknown, "gen_ai.client.inference.usage.cache_read.input_tokens")).toHaveLength(1);
   });
 
   it("omits gen_ai.client.inference.usage.* without a provider", () => {

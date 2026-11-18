@@ -642,6 +642,10 @@ async function main(copilotSessionStateDir = getGhAwPath("sandbox/agent/logs/cop
 
     const agentUsage = {
       ...summary.tokenUsage,
+      // Input including cache tokens (OTel GenAI semantics), only when every record reported all three counts.
+      ...(["input_tokens", "cache_read_tokens", "cache_write_tokens"].every(key => typeof summary.tokenUsage[key] === "number") && Number.isFinite(summary.inclusiveInputTokens)
+        ? { input_tokens_inclusive: summary.inclusiveInputTokens }
+        : {}),
       ambient_context: Math.round(summary.ambientContextTokens || 0),
       ...(summary.aiCreditsAvailable ? { ai_credits: summary.aiCreditsSource === "awf_reported" ? Number(summary.totalAIC.toFixed(6)) : Number(summary.totalAIC.toFixed(3)) } : {}),
       ...(primaryModel ? { primary_model: primaryModel } : {}),

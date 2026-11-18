@@ -654,7 +654,7 @@ Span links SHOULD be used instead of parent-child relationships when outcome eva
 | `gen_ai.request.model` | string | CONDITIONALLY REQUIRED when available. |
 | `gen_ai.response.model` | string | RECOMMENDED when returned. |
 | `gen_ai.response.finish_reasons` | string[] | RECOMMENDED when returned. |
-| `gen_ai.usage.input_tokens` | int | RECOMMENDED when returned. Without the opt-in it excludes cache tokens (shipped meaning). With the opt-in it MUST include cache-read and cache-write tokens. |
+| `gen_ai.usage.input_tokens` | int | RECOMMENDED when returned. Without the opt-in it is the sum of the per-request `input_tokens` the source reports (shipped meaning); whether that already includes cache tokens depends on the source. With the opt-in it MUST include cache-read and cache-write tokens exactly once (§11.2); when that cannot be determined it MUST be omitted. |
 | `gen_ai.usage.output_tokens` | int | RECOMMENDED when returned. |
 | `gen_ai.usage.cache_read.input_tokens` | int | RECOMMENDED when applicable. |
 | `gen_ai.usage.cache_write.input_tokens` | int | RECOMMENDED when applicable. Additive. |
@@ -789,7 +789,7 @@ Built-in job metrics MUST be enabled by default when OTLP is configured. The eff
 | `gh_aw.job.duration` (`gh_aw.run.duration` compatibility alias) | Histogram | `s` | `gh-aw.job.name`, `gh-aw.workflow.name`, `cicd.pipeline.task.run.result`, `gh-aw.engine.id`, `gen_ai.request.model` when available | Wall-clock job duration; the legacy `run` name does not change its job-level scope. |
 | `gh_aw.job.errors` (`gh_aw.run.errors` compatibility alias) | Counter | `{job}` / `{run}` | `gh-aw.job.name`, `gh-aw.workflow.name`, `cicd.pipeline.task.run.result` | One failed, timed-out, or cancelled job. |
 | `gen_ai.client.token.usage` (compatibility only, §6.7; the `gh_aw.tokens.*` aliases are kept in both modes and omit `gen_ai.token.type` with the opt-in) | Counter | `{token}` | `gh-aw.job.name`, `gh-aw.workflow.name`, `gen_ai.token.type`, `gen_ai.request.model`, `gh-aw.engine.id` when available | Input, output, cache-read, or cache-write tokens for jobs with their own model usage data. |
-| `gen_ai.client.inference.usage.input_tokens` | Counter | `{token}` | `gen_ai.operation.name`, `gen_ai.provider.name`, `gen_ai.token.modality`, `gen_ai.request.model` when available, `gh-aw.job.name`, `gh-aw.workflow.name` | Input tokens **including** cache read and cache write; jobs with their own model usage data. Additive. |
+| `gen_ai.client.inference.usage.input_tokens` | Counter | `{token}` | `gen_ai.operation.name`, `gen_ai.provider.name`, `gen_ai.token.modality`, `gen_ai.request.model` when available, `gh-aw.job.name`, `gh-aw.workflow.name` | Input tokens **including** cache read and cache write, counted once: each usage record is normalized with the AI-credits cache rule (an explicit `input_tokens_include_cache` first, then the provider default), then summed (`agent_usage.json` `input_tokens_inclusive`). Omitted when the source does not say whether its input already includes cache tokens. Jobs with their own model usage data. Additive. |
 | `gen_ai.client.inference.usage.output_tokens` | Counter | `{token}` | same as above | Output tokens. Additive. |
 | `gen_ai.client.inference.usage.cache_read.input_tokens` | Counter | `{token}` | same as above | Cache-read input tokens. Additive. |
 | `gen_ai.client.inference.usage.cache_write.input_tokens` | Counter | `{token}` | same as above | Cache-write input tokens. Additive. |
@@ -1242,6 +1242,7 @@ This version follows semantic-conventions-genai at commit `e6658f1` (2026-11-06)
 - **Added**: Non-normative follow-ups for PII redaction and exporter-failure test coverage, with tracked IDs T-OT-012 and T-OT-013.
 - **Added**: The §6.7 opt-in; the §8.1 standard resource attributes; `gen_ai.provider.name`, `gen_ai.agent.name`, `gen_ai.usage.cache_write.input_tokens` and `error.type` on built-in spans; the `gen_ai.client.inference.usage.*` and `gen_ai.invoke_agent.duration` metrics.
 - **Changed**: `gen_ai.system`, `gen_ai.usage.total_tokens`, `gen_ai.usage.cache_creation.input_tokens`, `gen_ai.workflow.name` and `gen_ai.client.token.usage` are compatibility names, still supported and on by default (not deprecated, §6.7); with the opt-in, the agent span is `invoke_agent` (`INTERNAL`) and `gen_ai.usage.input_tokens` includes cache tokens.
+- **Fixed**: inclusive input tokens use each record's cache semantics (`input_tokens_include_cache`, then the AI-credits provider default) instead of always adding cache tokens, which double-counted them for sources whose input already includes cache reads. `agent_usage.json` gains `input_tokens_inclusive`.
 - **Added**: T-OT-020, a golden backward-compatibility test: the default export must stay a superset of the export before §6.7.
 
 ### Version 0.6.0 (Working Draft, November 5, 2026)
