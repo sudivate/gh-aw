@@ -48,9 +48,20 @@ Resource attributes identify the workflow run, repository, runner, and gh-aw env
     <tr><td><code>runner.environment</code></td><td>Runner environment classification.</td></tr>
     <tr><td><code>gh-aw.awf.version</code></td><td>Workflow compiler version when available.</td></tr>
     <tr><td><code>gh-aw.awmg.version</code></td><td>MCP gateway version when available.</td></tr>
-    <tr><td><code>deployment.environment</code></td><td><code>staging</code> or <code>production</code> depending on staged mode.</td></tr>
+    <tr><td><code>deployment.environment</code></td><td><code>staging</code> or <code>production</code> depending on staged mode. Compatibility attribute; not emitted with the semantic-convention opt-in.</td></tr>
+    <tr><td><code>deployment.environment.name</code></td><td>Same value as <code>deployment.environment</code>, under the current semantic-convention name.</td></tr>
+    <tr><td><code>cicd.pipeline.name</code></td><td>Workflow name.</td></tr>
+    <tr><td><code>cicd.pipeline.run.id</code></td><td>GitHub Actions run ID.</td></tr>
+    <tr><td><code>cicd.pipeline.run.url.full</code></td><td>Run URL, the same value as <code>github.actions.run_url</code>.</td></tr>
+    <tr><td><code>cicd.pipeline.task.name</code></td><td>GitHub Actions job ID.</td></tr>
+    <tr><td><code>vcs.provider.name</code></td><td>Always <code>github</code>.</td></tr>
+    <tr><td><code>vcs.repository.url.full</code></td><td>Repository URL on <code>GITHUB_SERVER_URL</code>.</td></tr>
+    <tr><td><code>vcs.ref.head.name</code></td><td>Ref name (<code>GITHUB_REF_NAME</code>).</td></tr>
+    <tr><td><code>vcs.ref.head.revision</code></td><td>Commit SHA.</td></tr>
   </tbody>
 </table>
+
+The <code>cicd.*</code> and <code>vcs.*</code> attributes are added only when the same key is not already set through <code>OTEL_RESOURCE_ATTRIBUTES</code>. They are span resource attributes only; run-level identifiers are never metric resource attributes or metric dimensions.
 
 ## Workflow and job span attributes
 
@@ -143,24 +154,37 @@ These attributes carry model, token, and stop-reason data on built-in agent span
     </tr>
   </thead>
   <tbody>
-    <tr><td><code>gen_ai.system</code></td><td>Compatibility GenAI system/provider name used by existing gh-aw dashboards and backends.</td></tr>
+    <tr><td><code>gen_ai.provider.name</code></td><td>GenAI provider derived from the engine (see the table below). Emitted on setup, agent and conclusion spans.</td></tr>
+    <tr><td><code>gen_ai.system</code></td><td>Compatibility attribute: the earlier provider name used by existing gh-aw dashboards and backends. Not emitted with the semantic-convention opt-in; use <code>gen_ai.provider.name</code>.</td></tr>
     <tr><td><code>gh-aw.engine.id</code></td><td>Raw gh-aw engine identifier.</td></tr>
     <tr><td><code>gen_ai.request.model</code></td><td>Requested model name.</td></tr>
     <tr><td><code>gh-aw.model.requested</code></td><td>Configured model request, including a routing placeholder when applicable.</td></tr>
     <tr><td><code>gh-aw.model.effort</code></td><td>Effective reasoning effort for the selected routed model.</td></tr>
-    <tr><td><code>gen_ai.operation.name</code></td><td>Always <code>chat</code> for built-in agent spans.</td></tr>
-    <tr><td><code>gen_ai.workflow.name</code></td><td>Workflow name repeated in GenAI namespace.</td></tr>
+    <tr><td><code>gen_ai.operation.name</code></td><td><code>chat</code> for built-in agent spans; <code>invoke_agent</code> with the semantic-convention opt-in.</td></tr>
+    <tr><td><code>gen_ai.agent.name</code></td><td>Workflow name, as the name of the agent.</td></tr>
+    <tr><td><code>gen_ai.workflow.name</code></td><td>Compatibility attribute: workflow name repeated in GenAI namespace. Not emitted with the opt-in; use <code>gen_ai.agent.name</code>.</td></tr>
     <tr><td><code>gen_ai.response.model</code></td><td>Resolved runtime model when available.</td></tr>
     <tr><td><code>gen_ai.response.finish_reasons</code></td><td>Array of stop reasons, defaulting to <code>unknown</code> when needed.</td></tr>
-    <tr><td><code>gen_ai.usage.input_tokens</code></td><td>Input token count.</td></tr>
+    <tr><td><code>error.type</code></td><td><code>agent_failed</code>, <code>timeout</code> or <code>cancelled</code> when the agent did not succeed; absent on success.</td></tr>
+    <tr><td><code>gen_ai.usage.input_tokens</code></td><td>Input token count. With the opt-in it includes cache-read and cache-write tokens.</td></tr>
     <tr><td><code>gen_ai.usage.output_tokens</code></td><td>Output token count.</td></tr>
     <tr><td><code>gen_ai.usage.cache_read.input_tokens</code></td><td>Cache-read token count.</td></tr>
-    <tr><td><code>gen_ai.usage.cache_creation.input_tokens</code></td><td>Cache-write token count.</td></tr>
-    <tr><td><code>gen_ai.usage.total_tokens</code></td><td>Input plus output tokens, emitted only when both counts are available. Cache counts are excluded.</td></tr>
+    <tr><td><code>gen_ai.usage.cache_write.input_tokens</code></td><td>Cache-write token count.</td></tr>
+    <tr><td><code>gen_ai.usage.cache_creation.input_tokens</code></td><td>Compatibility attribute: cache-write token count. Not emitted with the opt-in; use <code>gen_ai.usage.cache_write.input_tokens</code>.</td></tr>
+    <tr><td><code>gen_ai.usage.total_tokens</code></td><td>Compatibility attribute: input plus output tokens, emitted only when both counts are available. Cache counts are excluded. Not emitted with the opt-in.</td></tr>
     <tr><td><code>gh-aw.harness.attempts</code></td><td>Integer count of started harness attempts, including the initial attempt.</td></tr>
     <tr><td><code>gh-aw.harness.retry_reasons</code></td><td>String array of failure classes in attempt order, including terminal failures. Repeated classes are preserved; first-attempt success produces an empty array.</td></tr>
   </tbody>
 </table>
+
+`gen_ai.provider.name` is derived from the engine. Other engine IDs are passed through unchanged.
+
+| Engine | `gen_ai.provider.name` | `gen_ai.system` (compatibility) |
+|---|---|---|
+| `copilot` | `github` | `github_models` |
+| `claude` | `anthropic` | `anthropic` |
+| `codex` | `openai` | `openai` |
+| `gemini` | `gcp.gen_ai` | `google_vertex_ai` |
 
 Token counters preserve measured zero as a numeric value; missing, null, or invalid counters are omitted, not converted to zero. Proxy-log aggregates include a counter only when every deduplicated request reports a valid value for it. An absent or unreadable usage log does not establish zero usage. These availability rules also apply to detection's namespaced usage artifact.
 
