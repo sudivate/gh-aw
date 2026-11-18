@@ -10,6 +10,7 @@
 |---|---|
 | Base | `github/gh-aw` `main` at `68df0093b56e0e720e6df7e85deab7ff156ae4f9` |
 | Implementation branch | `genai-semconv-reference`, tip `39f10359f358776d1f841523b9be6e2ea91c0355` (9 commits). §2 tests ran on `a946ddf`; `f1e9fa0` and `378a8a9` change docs only; the §4.1 backward-compatibility checks ran on `39f1035` |
+| Rebased on current `main` | `genai-semconv-reference-main`, tip `4d47ca27da880f4c212ea4d9f8fa0c268146e974`: the same 9 commits on `main` at `a245939351ad690fdfb283144b1fb397eaab0871` (2026-11-18), plus a recompiled `smoke-otel-backends.lock.yml` (the only conflict). See §4.2 |
 | Evidence branch | `genai-semconv-evidence` = implementation + this folder (one commit) |
 | Diff | 29 files, +2054 / −77 (of which the T-OT-020 golden file is about 450 lines) |
 | Conventions | `open-telemetry/semantic-conventions-genai` at `e6658f1`; OTel semantic conventions v1.45.0 (`cicd.*`, `vcs.*`, schema URL) |
@@ -150,6 +151,23 @@ the `cicd.*`, `vcs.*` and `deployment.environment.name` resource attributes, and
 and `gen_ai.invoke_agent.duration` metrics. The opt-in rows are expected to differ: the agent span is renamed
 `invoke_agent CI`, compatibility-only names are dropped, `gh_aw.tokens.*` lose the `gen_ai.token.type` point attribute,
 and setup and conclusion status changes from `OK` to unset. No `gh-aw.*` or `github.*` attribute is lost in either mode.
+
+### 4.2 Still valid on current `main`
+
+On 2026-11-18, `main` (`a245939`) was 19 commits ahead of `68df009`. None of them touch the OTel runtime
+(`send_otlp_span.cjs`, `otlp_metrics.cjs`, `otlp*.cjs`), `specs/otel-observability-spec.md` or `cjs.yml`. They add six
+`gh-aw.safe_output.gate.*` names to `specs/otel/attributes.tsp`, so `genAiSystem` moves from line 75 to 89.
+
+| Check on `genai-semconv-reference-main` | Result | Log |
+|---|---|---|
+| Rebase onto `a245939` | Clean except the generated `smoke-otel-backends.lock.yml`, recompiled with `gh aw compile` | — |
+| 15 OTel vitest files, incl. T-OT-020 | 1,022 passed, 0 failed | `artifacts/rebase-main/vitest-otel.log` |
+| Wire test against the reference SDK | 10/10 | `artifacts/rebase-main/protobuf-sdk.log` |
+| `make check-otel-attributes`, `make validate-otel-contract` | Pass | `artifacts/rebase-main/check-otel-attributes.log`, `validate-otel-contract.log` |
+| `make validate-otel-conformance` | 3/3 scenarios ok; `check-report` ok | `artifacts/rebase-main/conformance.log` |
+| T-OT-020 golden re-captured on unmodified `a245939` | Same facts as the `68df009` golden (202 success, 226 failure) | `artifacts/rebase-main/legacy-contract-captured-on-main.json` |
+
+The issue's baseline, the golden and the plan still apply to current `main`.
 
 ## 5. Opt-in reaches the conclusion step (D8)
 

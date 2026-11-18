@@ -1,0 +1,186 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.1.0 [39m[90m/home/sudivate/work/gh-aw/actions/setup/js[39m
+
+ [32m✓[39m exchange_otlp_workload_identity.test.cjs [2m([22m[2m8 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=dca32a1e949db6ba2a9c2a2a5ac36e63
+ [32m✓[39m otlp_header_helpers.test.cjs [2m([22m[2m5 tests[22m[2m)[22m[32m 151[2mms[22m[39m
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=168cf8b383e7130f1bd4225fc41851e2
+[info] [otlp] trace-id=168cf8b383e7130f1bd4225fc41851e2 written to GITHUB_OUTPUT
+[info] [otlp] span-id=b4afe14a477086be written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=683c60a200156b0638522dddbc29ad73
+[info] [otlp] trace-id=683c60a200156b0638522dddbc29ad73 written to GITHUB_OUTPUT
+[info] [otlp] span-id=cf2b2842f1d3de79 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export attempt 1/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export attempt 2/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export failed after 3 attempts: HTTP 500 error
+
+ [32m✓[39m otlp.test.cjs [2m([22m[2m41 tests[22m[2m)[22m[32m 82[2mms[22m[39m
+[info] [otlp] INPUT_TRACE_ID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (will reuse activation trace)
+[info] [otlp] sending setup span to configured endpoints
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export attempt 1/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export attempt 2/3 failed: HTTP 500 error, retrying…
+
+[info] [otlp] resolved trace-id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[info] [otlp] setup span sent (traceId=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, spanId=b3541bcd70e63393)
+[info] [otlp] trace-id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa written to GITHUB_OUTPUT
+[info] [otlp] span-id=b3541bcd70e63393 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export failed after 3 attempts: HTTP 500 error
+
+[info] [otlp] resolved trace-id=ac1d4bde0d5107f2ed14642dc7ae4c22
+[info] [otlp] setup span sent (traceId=ac1d4bde0d5107f2ed14642dc7ae4c22, spanId=dacad559faec5b9e)
+[info] [otlp] trace-id=ac1d4bde0d5107f2ed14642dc7ae4c22 written to GITHUB_OUTPUT
+[info] [otlp] span-id=dacad559faec5b9e written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=e54b4be6c9a5cde20ad41ecc6af0f1d2
+[info] [otlp] trace-id=e54b4be6c9a5cde20ad41ecc6af0f1d2 written to GITHUB_OUTPUT
+[info] [otlp] span-id=4976f6dbd62ffde3 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=97cfb76578f157d53ef7208c7cba2459
+[info] [otlp] setup span sent (traceId=97cfb76578f157d53ef7208c7cba2459, spanId=c8073424cb5806ce)
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] INPUT_PARENT_SPAN_ID=abcdef1234567890 (will parent setup span)
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=b1e2d5111f8454ef8358b1c70e73fd96
+[info] [otlp] setup span sent (traceId=b1e2d5111f8454ef8358b1c70e73fd96, spanId=239b287baa1b92a6)
+[info] [otlp] trace-id=b1e2d5111f8454ef8358b1c70e73fd96 written to GITHUB_OUTPUT
+[info] [otlp] span-id=239b287baa1b92a6 written to GITHUB_OUTPUT
+[info] [otlp] parent-span-id=abcdef1234567890 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mcaps unique custom metric series per process
+[22m[39m[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+
+ [32m✓[39m send_otlp_span_legacy_contract.test.cjs [2m([22m[2m7 tests[22m[2m)[22m[33m 307[2mms[22m[39m
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=bedbd7b87418a4d756b1ebda453a6eb5
+[info] [otlp] setup span sent (traceId=bedbd7b87418a4d756b1ebda453a6eb5, spanId=42148cef5bb1e3e1)
+[info] [otlp] trace-id=bedbd7b87418a4d756b1ebda453a6eb5 written to GITHUB_OUTPUT
+[info] [otlp] span-id=42148cef5bb1e3e1 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=1abf61514ea1b5215680a18ee9fc2216
+[info] [otlp] setup span sent (traceId=1abf61514ea1b5215680a18ee9fc2216, spanId=af3f5c1b917c0fd6)
+[info] [otlp] trace-id=1abf61514ea1b5215680a18ee9fc2216 written to GITHUB_OUTPUT
+[info] [otlp] span-id=af3f5c1b917c0fd6 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping OTLP export (will attempt JSONL mirror)
+ [32m✓[39m otlp_metrics.test.cjs [2m([22m[2m26 tests[22m[2m)[22m[32m 274[2mms[22m[39m
+ [32m✓[39m otlp_protobuf.test.cjs [2m([22m[2m67 tests[22m[2m)[22m[32m 137[2mms[22m[39m
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.agent.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+ [32m✓[39m action_conclusion_otlp.test.cjs [2m([22m[2m36 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+ [32m✓[39m action_setup_otlp.test.cjs [2m([22m[2m74 tests[22m[2m)[22m[32m 260[2mms[22m[39m
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+ [32m✓[39m otlp_response.test.cjs [2m([22m[2m84 tests[22m[2m)[22m[32m 276[2mms[22m[39m
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+ [32m✓[39m otel_contract.test.cjs [2m([22m[2m6 tests[22m[2m)[22m[32m 84[2mms[22m[39m
+ [32m✓[39m action_otlp.test.cjs [2m([22m[2m21 tests[22m[2m)[22m[32m 167[2mms[22m[39m
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mrecords OTLP export failure host, status, and reason details
+[22m[39mOTLP export authorization failed: HTTP 401 Unauthorized. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mfalls back to HTTP status when curl reports non-2xx with statusText OK
+[22m[39mOTLP export authorization failed: HTTP 401. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2msanitizes OTLP export failure reasons before persisting them
+[22m[39mOTLP export error after 1 attempts: Failed to parse URL from https://user:secret@collector.example.com/v1/traces?token=abc
+
+ [32m✓[39m send_otlp_session_logs.test.cjs [2m([22m[2m74 tests[22m[2m)[22m[33m 720[2mms[22m[39m
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mreturns one final result per endpoint
+[22m[39mOTLP export failed after 1 attempts: HTTP 500 status
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mcontinues to other endpoints when one fails
+[22m[39mOTLP export error after 1 attempts: connection refused
+
+ [32m✓[39m send_otlp_span.test.cjs [2m([22m[2m503 tests[22m[2m)[22m[33m 1271[2mms[22m[39m
+ [32m✓[39m unified_session_otel.test.cjs [2m([22m[2m8 tests[22m[2m)[22m[33m 1468[2mms[22m[39m
+   [32m✓[39m Unified OTel observations [2m(8)[22m
+     [33m[2m✓[22m[39m imports and persists a single authoritative mirror interleaved with agent, AWF, MCPG and API records[33m 711[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps missing and invalid span-event clocks untimed instead of inheriting their span start[33m 435[2mms[22m[39m
+ [32m✓[39m send_otlp_span_transport.test.cjs [2m([22m[2m62 tests[22m[2m)[22m[33m 7700[2mms[22m[39m
+   [32m✓[39m bounded curl response status [2m(62)[22m
+     [33m[2m✓[22m[39m bounds real curl traces http/json stalled HTTP 0 responses without retrying known acceptance[33m 415[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/json stalled HTTP 503 responses without retrying known acceptance[33m 397[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/protobuf stalled HTTP 0 responses without retrying known acceptance[33m 404[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/protobuf stalled HTTP 503 responses without retrying known acceptance[33m 410[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/json stalled HTTP 0 responses without retrying known acceptance[33m 405[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/json stalled HTTP 503 responses without retrying known acceptance[33m 402[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/protobuf stalled HTTP 0 responses without retrying known acceptance[33m 445[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/protobuf stalled HTTP 503 responses without retrying known acceptance[33m 411[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m      Tests [22m [1m[32m1022 passed[39m[22m[90m (1022)[39m
+[2m   Start at [22m 09:26:53
+[2m   Duration [22m 8.27s[2m (tests 78%, import 12%, transform 5%, setup 3%, worker 2%)[22m
+
