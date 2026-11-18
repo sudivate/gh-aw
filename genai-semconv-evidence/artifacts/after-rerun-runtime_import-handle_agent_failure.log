@@ -1,0 +1,407 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.1.0 [39m[90m/home/sudivate/work/gh-aw/actions/setup/js[39m
+
+ [31m❯[39m runtime_import.test.cjs [2m([22m[2m331 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 82045[2mms[22m[39m
+   [31m❯[39m runtime_import [2m(331)[22m
+     [32m✓[39m hasFrontMatter [2m(6)[22m
+       [33m[2m✓[22m[39m should detect front matter at the start[33m 483[2mms[22m[39m
+       [33m[2m✓[22m[39m should detect front matter with CRLF line endings[33m 423[2mms[22m[39m
+       [33m[2m✓[22m[39m should detect front matter with leading whitespace[33m 447[2mms[22m[39m
+       [33m[2m✓[22m[39m should not detect front matter in the middle[33m 476[2mms[22m[39m
+       [32m✓[39m should not detect incomplete front matter marker[32m 2[2mms[22m[39m
+       [32m✓[39m should handle empty content[32m 1[2mms[22m[39m
+     [32m✓[39m removeXMLComments [2m(6)[22m
+       [32m✓[39m should remove simple XML comments[32m 2[2mms[22m[39m
+       [32m✓[39m should remove multiline XML comments[32m 1[2mms[22m[39m
+       [32m✓[39m should remove multiple XML comments[32m 1[2mms[22m[39m
+       [32m✓[39m should handle content without comments[32m 1[2mms[22m[39m
+       [32m✓[39m should handle nested-looking comments[32m 1[2mms[22m[39m
+       [32m✓[39m should handle empty content[32m 1[2mms[22m[39m
+     [32m✓[39m neutralizeSystemTags [2m(10)[22m
+       [32m✓[39m should convert <system> opening tag to (system)[32m 1[2mms[22m[39m
+       [32m✓[39m should convert </system> closing tag to (/system)[32m 1[2mms[22m[39m
+       [32m✓[39m should convert a full <system>...</system> block[32m 1[2mms[22m[39m
+       [32m✓[39m should convert <system> with attributes[32m 1[2mms[22m[39m
+       [32m✓[39m should convert <System> case-insensitively[32m 1[2mms[22m[39m
+       [32m✓[39m should convert multiple <system> blocks in the same content[32m 1[2mms[22m[39m
+       [32m✓[39m should neutralize <system> injected at end of a regex pattern[32m 1[2mms[22m[39m
+       [32m✓[39m should leave non-system tags unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m should handle content with no system tags unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m should handle empty string[32m 1[2mms[22m[39m
+     [32m✓[39m hasGitHubActionsMacros [2m(7)[22m
+       [32m✓[39m should detect simple GitHub Actions macros[32m 1[2mms[22m[39m
+       [32m✓[39m should detect multiline GitHub Actions macros[32m 1[2mms[22m[39m
+       [32m✓[39m should detect multiple GitHub Actions macros[32m 1[2mms[22m[39m
+       [32m✓[39m should not detect template conditionals[32m 1[2mms[22m[39m
+       [32m✓[39m should not detect runtime-import macros[32m 1[2mms[22m[39m
+       [32m✓[39m should detect GitHub Actions macros within other content[32m 1[2mms[22m[39m
+       [32m✓[39m should handle content without macros[32m 1[2mms[22m[39m
+     [32m✓[39m isSafeExpression [2m(53)[22m
+       [32m✓[39m should deny ambient environment capabilities: env.INPUT_GITHUB-TOKEN[32m 6[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.GITHUB_TOKEN[32m 3[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.NODE_VERSION[32m 1[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.GH_AW_SECRET[32m 1[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.INPUT_GITHUB-TOKEN || 'fallback'[32m 2[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: github.actor && env.INPUT_GITHUB-TOKEN[32m 1[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: github.actor == env.INPUT_GITHUB-TOKEN[32m 2[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: inputs.name || env.INPUT_GITHUB-TOKEN[32m 1[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env['INPUT_GITHUB-TOKEN'][32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should never insert the github-script token into imported prompt text[33m 491[2mms[22m[39m
+       [32m✓[39m should allow basic safe expressions[32m 2[2mms[22m[39m
+       [32m✓[39m should allow dynamic patterns[32m 2[2mms[22m[39m
+       [32m✓[39m should reject unsafe expressions[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with single-quoted literals[32m 2[2mms[22m[39m
+       [32m✓[39m should allow OR with double-quoted literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with backtick literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with number literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with boolean literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with two safe expressions[32m 1[2mms[22m[39m
+       [32m✓[39m should reject OR with unsafe left side[32m 1[2mms[22m[39m
+       [32m✓[39m should reject OR with unsafe right side (non-literal)[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - constructor[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __proto__[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - prototype[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __defineGetter__[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __defineSetter__[32m 4[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __lookupGetter__[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __lookupSetter__[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - hasOwnProperty[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - isPrototypeOf[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - propertyIsEnumerable[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - toString[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - valueOf[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - toLocaleString[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous properties in array access[32m 1[2mms[22m[39m
+       [32m✓[39m should reject excessive nesting depth (more than 5 levels)[32m 1[2mms[22m[39m
+       [32m✓[39m should allow valid nested expressions within depth limit[32m 1[2mms[22m[39m
+       [32m✓[39m should reject string literals with nested expressions[32m 1[2mms[22m[39m
+       [32m✓[39m should reject string literals with escape sequences[32m 1[2mms[22m[39m
+       [32m✓[39m should reject string literals with zero-width characters[32m 1[2mms[22m[39m
+       [32m✓[39m should allow safe string literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow standalone string literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow standalone number and boolean literals[32m 1[2mms[22m[39m
+       [32m✓[39m should reject standalone string literals with nested expressions[32m 1[2mms[22m[39m
+       [32m✓[39m should reject standalone string literals with escape sequences[32m 1[2mms[22m[39m
+       [32m✓[39m should allow comparison expressions with safe properties[32m 1[2mms[22m[39m
+       [32m✓[39m should reject comparison expressions with unsafe properties[32m 1[2mms[22m[39m
+       [32m✓[39m should allow AND compound expressions without literals[32m 1[2mms[22m[39m
+       [32m✓[39m should reject AND compound expressions where either side is a literal[32m 1[2mms[22m[39m
+       [32m✓[39m should reject AND compound expressions with unsafe side[32m 1[2mms[22m[39m
+       [32m✓[39m should reject literal on the left side of a disjunction[32m 1[2mms[22m[39m
+       [32m✓[39m should reject ternary-style AND/OR expressions (literal in AND operand)[32m 1[2mms[22m[39m
+       [32m✓[39m should reject ternary-style expressions with unsafe properties[32m 1[2mms[22m[39m
+     [32m✓[39m evaluateExpression [2m(32)[22m
+       [32m✓[39m should evaluate basic expressions[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left || right' without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal "left || right" without splitting its operators[32m 1[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal `left || right` without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left && right' without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left == right' without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left \' || right' without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'plain' without splitting its operators[32m 1[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal '' without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 42 without splitting its operators[32m 1[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal true without splitting its operators[32m 1[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal false without splitting its operators[32m 1[2mms[22m[39m
+       [32m✓[39m should evaluate OR with literal fallback when left is undefined[32m 2[2mms[22m[39m
+       [32m✓[39m should use left value when defined[32m 2[2mms[22m[39m
+       [32m✓[39m should handle number literals[32m 1[2mms[22m[39m
+       [32m✓[39m should handle boolean literals[32m 1[2mms[22m[39m
+       [32m✓[39m should chain OR expressions[32m 1[2mms[22m[39m
+       [32m✓[39m should return wrapped expression for undefined without fallback[32m 1[2mms[22m[39m
+       [32m✓[39m should not access prototype chain properties[32m 1[2mms[22m[39m
+       [32m✓[39m should not access __proto__ property[32m 1[2mms[22m[39m
+       [32m✓[39m should safely handle missing properties without prototype pollution[32m 1[2mms[22m[39m
+       [32m✓[39m should enforce the array index allowlist and handle missing allowed indexes[32m 2[2mms[22m[39m
+       [32m✓[39m should escape $ and { in extracted string literals[32m 2[2mms[22m[39m
+       [32m✓[39m should not escape characters in non-literal expressions[32m 1[2mms[22m[39m
+       [32m✓[39m aw_context fallback for slash-command event fields [2m(8)[22m
+         [32m✓[39m should resolve github.event.issue.number from aw_context when item_type is issue[32m 2[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.issue.number when aw_context item_type is discussion[32m 2[2mms[22m[39m
+         [32m✓[39m should resolve github.event.discussion.number from aw_context when item_type is discussion[32m 2[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.discussion.number when aw_context item_type is issue[32m 2[2mms[22m[39m
+         [32m✓[39m should resolve github.event.pull_request.number from aw_context when item_type is pull_request[32m 1[2mms[22m[39m
+         [32m✓[39m should resolve github.event.comment.id from aw_context when comment_id is present[32m 3[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.issue.number when aw_context is absent[32m 1[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.issue.number when aw_context is invalid JSON[32m 1[2mms[22m[39m
+     [32m✓[39m processRuntimeImport [2m(33)[22m
+       [33m[2m✓[22m[39m should read and return file content[33m 449[2mms[22m[39m
+       [32m✓[39m should throw error for missing required file[32m 2[2mms[22m[39m
+       [32m✓[39m should return empty string for missing optional file[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should remove front matter and log debug message[33m 452[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .github/agents imports[33m 472[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .agents/agents imports[33m 476[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .github/skills imports[33m 452[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .agents/skills imports[33m 459[2mms[22m[39m
+       [33m[2m✓[22m[39m should remove XML comments[33m 484[2mms[22m[39m
+       [33m[2m✓[22m[39m should render safe GitHub Actions expressions[33m 479[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject unsafe GitHub Actions expressions[33m 435[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve local author control tags[33m 440[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle file in subdirectory[33m 473[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle empty file[33m 456[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle file with only front matter[33m 440[2mms[22m[39m
+       [33m[2m✓[22m[39m should allow template conditionals[33m 411[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve {{#if ...}} as literal text without converting to a placeholder[33m 484[2mms[22m[39m
+       [33m[2m✓[22m[39m should support .github/workflows/ prefix in path[33m 466[2mms[22m[39m
+       [33m[2m✓[22m[39m should work without prefix (resolves to workflows/)[33m 476[2mms[22m[39m
+       [33m[2m✓[22m[39m should support .agents/ prefix (top-level folder)[33m 417[2mms[22m[39m
+       [33m[2m✓[22m[39m should support /.agents/ prefix (leading slash, repo-root-absolute)[33m 446[2mms[22m[39m
+       [33m[2m✓[22m[39m should support //.agents/ prefix (double leading slash, repo-root-absolute)[33m 480[2mms[22m[39m
+       [33m[2m✓[22m[39m should support /.github/ prefix (leading slash, repo-root-absolute)[33m 479[2mms[22m[39m
+       [33m[2m✓[22m[39m should support //.github/ prefix (double leading slash, repo-root-absolute)[33m 439[2mms[22m[39m
+       [32m✓[39m should reject /-prefixed paths not under .agents/ or .github/[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should support nested .github/workflows/shared/ path (issue: runtime-import fails for .github/workflows/* paths)[33m 441[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject paths outside .github folder[33m 487[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject symlinks escaping the .github folder[33m 459[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject symlinks escaping the .agents folder[33m 449[2mms[22m[39m
+       [33m[2m✓[22m[39m should implicitly close an unterminated inline skill block so it cannot swallow spliced-in content[33m 412[2mms[22m[39m
+       [33m[2m✓[22m[39m should implicitly close an unterminated inline sub-agent block so it cannot swallow spliced-in content[33m 472[2mms[22m[39m
+       [33m[2m✓[22m[39m should leave an already explicitly closed inline skill block unchanged[33m 469[2mms[22m[39m
+       [33m[2m✓[22m[39m should not add end markers when no skill/agent markers are present[33m 455[2mms[22m[39m
+     [32m✓[39m processRuntimeImports [2m(27)[22m
+       [33m[2m✓[22m[39m should process single runtime-import macro[33m 409[2mms[22m[39m
+       [33m[2m✓[22m[39m should process optional runtime-import macro[33m 448[2mms[22m[39m
+       [33m[2m✓[22m[39m should process multiple runtime-import macros[33m 439[2mms[22m[39m
+       [32m✓[39m should handle optional import of missing file[32m 2[2mms[22m[39m
+       [32m✓[39m should throw error for required import of missing file[32m 2[2mms[22m[39m
+       [32m✓[39m should handle content without runtime-import macros[32m 1[2mms[22m[39m
+       [33m[2m✓[22m[39m should reuse cached content for duplicate imports[33m 470[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle macros with extra whitespace[33m 432[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle inline macros[33m 462[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve needs output expressions in runtime-imported content from hash env vars[33m 473[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve hash env expressions through nested runtime imports[33m 458[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve hash env expressions through legacy import macros[33m 437[2mms[22m[39m
+       [33m[2m✓[22m[39m should process imports with files containing special characters[33m 404[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $$ (fresh-import path)[33m 487[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $& (fresh-import path)[33m 464[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $` (fresh-import path)[33m 505[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $' (fresh-import path)[33m 404[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $1 (fresh-import path)[33m 473[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when cached imported content contains $$ (cache-hit path)[33m 456[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when cached imported content contains $` (cache-hit path)[33m 485[2mms[22m[39m
+       [33m[2m✓[22m[39m should remove XML comments from imported content[33m 413[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle path with subdirectories[33m 448[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve newlines around imports[33m 482[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle multiple consecutive imports[33m 479[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle imports at the start of content[33m 437[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle imports at the end of content[33m 404[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle tab characters in macro[33m 447[2mms[22m[39m
+     [32m✓[39m body-level {{#import}} directives (deprecated) [2m(13)[22m
+       [33m[2m✓[22m[39m should resolve {{#import filepath}} (no colon) as runtime-import and emit deprecation warning[33m 488[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import? filepath}} optional variant[33m 462[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import: filepath}} colon syntax[33m 417[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import?: filepath}} optional colon syntax[33m 462[2mms[22m[39m
+       [32m✓[39m should return empty string for missing optional {{#import?}} file[32m 2[2mms[22m[39m
+       [32m✓[39m should throw for missing required {{#import}} file[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import}} inside a file read via {{#runtime-import}} (nested fix)[33m 434[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve multiple {{#import}} directives in one file[33m 467[2mms[22m[39m
+       [32m✓[39m should not treat {{#importantthing}} (no space/colon) as an import directive[32m 2[2mms[22m[39m
+       [32m✓[39m should not treat {{#import ...}} inside backtick code spans as an import directive[32m 1[2mms[22m[39m
+       [32m✓[39m should not treat {{#import? ...}} inside backtick code spans as an optional import directive[32m 1[2mms[22m[39m
+       [33m[2m✓[22m[39m should still resolve {{#import}} outside backtick spans even when backtick spans are present[33m 418[2mms[22m[39m
+       [32m✓[39m does not protect {{#import}} inside multi-line backtick spans (document limitation)[32m 2[2mms[22m[39m
+     [32m✓[39m Edge Cases [2m(5)[22m
+       [33m[2m✓[22m[39m should handle very large files[33m 436[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle files with unicode characters[33m 475[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle files with various line endings[33m 486[2mms[22m[39m
+       [32m✓[39m should not process runtime-import as a substring[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle front matter with varying formats[33m 434[2mms[22m[39m
+     [32m✓[39m Error Handling [2m(2)[22m
+       [33m[2m✓[22m[39m should provide clear error for unsafe GitHub Actions expressions[33m 408[2mms[22m[39m
+       [32m✓[39m should provide clear error for missing required files[32m 2[2mms[22m[39m
+     [32m✓[39m Path Security [2m(7)[22m
+       [32m✓[39m should reject paths that escape .github folder with ../[32m 1[2mms[22m[39m
+       [32m✓[39m should reject paths that escape .github folder with ../../[32m 1[2mms[22m[39m
+       [32m✓[39m should allow valid path within .github folder[32m 2[2mms[22m[39m
+       [32m✓[39m should allow ./path within workflows folder[32m 2[2mms[22m[39m
+       [32m✓[39m should normalize paths with redundant separators[32m 1[2mms[22m[39m
+       [32m✓[39m should allow nested paths that stay within workflows folder[32m 2[2mms[22m[39m
+       [32m✓[39m should reject attempts to access files outside .github[32m 2[2mms[22m[39m
+     [32m✓[39m processRuntimeImport with line ranges [2m(7)[22m
+       [32m✓[39m should extract specific line range[32m 3[2mms[22m[39m
+       [32m✓[39m should extract single line[32m 2[2mms[22m[39m
+       [32m✓[39m should extract from start line to end of file[32m 2[2mms[22m[39m
+       [32m✓[39m should throw error for invalid start line[32m 2[2mms[22m[39m
+       [32m✓[39m should throw error for invalid end line[32m 2[2mms[22m[39m
+       [32m✓[39m should throw error when start line > end line[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle line range with front matter[33m 474[2mms[22m[39m
+     [32m✓[39m processRuntimeImports with line ranges from macros [2m(4)[22m
+       [32m✓[39m should process {{#runtime-import path:line-line}} macro[32m 2[2mms[22m[39m
+       [32m✓[39m should process multiple {{#runtime-import path:line-line}} macros[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should not let an unterminated inline skill block from one runtime import swallow a subsequent runtime import's content[33m 453[2mms[22m[39m
+       [33m[2m✓[22m[39m should not let an unterminated inline sub-agent block from a runtime import swallow the rest of the main workflow body[33m 471[2mms[22m[39m
+     [31m❯[39m Expression Validation and Rendering [2m(70)[22m
+       [32m✓[39m isSafeExpression [2m(4)[22m
+         [32m✓[39m should allow expressions from the safe list[32m 2[2mms[22m[39m
+         [32m✓[39m should allow dynamic patterns[32m 1[2mms[22m[39m
+         [32m✓[39m should reject unsafe expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should handle surrounding spaces but reject line terminators[32m 1[2mms[22m[39m
+       [32m✓[39m closeUnterminatedInlineMarkers [2m(1)[22m
+         [32m✓[39m should close an unterminated skill before a following agent in the same import[32m 2[2mms[22m[39m
+       [32m✓[39m evaluateExpression [2m(18)[22m
+         [32m✓[39m should evaluate simple GitHub context expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should evaluate nested event properties[32m 1[2mms[22m[39m
+         [32m✓[39m should return wrapped expression for unresolvable values[32m 2[2mms[22m[39m
+         [32m✓[39m should return empty string when env var is set to empty (e.g. workflow_dispatch with no text)[32m 1[2mms[22m[39m
+         [32m✓[39m should return env var value for needs/steps expressions when set[32m 1[2mms[22m[39m
+         [32m✓[39m should return hash-based env var value for needs output expressions when set[32m 1[2mms[22m[39m
+         [32m✓[39m should return env var value for inputs.* expressions when set (workflow_call)[32m 1[2mms[22m[39m
+         [32m✓[39m should return empty string for inputs.* env var set to empty[32m 1[2mms[22m[39m
+         [32m✓[39m should prefer env var over context.payload.inputs for inputs.* expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should resolve hyphenated inputs.* via context.payload.inputs fallback[32m 1[2mms[22m[39m
+         [32m✓[39m should resolve hyphenated inputs.* from hash-based env var when context.payload.inputs is empty[32m 1[2mms[22m[39m
+         [32m✓[39m should handle missing properties gracefully[32m 1[2mms[22m[39m
+         [32m✓[39m compound || expressions with deterministic env vars (compiler fix) [2m(6)[22m
+           [32m✓[39m should resolve compound || when left env var (steps.*) is set[32m 1[2mms[22m[39m
+           [32m✓[39m should resolve compound || when only right env var (inputs.*) is set[32m 1[2mms[22m[39m
+           [32m✓[39m should prefer left side when both env vars are set (left-biased || semantics)[32m 1[2mms[22m[39m
+           [32m✓[39m should return right-side wrapped expression when neither env var is set[32m 1[2mms[22m[39m
+           [32m✓[39m should resolve compound || with needs.* left and inputs.* right[32m 1[2mms[22m[39m
+           [32m✓[39m should fall back to literal right side when left env var is unset[32m 2[2mms[22m[39m
+       [32m✓[39m processExpressions [2m(9)[22m
+         [32m✓[39m should render safe expressions in content[32m 1[2mms[22m[39m
+         [32m✓[39m should handle multiple expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should replace all occurrences of the same expression[32m 1[2mms[22m[39m
+         [32m✓[39m should not re-replace evaluated values that contain expression-like text[32m 1[2mms[22m[39m
+         [32m✓[39m should throw error for unsafe expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should preserve experiments expressions for downstream interpolation[32m 1[2mms[22m[39m
+         [32m✓[39m should throw error for multiline expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should handle mixed safe and unsafe expressions[32m 2[2mms[22m[39m
+         [32m✓[39m should pass through content without expressions[32m 1[2mms[22m[39m
+       [32m✓[39m runtime import with expressions [2m(4)[22m
+         [33m[2m✓[22m[39m should process file with safe expressions[33m 475[2mms[22m[39m
+         [33m[2m✓[22m[39m should reject file with unsafe expressions[33m 489[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle expressions with front matter removal[33m 470[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle expressions with XML comments[33m 464[2mms[22m[39m
+       [31m❯[39m recursive imports [2m(12)[22m
+         [33m[2m✓[22m[39m should recursively process runtime-import macros in imported files[33m 408[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle multiple recursive imports at different levels[33m 516[2mms[22m[39m
+         [33m[2m✓[22m[39m should cache imported files and reuse them in recursive processing[33m 488[2mms[22m[39m
+         [33m[2m✓[22m[39m should detect circular dependencies[33m 461[2mms[22m[39m
+         [33m[2m✓[22m[39m should detect self-referencing circular dependencies[33m 423[2mms[22m[39m
+         [33m[2m✓[22m[39m should detect complex circular dependencies[33m 467[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle recursive imports with optional files[33m 442[2mms[22m[39m
+         [33m[2m✓[22m[39m should process expressions in recursively imported files[33m 460[2mms[22m[39m
+         [33m[2m✓[22m[39m should remove XML comments from recursively imported files[33m 441[2mms[22m[39m
+         [33m[2m✓[22m[39m should deduplicate imports already resolved before recursive workflow self-import[33m 452[2mms[22m[39m
+[31m         [31m×[31m should fuzz dedup across equivalent recursive self-import path spellings[39m[33m 22455[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle deep nesting of imports[33m 440[2mms[22m[39m
+       [32m✓[39m arbitrary graph patterns [2m(22)[22m
+         [32m✓[39m tree topologies [2m(4)[22m
+           [33m[2m✓[22m[39m should handle balanced binary tree (depth 3)[33m 405[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle wide tree (one root, many leaves)[33m 475[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle unbalanced tree (left-skewed)[33m 456[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle very deep tree (depth 15)[33m 464[2mms[22m[39m
+         [32m✓[39m DAG (Directed Acyclic Graph) patterns [2m(4)[22m
+           [33m[2m✓[22m[39m should handle diamond dependency pattern[33m 440[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle multiple diamond patterns[33m 467[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle complex DAG with multiple levels[33m 454[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle convergent DAG (many nodes converge to one)[33m 447[2mms[22m[39m
+         [32m✓[39m star topology patterns [2m(2)[22m
+           [33m[2m✓[22m[39m should handle hub-and-spoke (one center, many peripherals)[33m 412[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle reverse star (many import one common file)[33m 419[2mms[22m[39m
+         [32m✓[39m complex multi-level patterns [2m(3)[22m
+           [33m[2m✓[22m[39m should handle grid-like dependency pattern[33m 441[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle pyramid pattern (expanding then contracting)[33m 430[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle layered architecture (strict layer dependencies)[33m 503[2mms[22m[39m
+         [32m✓[39m cache efficiency tests [2m(3)[22m
+           [33m[2m✓[22m[39m should efficiently cache heavily reused dependencies[33m 466[2mms[22m[39m
+           [33m[2m✓[22m[39m should cache files with line ranges independently[33m 483[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle mixed optional and required imports with caching[33m 485[2mms[22m[39m
+         [32m✓[39m circular dependency detection in complex graphs [2m(4)[22m
+           [33m[2m✓[22m[39m should detect indirect cycles in DAG-like structures[33m 472[2mms[22m[39m
+           [33m[2m✓[22m[39m should detect cycles in branching structures[33m 863[2mms[22m[39m
+           [33m[2m✓[22m[39m should detect long cycles (length 10)[33m 1298[2mms[22m[39m
+           [33m[2m✓[22m[39m should allow diamond patterns without false positive cycle detection[33m 438[2mms[22m[39m
+         [32m✓[39m performance and stress tests [2m(2)[22m
+           [33m[2m✓[22m[39m should handle large fan-out (1 root -> 50 direct imports)[33m 466[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle moderate depth with moderate breadth (depth 5, breadth 4)[33m 478[2mms[22m[39m
+     [32m✓[39m wrapExpressionsInTemplateConditionals [2m(22)[22m
+       [32m✓[39m non-GitHub expressions — must be left unchanged [2m(7)[22m
+         [32m✓[39m should leave {{#if .}} unchanged (single dot)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if ..}} unchanged (double dot)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if ...}} unchanged (triple dot — regression)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if 1.5}} unchanged (starts with digit)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave plain identifier {{#if condition}} unchanged (no dot)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave experiments.foo unchanged (not a GitHub Actions root — handled by interpolate_prompt.cjs)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave experiments.prompt_style == "concise" unchanged (experiment equality expression)[32m 1[2mms[22m[39m
+       [32m✓[39m GitHub Actions expressions — without context — produce falsy condition [2m(3)[22m
+         [32m✓[39m should produce {{#if }} (falsy) for github.actor when context is unavailable[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for steps.sanitized.outputs.text when env var is absent[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for steps.foo.outputs.bar when env var is absent[32m 1[2mms[22m[39m
+       [32m✓[39m GitHub Actions expressions — with context — produce boolean sentinel [2m(5)[22m
+         [32m✓[39m should produce {{#if true}} (truthy sentinel) for github.actor when actor is set[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for github.event.issue.number when event has no issue[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if true}} (truthy) for github.event.issue.number when aw_context item_type is issue[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for github.event.issue.number when aw_context item_type is discussion[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if true}} (truthy) for github.event.discussion.number when aw_context item_type is discussion[32m 1[2mms[22m[39m
+       [32m✓[39m boolean/null literals — must be left unchanged for direct isTruthy() evaluation [2m(3)[22m
+         [32m✓[39m should leave {{#if true}} unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if false}} unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if null}} unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m already-processed expressions — must be left unchanged [2m(3)[22m
+         [32m✓[39m should leave already-wrapped ${{ }} expression unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave __PLACEHOLDER__ reference unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave ${ENV_VAR} reference unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m should handle multiple conditionals in one string[32m 1[2mms[22m[39m
+     [32m✓[39m extractAndReplacePlaceholders [2m(10)[22m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: env.INPUT_GITHUB-TOKEN[33m 431[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: env.PRIVATE[33m 434[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: env['PRIVATE'][33m 433[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: github.actor && env.PRIVATE[33m 443[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: secrets.PRIVATE[33m 449[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: vars.PRIVATE[33m 416[2mms[22m[39m
+       [32m✓[39m should convert {{#if ${{ github.actor }} }} to __GH_AW_GITHUB_ACTOR__[32m 2[2mms[22m[39m
+       [32m✓[39m should convert nested expression github.event.issue.number[32m 1[2mms[22m[39m
+       [32m✓[39m should convert steps.sanitized.outputs.text[32m 1[2mms[22m[39m
+       [32m✓[39m should leave content without wrapped expressions unchanged[32m 1[2mms[22m[39m
+     [32m✓[39m generatePlaceholderName [2m(6)[22m
+       [32m✓[39m should generate GH_AW_GITHUB_ACTOR from github.actor[32m 1[2mms[22m[39m
+       [32m✓[39m should generate GH_AW_GITHUB_EVENT_ISSUE_NUMBER from github.event.issue.number[32m 1[2mms[22m[39m
+       [32m✓[39m should generate GH_AW_NEEDS_FOO_OUTPUTS_BAR from needs.foo.outputs.bar[32m 1[2mms[22m[39m
+       [32m✓[39m should return GH_AW_TRUE for true[32m 1[2mms[22m[39m
+       [32m✓[39m should return GH_AW_FALSE for false[32m 1[2mms[22m[39m
+       [32m✓[39m should return GH_AW_NULL for null[32m 1[2mms[22m[39m
+     [32m✓[39m processRuntimeImport — expression wrapping integration [2m(4)[22m
+       [33m[2m✓[22m[39m should preserve {{#if .}} when imported (dot-only, not a GitHub expression)[33m 447[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve {{#if 1.5}} when imported (digit-start, not a GitHub expression)[33m 432[2mms[22m[39m
+       [33m[2m✓[22m[39m should inline evaluate {{#if github.actor}} to the actor value when context is set[33m 473[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve inline doc text containing {{#if ...}} exactly (regression test)[33m 448[2mms[22m[39m
+     [32m✓[39m processRuntimeImports — import tree building [2m(7)[22m
+       [33m[2m✓[22m[39m should not build a tree when parentTreeChildren is null (default)[33m 452[2mms[22m[39m
+       [33m[2m✓[22m[39m should populate tree children for a single import[33m 457[2mms[22m[39m
+       [33m[2m✓[22m[39m should mark optional imports correctly in the tree[33m 455[2mms[22m[39m
+       [33m[2m✓[22m[39m should capture nested imports as children in the tree[33m 439[2mms[22m[39m
+       [33m[2m✓[22m[39m should record cached imports with cached:true and no children[33m 405[2mms[22m[39m
+       [33m[2m✓[22m[39m cached import rawContent should be pre-expansion content, not the expanded result[33m 452[2mms[22m[39m
+       [33m[2m✓[22m[39m should populate multiple top-level imports in order[33m 440[2mms[22m[39m
+CAPIError: 502 Bad Gateway
+TypeError: private-driver-payload
+CAPIError: 502 Bad Gateway
+CAPIError: 503 Service Unavailable
+TypeError: private-driver-payload
+TypeError: private-driver-payload
+{"type":"assistant.message","data":{"content":"TypeError: private-driver-payload"}}
+ [32m✓[39m handle_agent_failure.test.cjs [2m([22m[2m656 tests[22m[2m)[22m[33m 6174[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m runtime_import.test.cjs[2m > [22mruntime_import[2m > [22mExpression Validation and Rendering[2m > [22mrecursive imports[2m > [22mshould fuzz dedup across equivalent recursive self-import path spellings
+[31m[1mError[22m: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".[39m
+[36m [2m❯[22m runtime_import.test.cjs:[2m1681:9[22m[39m
+    [90m1679|[39m         });
+    [90m1680|[39m
+    [90m1681|[39m         it("should fuzz dedup across equivalent recursive self-import …
+    [90m   |[39m         [31m^[39m
+    [90m1682|[39m           const sharedDir = path.join(workflowsDir, "shared", "agent");
+    [90m1683|[39m           fs.mkdirSync(sharedDir, { recursive: true });
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m986 passed[39m[22m[90m (987)[39m
+[2m   Start at [22m 18:50:22
+[2m   Duration [22m 89.01s[2m (tests 100%)[22m
+

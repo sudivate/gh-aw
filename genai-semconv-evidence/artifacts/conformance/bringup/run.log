@@ -1,0 +1,401 @@
+INFO opentelemetry.conformance._model: Resolving the coverage model into /tmp/tmpw5cctw0y/coverage-model.json
+==== instrumented: gh-aw, instrumentation: gh-aw, package: conformance
+▲ scenario: agent_success_latest, status: WARN
+▲ Violations:
+  - [missing_attribute] Attribute 'cicd.pipeline.name' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.run.url.full' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.name' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'deployment.environment.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.action_minutes' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.action_minutes' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.agent.conclusion' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.agent.conclusion' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.ai_credits_rate_limit_error' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.error_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.error_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.max_ai_credits_exceeded' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.otlp.export_errors' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.otlp.export_errors' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.output.item_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.output.item_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.permission_denied_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.permission_denied_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.status' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.status' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.steering_event_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.steering_event_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.warning_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.warning_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.job' does not exist in the registry
+  - [missing_attribute] Attribute 'github.ref_name' does not exist in the registry
+  - [missing_attribute] Attribute 'github.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'github.run_attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'github.run_id' does not exist in the registry
+  - [missing_attribute] Attribute 'github.sha' does not exist in the registry
+  - [missing_attribute] Attribute 'service.version' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.provider.name' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.ref.head.name' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.ref.head.revision' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.repository.url.full' does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+▲ scenario: agent_failure_latest, status: WARN
+▲ Violations:
+  - [missing_attribute] Attribute 'cicd.pipeline.name' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.run.url.full' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.name' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'deployment.environment.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.action_minutes' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.action_minutes' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.agent.conclusion' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.agent.conclusion' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.ai_credits_rate_limit_error' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.error_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.error_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.max_ai_credits_exceeded' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.otlp.export_errors' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.otlp.export_errors' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.output.item_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.output.item_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.permission_denied_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.permission_denied_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.status' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.status' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.steering_event_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.steering_event_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.warning_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.warning_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.job' does not exist in the registry
+  - [missing_attribute] Attribute 'github.ref_name' does not exist in the registry
+  - [missing_attribute] Attribute 'github.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'github.run_attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'github.run_id' does not exist in the registry
+  - [missing_attribute] Attribute 'github.sha' does not exist in the registry
+  - [missing_attribute] Attribute 'service.version' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.provider.name' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.ref.head.name' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.ref.head.revision' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.repository.url.full' does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+▲ scenario: agent_success_compat, status: WARN
+▲ Violations:
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.agent' (operation 'chat') is missing expected attribute 'gen_ai.response.id'
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.agent' (operation 'chat') is missing expected attribute 'gen_ai.response.model'
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.agent' (operation 'chat') is missing expected attribute 'server.address'
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.conclusion' (operation 'chat') is missing expected attribute 'gen_ai.response.id'
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.conclusion' (operation 'chat') is missing expected attribute 'gen_ai.response.model'
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.conclusion' (operation 'chat') is missing expected attribute 'gen_ai.usage.input_tokens'
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.conclusion' (operation 'chat') is missing expected attribute 'gen_ai.usage.output_tokens'
+  - [genai_expected_attribute_missing] Span 'gh-aw.agent.conclusion' (operation 'chat') is missing expected attribute 'server.address'
+  - [genai_span_name_format] chat span name should be 'chat gpt-5', got 'gh-aw.agent.agent'
+  - [genai_span_name_format] chat span name should be 'chat gpt-5', got 'gh-aw.agent.conclusion'
+  - [instrumentation_scope_schema_url_missing] Instrumentation scope 'gh-aw' does not have schema_url
+  - [missing_attribute] Attribute 'cicd.pipeline.name' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.run.url.full' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.name' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'cicd.pipeline.task.run.result' does not exist in the registry
+  - [missing_attribute] Attribute 'deployment.environment' does not exist in the registry
+  - [missing_attribute] Attribute 'deployment.environment.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.system' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.system' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.system' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.token.type' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.token.type' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.token.type' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.token.type' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.token.type' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.usage.cache_creation.input_tokens' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.usage.total_tokens' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gen_ai.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.action_minutes' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.action_minutes' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.agent.conclusion' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.agent.conclusion' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.ai_credits_rate_limit_error' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.cli.version' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.engine.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.episode.kind' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.error_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.error_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.hop.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.job.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.max_ai_credits_exceeded' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.otlp.export_errors' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.otlp.export_errors' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.output.item_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.output.item_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.permission_denied_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.permission_denied_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.actor' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.status' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.run.status' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.staged' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.steering_event_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.steering_event_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.warning_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.warning_count' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow.name' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'gh-aw.workflow_call.id' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.actions.run_url' does not exist in the registry
+  - [missing_attribute] Attribute 'github.job' does not exist in the registry
+  - [missing_attribute] Attribute 'github.ref_name' does not exist in the registry
+  - [missing_attribute] Attribute 'github.repository' does not exist in the registry
+  - [missing_attribute] Attribute 'github.run_attempt' does not exist in the registry
+  - [missing_attribute] Attribute 'github.run_id' does not exist in the registry
+  - [missing_attribute] Attribute 'github.sha' does not exist in the registry
+  - [missing_attribute] Attribute 'service.version' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.provider.name' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.ref.head.name' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.ref.head.revision' does not exist in the registry
+  - [missing_attribute] Attribute 'vcs.repository.url.full' does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [missing_metric] Metric does not exist in the registry
+  - [span_status_ok_set_by_instrumentation] Span 'gh-aw.agent.agent' has status.code='ok'; instrumentations must leave status UNSET on success (OK is reserved for application code)
+  - [span_status_ok_set_by_instrumentation] Span 'gh-aw.agent.conclusion' has status.code='ok'; instrumentations must leave status UNSET on success (OK is reserved for application code)
+  - [span_status_ok_set_by_instrumentation] Span 'gh-aw.agent.setup' has status.code='ok'; instrumentations must leave status UNSET on success (OK is reserved for application code)

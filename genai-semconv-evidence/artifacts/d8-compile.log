@@ -1,0 +1,35 @@
+.github/workflows/d8-optin.md: info: Tip: set permissions.copilot-requests: write to use GitHub Actions token-based inference with the Copilot engine instead of a personal access token (COPILOT_GITHUB_TOKEN). This option requires that your organization has centralized Copilot billing enabled and may not be available in all organizations. To suppress this tip when using a PAT, set permissions.copilot-requests: none — see https://github.github.com/gh-aw/reference/billing/ for details.
+
+i d8-optin.md: no model or engine.model-routing is set, so the copilot engine uses model routing with goal cost and mode auto on GitHub Copilot inference. Set engine.model-routing: false to opt out, or choose a model. A nonempty vars.GH_AW_MODEL_AGENT_COPILOT or vars.GH_AW_DEFAULT_MODEL_COPILOT bypasses routing at run time. See https://github.github.com/gh-aw/reference/model-routing/
+.github/workflows/d8-optin.md: warning: safe update mode detected unapproved changes
+
+New restricted secret(s):
+  - GH_AW_OTEL_ENDPOINT
+
+Remediation options:
+  1. Use the --approve flag to allow the changes.
+  2. Revert the unapproved changes.
+  3. Use an interactive coding agent to review and approve the changes.
+
+✓ .github/workflows/d8-optin.md (116.1 KB)
+⚠ ⚠️  SECURITY REVIEW REQUIRED — safe update mode detected unapproved changes:
+
+safe update mode detected unapproved changes
+
+New restricted secret(s):
+  - GH_AW_OTEL_ENDPOINT
+
+Remediation options:
+  1. Use the --approve flag to allow the changes.
+  2. Revert the unapproved changes.
+  3. Use an interactive coding agent to review and approve the changes.
+
+Action required for the calling agent:
+  1. Review every new secret and action listed above for potential malicious use
+     (e.g. credential exfiltration, supply-chain attacks, unexpected network access).
+  2. Add a security review note to the pull request description that:
+     - Lists any new or removed secrets, actions, and redirect changes from this compilation.
+     - Confirms you have reviewed each one and explains why it is safe to add.
+     - Flags any item you cannot fully verify so a human reviewer can inspect it.
+
+⚠ Compiled 1 workflow: 1 succeeded, 1 warning

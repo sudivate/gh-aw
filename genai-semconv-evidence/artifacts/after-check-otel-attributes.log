@@ -1,0 +1,13 @@
+
+> check
+> node generate_attributes.mjs --check
+
+TypeSpec compiler v1.17.0
+
+- Compiling...
+✔ Compiling
+- Running @typespec/json-schema...
+✔ @typespec/json-schema 30ms ../../../../../../tmp/gh-aw-otel-XDIGqg/@typespec/json-schema/
+
+Compilation completed successfully.
+

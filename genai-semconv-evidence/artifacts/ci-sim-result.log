@@ -1,0 +1,18 @@
+# CI install simulation (ci-sim), recorded before deletion
+$ git -C ci-sim/conformance rev-parse HEAD
+a4321907b3768c468966538a459130ac6b095bdc
+$ ci-sim/weaver/weaver --version
+weaver 0.28.0
+$ ls ci-sim/conformance/tools
+database
+dotnet
+gen-ai
+go
+http
+java
+js
+php
+python
+report
+ruby
+runner

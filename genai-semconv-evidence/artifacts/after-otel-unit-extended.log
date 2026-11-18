@@ -1,0 +1,384 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.1.0 [39m[90m/home/sudivate/work/gh-aw/actions/setup/js[39m
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mrecords OTLP export failure host, status, and reason details
+[22m[39mOTLP export authorization failed: HTTP 401 Unauthorized. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mfalls back to HTTP status when curl reports non-2xx with statusText OK
+[22m[39mOTLP export authorization failed: HTTP 401. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2msanitizes OTLP export failure reasons before persisting them
+[22m[39mOTLP export error after 1 attempts: Failed to parse URL from https://user:secret@collector.example.com/v1/traces?token=abc
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mreturns one final result per endpoint
+[22m[39mOTLP export failed after 1 attempts: HTTP 500 status
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mcontinues to other endpoints when one fails
+[22m[39mOTLP export error after 1 attempts: connection refused
+
+ [32m✓[39m send_otlp_span.test.cjs [2m([22m[2m503 tests[22m[2m)[22m[33m 1086[2mms[22m[39m
+ [32m✓[39m send_otlp_span_transport.test.cjs [2m([22m[2m62 tests[22m[2m)[22m[33m 7644[2mms[22m[39m
+   [32m✓[39m bounded curl response status [2m(62)[22m
+     [33m[2m✓[22m[39m bounds real curl traces http/json stalled HTTP 0 responses without retrying known acceptance[33m 398[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/json stalled HTTP 503 responses without retrying known acceptance[33m 399[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/protobuf stalled HTTP 0 responses without retrying known acceptance[33m 419[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/protobuf stalled HTTP 503 responses without retrying known acceptance[33m 428[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/json stalled HTTP 0 responses without retrying known acceptance[33m 431[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/json stalled HTTP 503 responses without retrying known acceptance[33m 456[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/protobuf stalled HTTP 0 responses without retrying known acceptance[33m 425[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/protobuf stalled HTTP 503 responses without retrying known acceptance[33m 413[2mms[22m[39m
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mrejects malformed decision telemetry rather than treating it as a skip
+[22m[39mUnified session: invalid_harness_retry in agent/harness_retry.json
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mcollects and exports only run-scoped durable metadata without historical top-level content
+[22m[39mUnified session: invalid_durable_session in agent/durable-session.jsonl
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mremoves stale grading artifacts when the unified session cannot be published
+[22m[39mUnified session: unattributed_run_result in usage/graders/grader_results.json
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mpreserves eval alias precedence for { runId: '', runid: '123' } with current run 123
+[22m[39mUnified session: unattributed_run_result in evals.jsonl:1
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mpreserves eval alias precedence for { runId: null, runid: null, …(1) } with current run 123
+[22m[39mUnified session: unattributed_run_result in evals.jsonl:1
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2muses the usage copy when needed and skips malformed rate-limit lines without losing valid entries
+[22m[39mUnified session: malformed_jsonl in usage/github_rate_limits.jsonl:2
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mfalls back to stdio when native Copilot events are incomplete
+[22m[39mUnified session: native_session_unusable in sandbox/agent/logs/copilot-session-state/uuid/events.jsonl
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mfalls back to stdio when native Copilot events are incomplete
+[22m[39mUnified session: malformed_jsonl in sandbox/agent/logs/copilot-session-state/uuid/events.jsonl:2
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mdeduplicates identified stdio snapshots against retained initialization-only native evidence (answer: false)
+[22m[39mUnified session: native_session_unusable in sandbox/agent/logs/copilot-session-state/partial/events.jsonl
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mdeduplicates identified stdio snapshots against retained initialization-only native evidence (answer: true)
+[22m[39mUnified session: native_session_unusable in sandbox/agent/logs/copilot-session-state/partial/events.jsonl
+
+ [32m✓[39m unified_session.test.cjs [2m([22m[2m284 tests[22m[2m)[22m[33m 8024[2mms[22m[39m
+   [32m✓[39m Unified conclusion session [2m(284)[22m
+     [33m[2m✓[22m[39m publishes typed skip decisions with file_reference_failed in the agent unified session without model inputs[33m 534[2mms[22m[39m
+     [33m[2m✓[22m[39m publishes typed skip decisions with sensitive_content_blocked in the agent unified session without model inputs[33m 351[2mms[22m[39m
+     [33m[2m✓[22m[39m reconciles reused successful activation from activation/aw_info.json at the live conclusion boundary, not offline replay[33m 306[2mms[22m[39m
+     [33m[2m✓[22m[39m reconciles reused successful activation from runtime/aw_info.json at the live conclusion boundary, not offline replay[33m 363[2mms[22m[39m
+     [33m[2m✓[22m[39m publishes downloaded Kiro activation metadata and preserves observed session.init fields[33m 332[2mms[22m[39m
+ [32m✓[39m compact_unified_session.test.cjs [2m([22m[2m47 tests[22m[2m)[22m[33m 604[2mms[22m[39m
+   [32m✓[39m bounded compact session file reader [2m(12)[22m
+     [33m[2m✓[22m[39m skips multi-chunk oversized agent messages and retains subsequent accounting[33m 314[2mms[22m[39m
+ [32m✓[39m model_routing_contract.test.cjs [2m([22m[2m41 tests[22m[2m)[22m[33m 492[2mms[22m[39m
+ [32m✓[39m parse_token_usage.test.cjs [2m([22m[2m84 tests[22m[2m)[22m[33m 686[2mms[22m[39m
+ [32m✓[39m work_queue_telemetry.test.cjs [2m([22m[2m21 tests[22m[2m)[22m[32m 279[2mms[22m[39m
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export attempt 1/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export attempt 2/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export failed after 3 attempts: HTTP 500 error
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export attempt 1/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export attempt 2/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export failed after 3 attempts: HTTP 500 error
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mcaps unique custom metric series per process
+[22m[39m[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+
+ [32m✓[39m otlp_metrics.test.cjs [2m([22m[2m26 tests[22m[2m)[22m[32m 194[2mms[22m[39m
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 499ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 749ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[info] ✓ workflow admission succeeded on retry attempt 2
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+ [32m✓[39m check_admission.test.cjs [2m([22m[2m60 tests[22m[2m)[22m[32m 191[2mms[22m[39m
+ [32m✓[39m otlp_response.test.cjs [2m([22m[2m84 tests[22m[2m)[22m[32m 134[2mms[22m[39m
+ [32m✓[39m action_setup_otlp.test.cjs [2m([22m[2m74 tests[22m[2m)[22m[32m 138[2mms[22m[39m
+ [32m✓[39m otlp_protobuf.test.cjs [2m([22m[2m67 tests[22m[2m)[22m[32m 87[2mms[22m[39m
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=6faa6f4c9f3c5712030a4efae450a915
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=88c9b4cee33eaac1dd361f6b0796d090
+[info] [otlp] trace-id=88c9b4cee33eaac1dd361f6b0796d090 written to GITHUB_OUTPUT
+[info] [otlp] span-id=d16f5e55ffcc7a6e written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=3403330d17fc6184a0ee96a0ad14eb27
+[info] [otlp] trace-id=3403330d17fc6184a0ee96a0ad14eb27 written to GITHUB_OUTPUT
+[info] [otlp] span-id=9dc65c38d1f30988 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (will reuse activation trace)
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[info] [otlp] setup span sent (traceId=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, spanId=6766c7fd269c11a8)
+[info] [otlp] trace-id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa written to GITHUB_OUTPUT
+[info] [otlp] span-id=6766c7fd269c11a8 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=5a1fad500661b2e87cfa3ff5688bd393
+[info] [otlp] setup span sent (traceId=5a1fad500661b2e87cfa3ff5688bd393, spanId=263d1f4e1e476889)
+[info] [otlp] trace-id=5a1fad500661b2e87cfa3ff5688bd393 written to GITHUB_OUTPUT
+[info] [otlp] span-id=263d1f4e1e476889 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=042ec5f25613dff42e401412cd6bebc2
+[info] [otlp] trace-id=042ec5f25613dff42e401412cd6bebc2 written to GITHUB_OUTPUT
+[info] [otlp] span-id=0059a08eb620038f written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=d4935cd35371e50f384001117cff3d49
+[info] [otlp] setup span sent (traceId=d4935cd35371e50f384001117cff3d49, spanId=64b48a8269574c2a)
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] INPUT_PARENT_SPAN_ID=abcdef1234567890 (will parent setup span)
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=d86ff9adaf0c5fae493771b58f607866
+[info] [otlp] setup span sent (traceId=d86ff9adaf0c5fae493771b58f607866, spanId=6ebd2eadd88a9a61)
+[info] [otlp] trace-id=d86ff9adaf0c5fae493771b58f607866 written to GITHUB_OUTPUT
+[info] [otlp] span-id=6ebd2eadd88a9a61 written to GITHUB_OUTPUT
+[info] [otlp] parent-span-id=abcdef1234567890 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=63b64417d29749092d0326113848db0c
+[info] [otlp] setup span sent (traceId=63b64417d29749092d0326113848db0c, spanId=d47877b4d8e56f07)
+[info] [otlp] trace-id=63b64417d29749092d0326113848db0c written to GITHUB_OUTPUT
+[info] [otlp] span-id=d47877b4d8e56f07 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=9f389ee9f048e00fddb9bbb50819e3e3
+[info] [otlp] setup span sent (traceId=9f389ee9f048e00fddb9bbb50819e3e3, spanId=c2b26ca349887972)
+[info] [otlp] trace-id=9f389ee9f048e00fddb9bbb50819e3e3 written to GITHUB_OUTPUT
+[info] [otlp] span-id=c2b26ca349887972 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping OTLP export (will attempt JSONL mirror)
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.agent.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+ [32m✓[39m action_otlp.test.cjs [2m([22m[2m21 tests[22m[2m)[22m[32m 138[2mms[22m[39m
+ [32m✓[39m otlp_header_helpers.test.cjs [2m([22m[2m5 tests[22m[2m)[22m[32m 94[2mms[22m[39m
+ [32m✓[39m otel_contract.test.cjs [2m([22m[2m6 tests[22m[2m)[22m[32m 84[2mms[22m[39m
+ [32m✓[39m otlp.test.cjs [2m([22m[2m40 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m action_conclusion_otlp.test.cjs [2m([22m[2m36 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m17 passed[39m[22m[90m (17)[39m
+[2m      Tests [22m [1m[32m1461 passed[39m[22m[90m (1461)[39m
+[2m   Start at [22m 18:12:34
+[2m   Duration [22m 25.25s[2m (tests 90%, import 7%, transform 2%, setup 1%, worker 1%)[22m
+
+[2m    Isolate [22m [33m17 workers spawned[39m[2m · ~159ms startup each (spawn + environment, per file)[22m
+[2m            [22m [2mat least ~2.54s faster with [22m[33misolate: false[39m[2m — reuses workers across files instead of one per file[22m
+

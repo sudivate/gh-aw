@@ -1,0 +1,5 @@
+INFO opentelemetry.conformance._model: Resolving the coverage model into /tmp/tmpnki0m69z/coverage-model.json
+==== instrumented: gh-aw, instrumentation: gh-aw, package: conformance
+✖ scenario: agent_failure_latest, status: FAIL
+✖ Failures:
+  - agent_failure_latest: gen_ai.operation.name='invoke_agent': error.type expected 'wrong_value' on every span, saw ['agent_failed']

@@ -1,0 +1,18 @@
+✔ matches the Node.js SDK for 150 spans across resources and scopes (131.305518ms)
+✔ matches SDK protocol types for 64-bit boundaries and nested AnyValue (6.204405ms)
+✔ matches the SDK for an empty request (0.720508ms)
+✔ matches SDK protocol types for OTLP JSON double token NaN (1.07001ms)
+✔ matches SDK protocol types for OTLP JSON double token Infinity (0.379027ms)
+✔ matches SDK protocol types for OTLP JSON double token -Infinity (0.402551ms)
+✔ decodes actual gh-aw payloads with the SDK without losing timestamps or IDs (2.673282ms)
+✔ matches SDK protocol types for gh-aw gauge, sum, and histogram metrics with exemplars (6.292193ms)
+✔ matches SDK protocol types for opt-in GenAI semantic-convention spans and metrics (3.302121ms)
+✔ sends SDK-decodable binary payloads through real HTTP and curl transports (352.007055ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 844.484745

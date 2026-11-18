@@ -1,0 +1,12 @@
+$ go build ./...
+go: downloading golang.org/x/tools v0.52.0
+rc=0
+$ go vet ./pkg/workflow/
+go: downloading github.com/charmbracelet/x/exp/golden v0.1.0
+go: downloading go.uber.org/goleak v1.3.0
+go: downloading github.com/stretchr/testify v1.12.1
+go: downloading github.com/aymanbagabas/go-udiff v0.4.1
+rc=0
+$ go test ./pkg/workflow/ -run 'Otel|OTel|OTLP|Attribute' -count=1
+ok  	github.com/github/gh-aw/pkg/workflow	1.667s
+rc=0

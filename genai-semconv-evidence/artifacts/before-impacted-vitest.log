@@ -1,0 +1,1797 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.1.0 [39m[90m/home/sudivate/work/gh-aw-baseline/actions/setup/js[39m
+
+ [31m❯[39m runtime_import.test.cjs [2m([22m[2m331 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 87929[2mms[22m[39m
+   [31m❯[39m runtime_import [2m(331)[22m
+     [32m✓[39m hasFrontMatter [2m(6)[22m
+       [33m[2m✓[22m[39m should detect front matter at the start[33m 512[2mms[22m[39m
+       [33m[2m✓[22m[39m should detect front matter with CRLF line endings[33m 470[2mms[22m[39m
+       [33m[2m✓[22m[39m should detect front matter with leading whitespace[33m 453[2mms[22m[39m
+       [33m[2m✓[22m[39m should not detect front matter in the middle[33m 576[2mms[22m[39m
+       [32m✓[39m should not detect incomplete front matter marker[32m 2[2mms[22m[39m
+       [32m✓[39m should handle empty content[32m 1[2mms[22m[39m
+     [32m✓[39m removeXMLComments [2m(6)[22m
+       [32m✓[39m should remove simple XML comments[32m 2[2mms[22m[39m
+       [32m✓[39m should remove multiline XML comments[32m 1[2mms[22m[39m
+       [32m✓[39m should remove multiple XML comments[32m 1[2mms[22m[39m
+       [32m✓[39m should handle content without comments[32m 1[2mms[22m[39m
+       [32m✓[39m should handle nested-looking comments[32m 2[2mms[22m[39m
+       [32m✓[39m should handle empty content[32m 1[2mms[22m[39m
+     [32m✓[39m neutralizeSystemTags [2m(10)[22m
+       [32m✓[39m should convert <system> opening tag to (system)[32m 1[2mms[22m[39m
+       [32m✓[39m should convert </system> closing tag to (/system)[32m 1[2mms[22m[39m
+       [32m✓[39m should convert a full <system>...</system> block[32m 1[2mms[22m[39m
+       [32m✓[39m should convert <system> with attributes[32m 1[2mms[22m[39m
+       [32m✓[39m should convert <System> case-insensitively[32m 1[2mms[22m[39m
+       [32m✓[39m should convert multiple <system> blocks in the same content[32m 1[2mms[22m[39m
+       [32m✓[39m should neutralize <system> injected at end of a regex pattern[32m 2[2mms[22m[39m
+       [32m✓[39m should leave non-system tags unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m should handle content with no system tags unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m should handle empty string[32m 1[2mms[22m[39m
+     [32m✓[39m hasGitHubActionsMacros [2m(7)[22m
+       [32m✓[39m should detect simple GitHub Actions macros[32m 1[2mms[22m[39m
+       [32m✓[39m should detect multiline GitHub Actions macros[32m 1[2mms[22m[39m
+       [32m✓[39m should detect multiple GitHub Actions macros[32m 1[2mms[22m[39m
+       [32m✓[39m should not detect template conditionals[32m 1[2mms[22m[39m
+       [32m✓[39m should not detect runtime-import macros[32m 1[2mms[22m[39m
+       [32m✓[39m should detect GitHub Actions macros within other content[32m 1[2mms[22m[39m
+       [32m✓[39m should handle content without macros[32m 1[2mms[22m[39m
+     [32m✓[39m isSafeExpression [2m(53)[22m
+       [32m✓[39m should deny ambient environment capabilities: env.INPUT_GITHUB-TOKEN[32m 7[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.GITHUB_TOKEN[32m 3[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.NODE_VERSION[32m 2[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.GH_AW_SECRET[32m 2[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env.INPUT_GITHUB-TOKEN || 'fallback'[32m 2[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: github.actor && env.INPUT_GITHUB-TOKEN[32m 1[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: github.actor == env.INPUT_GITHUB-TOKEN[32m 1[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: inputs.name || env.INPUT_GITHUB-TOKEN[32m 2[2mms[22m[39m
+       [32m✓[39m should deny ambient environment capabilities: env['INPUT_GITHUB-TOKEN'][32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should never insert the github-script token into imported prompt text[33m 690[2mms[22m[39m
+       [32m✓[39m should allow basic safe expressions[32m 5[2mms[22m[39m
+       [32m✓[39m should allow dynamic patterns[32m 2[2mms[22m[39m
+       [32m✓[39m should reject unsafe expressions[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with single-quoted literals[32m 3[2mms[22m[39m
+       [32m✓[39m should allow OR with double-quoted literals[32m 2[2mms[22m[39m
+       [32m✓[39m should allow OR with backtick literals[32m 2[2mms[22m[39m
+       [32m✓[39m should allow OR with number literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with boolean literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow OR with two safe expressions[32m 2[2mms[22m[39m
+       [32m✓[39m should reject OR with unsafe left side[32m 2[2mms[22m[39m
+       [32m✓[39m should reject OR with unsafe right side (non-literal)[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - constructor[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __proto__[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - prototype[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __defineGetter__[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __defineSetter__[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __lookupGetter__[32m 7[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - __lookupSetter__[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - hasOwnProperty[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - isPrototypeOf[32m 1[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - propertyIsEnumerable[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - toString[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - valueOf[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous property names - toLocaleString[32m 2[2mms[22m[39m
+       [32m✓[39m should block dangerous properties in array access[32m 3[2mms[22m[39m
+       [32m✓[39m should reject excessive nesting depth (more than 5 levels)[32m 3[2mms[22m[39m
+       [32m✓[39m should allow valid nested expressions within depth limit[32m 2[2mms[22m[39m
+       [32m✓[39m should reject string literals with nested expressions[32m 2[2mms[22m[39m
+       [32m✓[39m should reject string literals with escape sequences[32m 1[2mms[22m[39m
+       [32m✓[39m should reject string literals with zero-width characters[32m 2[2mms[22m[39m
+       [32m✓[39m should allow safe string literals[32m 2[2mms[22m[39m
+       [32m✓[39m should allow standalone string literals[32m 1[2mms[22m[39m
+       [32m✓[39m should allow standalone number and boolean literals[32m 1[2mms[22m[39m
+       [32m✓[39m should reject standalone string literals with nested expressions[32m 1[2mms[22m[39m
+       [32m✓[39m should reject standalone string literals with escape sequences[32m 1[2mms[22m[39m
+       [32m✓[39m should allow comparison expressions with safe properties[32m 1[2mms[22m[39m
+       [32m✓[39m should reject comparison expressions with unsafe properties[32m 1[2mms[22m[39m
+       [32m✓[39m should allow AND compound expressions without literals[32m 1[2mms[22m[39m
+       [32m✓[39m should reject AND compound expressions where either side is a literal[32m 2[2mms[22m[39m
+       [32m✓[39m should reject AND compound expressions with unsafe side[32m 2[2mms[22m[39m
+       [32m✓[39m should reject literal on the left side of a disjunction[32m 2[2mms[22m[39m
+       [32m✓[39m should reject ternary-style AND/OR expressions (literal in AND operand)[32m 2[2mms[22m[39m
+       [32m✓[39m should reject ternary-style expressions with unsafe properties[32m 2[2mms[22m[39m
+     [32m✓[39m evaluateExpression [2m(32)[22m
+       [32m✓[39m should evaluate basic expressions[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left || right' without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal "left || right" without splitting its operators[32m 2[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal `left || right` without splitting its operators[32m 13[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left && right' without splitting its operators[32m 13[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left == right' without splitting its operators[32m 4[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'left \' || right' without splitting its operators[32m 15[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 'plain' without splitting its operators[32m 5[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal '' without splitting its operators[32m 16[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal 42 without splitting its operators[32m 5[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal true without splitting its operators[32m 12[2mms[22m[39m
+       [32m✓[39m should preserve standalone literal false without splitting its operators[32m 5[2mms[22m[39m
+       [32m✓[39m should evaluate OR with literal fallback when left is undefined[32m 18[2mms[22m[39m
+       [32m✓[39m should use left value when defined[32m 16[2mms[22m[39m
+       [32m✓[39m should handle number literals[32m 6[2mms[22m[39m
+       [32m✓[39m should handle boolean literals[32m 17[2mms[22m[39m
+       [32m✓[39m should chain OR expressions[32m 7[2mms[22m[39m
+       [32m✓[39m should return wrapped expression for undefined without fallback[32m 10[2mms[22m[39m
+       [32m✓[39m should not access prototype chain properties[32m 10[2mms[22m[39m
+       [32m✓[39m should not access __proto__ property[32m 12[2mms[22m[39m
+       [32m✓[39m should safely handle missing properties without prototype pollution[32m 18[2mms[22m[39m
+       [32m✓[39m should enforce the array index allowlist and handle missing allowed indexes[32m 21[2mms[22m[39m
+       [32m✓[39m should escape $ and { in extracted string literals[32m 14[2mms[22m[39m
+       [32m✓[39m should not escape characters in non-literal expressions[32m 7[2mms[22m[39m
+       [32m✓[39m aw_context fallback for slash-command event fields [2m(8)[22m
+         [32m✓[39m should resolve github.event.issue.number from aw_context when item_type is issue[32m 14[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.issue.number when aw_context item_type is discussion[32m 16[2mms[22m[39m
+         [32m✓[39m should resolve github.event.discussion.number from aw_context when item_type is discussion[32m 7[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.discussion.number when aw_context item_type is issue[32m 16[2mms[22m[39m
+         [32m✓[39m should resolve github.event.pull_request.number from aw_context when item_type is pull_request[32m 14[2mms[22m[39m
+         [32m✓[39m should resolve github.event.comment.id from aw_context when comment_id is present[32m 4[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.issue.number when aw_context is absent[32m 9[2mms[22m[39m
+         [32m✓[39m should return unresolved for github.event.issue.number when aw_context is invalid JSON[32m 7[2mms[22m[39m
+     [32m✓[39m processRuntimeImport [2m(33)[22m
+       [33m[2m✓[22m[39m should read and return file content[33m 665[2mms[22m[39m
+       [32m✓[39m should throw error for missing required file[32m 2[2mms[22m[39m
+       [32m✓[39m should return empty string for missing optional file[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should remove front matter and log debug message[33m 470[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .github/agents imports[33m 452[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .agents/agents imports[33m 455[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .github/skills imports[33m 495[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve front matter for .agents/skills imports[33m 444[2mms[22m[39m
+       [33m[2m✓[22m[39m should remove XML comments[33m 416[2mms[22m[39m
+       [33m[2m✓[22m[39m should render safe GitHub Actions expressions[33m 427[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject unsafe GitHub Actions expressions[33m 438[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve local author control tags[33m 587[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle file in subdirectory[33m 601[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle empty file[33m 515[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle file with only front matter[33m 446[2mms[22m[39m
+       [33m[2m✓[22m[39m should allow template conditionals[33m 641[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve {{#if ...}} as literal text without converting to a placeholder[33m 453[2mms[22m[39m
+       [33m[2m✓[22m[39m should support .github/workflows/ prefix in path[33m 430[2mms[22m[39m
+       [33m[2m✓[22m[39m should work without prefix (resolves to workflows/)[33m 487[2mms[22m[39m
+       [33m[2m✓[22m[39m should support .agents/ prefix (top-level folder)[33m 437[2mms[22m[39m
+       [33m[2m✓[22m[39m should support /.agents/ prefix (leading slash, repo-root-absolute)[33m 495[2mms[22m[39m
+       [33m[2m✓[22m[39m should support //.agents/ prefix (double leading slash, repo-root-absolute)[33m 803[2mms[22m[39m
+       [33m[2m✓[22m[39m should support /.github/ prefix (leading slash, repo-root-absolute)[33m 840[2mms[22m[39m
+       [33m[2m✓[22m[39m should support //.github/ prefix (double leading slash, repo-root-absolute)[33m 746[2mms[22m[39m
+       [32m✓[39m should reject /-prefixed paths not under .agents/ or .github/[32m 3[2mms[22m[39m
+       [33m[2m✓[22m[39m should support nested .github/workflows/shared/ path (issue: runtime-import fails for .github/workflows/* paths)[33m 550[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject paths outside .github folder[33m 538[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject symlinks escaping the .github folder[33m 537[2mms[22m[39m
+       [33m[2m✓[22m[39m should reject symlinks escaping the .agents folder[33m 533[2mms[22m[39m
+       [33m[2m✓[22m[39m should implicitly close an unterminated inline skill block so it cannot swallow spliced-in content[33m 514[2mms[22m[39m
+       [33m[2m✓[22m[39m should implicitly close an unterminated inline sub-agent block so it cannot swallow spliced-in content[33m 600[2mms[22m[39m
+       [33m[2m✓[22m[39m should leave an already explicitly closed inline skill block unchanged[33m 542[2mms[22m[39m
+       [33m[2m✓[22m[39m should not add end markers when no skill/agent markers are present[33m 576[2mms[22m[39m
+     [32m✓[39m processRuntimeImports [2m(27)[22m
+       [33m[2m✓[22m[39m should process single runtime-import macro[33m 485[2mms[22m[39m
+       [33m[2m✓[22m[39m should process optional runtime-import macro[33m 467[2mms[22m[39m
+       [33m[2m✓[22m[39m should process multiple runtime-import macros[33m 452[2mms[22m[39m
+       [32m✓[39m should handle optional import of missing file[32m 2[2mms[22m[39m
+       [32m✓[39m should throw error for required import of missing file[32m 2[2mms[22m[39m
+       [32m✓[39m should handle content without runtime-import macros[32m 1[2mms[22m[39m
+       [33m[2m✓[22m[39m should reuse cached content for duplicate imports[33m 439[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle macros with extra whitespace[33m 467[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle inline macros[33m 531[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve needs output expressions in runtime-imported content from hash env vars[33m 552[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve hash env expressions through nested runtime imports[33m 508[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve hash env expressions through legacy import macros[33m 497[2mms[22m[39m
+       [33m[2m✓[22m[39m should process imports with files containing special characters[33m 442[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $$ (fresh-import path)[33m 407[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $& (fresh-import path)[33m 400[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $` (fresh-import path)[33m 440[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $' (fresh-import path)[33m 428[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when imported content contains $1 (fresh-import path)[33m 463[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when cached imported content contains $$ (cache-hit path)[33m 429[2mms[22m[39m
+       [33m[2m✓[22m[39m should not corrupt output when cached imported content contains $` (cache-hit path)[33m 424[2mms[22m[39m
+       [33m[2m✓[22m[39m should remove XML comments from imported content[33m 471[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle path with subdirectories[33m 478[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve newlines around imports[33m 415[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle multiple consecutive imports[33m 456[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle imports at the start of content[33m 627[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle imports at the end of content[33m 710[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle tab characters in macro[33m 525[2mms[22m[39m
+     [32m✓[39m body-level {{#import}} directives (deprecated) [2m(13)[22m
+       [33m[2m✓[22m[39m should resolve {{#import filepath}} (no colon) as runtime-import and emit deprecation warning[33m 600[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import? filepath}} optional variant[33m 693[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import: filepath}} colon syntax[33m 742[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import?: filepath}} optional colon syntax[33m 667[2mms[22m[39m
+       [32m✓[39m should return empty string for missing optional {{#import?}} file[32m 4[2mms[22m[39m
+       [32m✓[39m should throw for missing required {{#import}} file[32m 7[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve {{#import}} inside a file read via {{#runtime-import}} (nested fix)[33m 697[2mms[22m[39m
+       [33m[2m✓[22m[39m should resolve multiple {{#import}} directives in one file[33m 666[2mms[22m[39m
+       [32m✓[39m should not treat {{#importantthing}} (no space/colon) as an import directive[32m 5[2mms[22m[39m
+       [32m✓[39m should not treat {{#import ...}} inside backtick code spans as an import directive[32m 4[2mms[22m[39m
+       [32m✓[39m should not treat {{#import? ...}} inside backtick code spans as an optional import directive[32m 3[2mms[22m[39m
+       [33m[2m✓[22m[39m should still resolve {{#import}} outside backtick spans even when backtick spans are present[33m 558[2mms[22m[39m
+       [32m✓[39m does not protect {{#import}} inside multi-line backtick spans (document limitation)[32m 2[2mms[22m[39m
+     [32m✓[39m Edge Cases [2m(5)[22m
+       [33m[2m✓[22m[39m should handle very large files[33m 566[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle files with unicode characters[33m 493[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle files with various line endings[33m 472[2mms[22m[39m
+       [32m✓[39m should not process runtime-import as a substring[32m 1[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle front matter with varying formats[33m 476[2mms[22m[39m
+     [32m✓[39m Error Handling [2m(2)[22m
+       [33m[2m✓[22m[39m should provide clear error for unsafe GitHub Actions expressions[33m 483[2mms[22m[39m
+       [32m✓[39m should provide clear error for missing required files[32m 2[2mms[22m[39m
+     [32m✓[39m Path Security [2m(7)[22m
+       [32m✓[39m should reject paths that escape .github folder with ../[32m 1[2mms[22m[39m
+       [32m✓[39m should reject paths that escape .github folder with ../../[32m 1[2mms[22m[39m
+       [32m✓[39m should allow valid path within .github folder[32m 2[2mms[22m[39m
+       [32m✓[39m should allow ./path within workflows folder[32m 2[2mms[22m[39m
+       [32m✓[39m should normalize paths with redundant separators[32m 2[2mms[22m[39m
+       [32m✓[39m should allow nested paths that stay within workflows folder[32m 3[2mms[22m[39m
+       [32m✓[39m should reject attempts to access files outside .github[32m 2[2mms[22m[39m
+     [32m✓[39m processRuntimeImport with line ranges [2m(7)[22m
+       [32m✓[39m should extract specific line range[32m 2[2mms[22m[39m
+       [32m✓[39m should extract single line[32m 1[2mms[22m[39m
+       [32m✓[39m should extract from start line to end of file[32m 1[2mms[22m[39m
+       [32m✓[39m should throw error for invalid start line[32m 2[2mms[22m[39m
+       [32m✓[39m should throw error for invalid end line[32m 3[2mms[22m[39m
+       [32m✓[39m should throw error when start line > end line[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should handle line range with front matter[33m 457[2mms[22m[39m
+     [32m✓[39m processRuntimeImports with line ranges from macros [2m(4)[22m
+       [32m✓[39m should process {{#runtime-import path:line-line}} macro[32m 2[2mms[22m[39m
+       [32m✓[39m should process multiple {{#runtime-import path:line-line}} macros[32m 2[2mms[22m[39m
+       [33m[2m✓[22m[39m should not let an unterminated inline skill block from one runtime import swallow a subsequent runtime import's content[33m 453[2mms[22m[39m
+       [33m[2m✓[22m[39m should not let an unterminated inline sub-agent block from a runtime import swallow the rest of the main workflow body[33m 451[2mms[22m[39m
+     [31m❯[39m Expression Validation and Rendering [2m(70)[22m
+       [32m✓[39m isSafeExpression [2m(4)[22m
+         [32m✓[39m should allow expressions from the safe list[32m 2[2mms[22m[39m
+         [32m✓[39m should allow dynamic patterns[32m 1[2mms[22m[39m
+         [32m✓[39m should reject unsafe expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should handle surrounding spaces but reject line terminators[32m 1[2mms[22m[39m
+       [32m✓[39m closeUnterminatedInlineMarkers [2m(1)[22m
+         [32m✓[39m should close an unterminated skill before a following agent in the same import[32m 1[2mms[22m[39m
+       [32m✓[39m evaluateExpression [2m(18)[22m
+         [32m✓[39m should evaluate simple GitHub context expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should evaluate nested event properties[32m 1[2mms[22m[39m
+         [32m✓[39m should return wrapped expression for unresolvable values[32m 1[2mms[22m[39m
+         [32m✓[39m should return empty string when env var is set to empty (e.g. workflow_dispatch with no text)[32m 1[2mms[22m[39m
+         [32m✓[39m should return env var value for needs/steps expressions when set[32m 1[2mms[22m[39m
+         [32m✓[39m should return hash-based env var value for needs output expressions when set[32m 1[2mms[22m[39m
+         [32m✓[39m should return env var value for inputs.* expressions when set (workflow_call)[32m 1[2mms[22m[39m
+         [32m✓[39m should return empty string for inputs.* env var set to empty[32m 1[2mms[22m[39m
+         [32m✓[39m should prefer env var over context.payload.inputs for inputs.* expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should resolve hyphenated inputs.* via context.payload.inputs fallback[32m 1[2mms[22m[39m
+         [32m✓[39m should resolve hyphenated inputs.* from hash-based env var when context.payload.inputs is empty[32m 1[2mms[22m[39m
+         [32m✓[39m should handle missing properties gracefully[32m 1[2mms[22m[39m
+         [32m✓[39m compound || expressions with deterministic env vars (compiler fix) [2m(6)[22m
+           [32m✓[39m should resolve compound || when left env var (steps.*) is set[32m 1[2mms[22m[39m
+           [32m✓[39m should resolve compound || when only right env var (inputs.*) is set[32m 1[2mms[22m[39m
+           [32m✓[39m should prefer left side when both env vars are set (left-biased || semantics)[32m 1[2mms[22m[39m
+           [32m✓[39m should return right-side wrapped expression when neither env var is set[32m 1[2mms[22m[39m
+           [32m✓[39m should resolve compound || with needs.* left and inputs.* right[32m 1[2mms[22m[39m
+           [32m✓[39m should fall back to literal right side when left env var is unset[32m 1[2mms[22m[39m
+       [32m✓[39m processExpressions [2m(9)[22m
+         [32m✓[39m should render safe expressions in content[32m 1[2mms[22m[39m
+         [32m✓[39m should handle multiple expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should replace all occurrences of the same expression[32m 1[2mms[22m[39m
+         [32m✓[39m should not re-replace evaluated values that contain expression-like text[32m 1[2mms[22m[39m
+         [32m✓[39m should throw error for unsafe expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should preserve experiments expressions for downstream interpolation[32m 1[2mms[22m[39m
+         [32m✓[39m should throw error for multiline expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should handle mixed safe and unsafe expressions[32m 1[2mms[22m[39m
+         [32m✓[39m should pass through content without expressions[32m 1[2mms[22m[39m
+       [32m✓[39m runtime import with expressions [2m(4)[22m
+         [33m[2m✓[22m[39m should process file with safe expressions[33m 455[2mms[22m[39m
+         [33m[2m✓[22m[39m should reject file with unsafe expressions[33m 433[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle expressions with front matter removal[33m 427[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle expressions with XML comments[33m 440[2mms[22m[39m
+       [31m❯[39m recursive imports [2m(12)[22m
+         [33m[2m✓[22m[39m should recursively process runtime-import macros in imported files[33m 482[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle multiple recursive imports at different levels[33m 455[2mms[22m[39m
+         [33m[2m✓[22m[39m should cache imported files and reuse them in recursive processing[33m 425[2mms[22m[39m
+         [33m[2m✓[22m[39m should detect circular dependencies[33m 526[2mms[22m[39m
+         [33m[2m✓[22m[39m should detect self-referencing circular dependencies[33m 473[2mms[22m[39m
+         [33m[2m✓[22m[39m should detect complex circular dependencies[33m 474[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle recursive imports with optional files[33m 467[2mms[22m[39m
+         [33m[2m✓[22m[39m should process expressions in recursively imported files[33m 475[2mms[22m[39m
+         [33m[2m✓[22m[39m should remove XML comments from recursively imported files[33m 487[2mms[22m[39m
+         [33m[2m✓[22m[39m should deduplicate imports already resolved before recursive workflow self-import[33m 507[2mms[22m[39m
+[31m         [31m×[31m should fuzz dedup across equivalent recursive self-import path spellings[39m[33m 22380[2mms[22m[39m
+         [33m[2m✓[22m[39m should handle deep nesting of imports[33m 495[2mms[22m[39m
+       [32m✓[39m arbitrary graph patterns [2m(22)[22m
+         [32m✓[39m tree topologies [2m(4)[22m
+           [33m[2m✓[22m[39m should handle balanced binary tree (depth 3)[33m 467[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle wide tree (one root, many leaves)[33m 436[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle unbalanced tree (left-skewed)[33m 459[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle very deep tree (depth 15)[33m 482[2mms[22m[39m
+         [32m✓[39m DAG (Directed Acyclic Graph) patterns [2m(4)[22m
+           [33m[2m✓[22m[39m should handle diamond dependency pattern[33m 473[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle multiple diamond patterns[33m 453[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle complex DAG with multiple levels[33m 448[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle convergent DAG (many nodes converge to one)[33m 498[2mms[22m[39m
+         [32m✓[39m star topology patterns [2m(2)[22m
+           [33m[2m✓[22m[39m should handle hub-and-spoke (one center, many peripherals)[33m 487[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle reverse star (many import one common file)[33m 448[2mms[22m[39m
+         [32m✓[39m complex multi-level patterns [2m(3)[22m
+           [33m[2m✓[22m[39m should handle grid-like dependency pattern[33m 472[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle pyramid pattern (expanding then contracting)[33m 466[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle layered architecture (strict layer dependencies)[33m 467[2mms[22m[39m
+         [32m✓[39m cache efficiency tests [2m(3)[22m
+           [33m[2m✓[22m[39m should efficiently cache heavily reused dependencies[33m 470[2mms[22m[39m
+           [33m[2m✓[22m[39m should cache files with line ranges independently[33m 428[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle mixed optional and required imports with caching[33m 486[2mms[22m[39m
+         [32m✓[39m circular dependency detection in complex graphs [2m(4)[22m
+           [33m[2m✓[22m[39m should detect indirect cycles in DAG-like structures[33m 473[2mms[22m[39m
+           [33m[2m✓[22m[39m should detect cycles in branching structures[33m 907[2mms[22m[39m
+           [33m[2m✓[22m[39m should detect long cycles (length 10)[33m 1402[2mms[22m[39m
+           [33m[2m✓[22m[39m should allow diamond patterns without false positive cycle detection[33m 430[2mms[22m[39m
+         [32m✓[39m performance and stress tests [2m(2)[22m
+           [33m[2m✓[22m[39m should handle large fan-out (1 root -> 50 direct imports)[33m 429[2mms[22m[39m
+           [33m[2m✓[22m[39m should handle moderate depth with moderate breadth (depth 5, breadth 4)[33m 442[2mms[22m[39m
+     [32m✓[39m wrapExpressionsInTemplateConditionals [2m(22)[22m
+       [32m✓[39m non-GitHub expressions — must be left unchanged [2m(7)[22m
+         [32m✓[39m should leave {{#if .}} unchanged (single dot)[32m 2[2mms[22m[39m
+         [32m✓[39m should leave {{#if ..}} unchanged (double dot)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if ...}} unchanged (triple dot — regression)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if 1.5}} unchanged (starts with digit)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave plain identifier {{#if condition}} unchanged (no dot)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave experiments.foo unchanged (not a GitHub Actions root — handled by interpolate_prompt.cjs)[32m 1[2mms[22m[39m
+         [32m✓[39m should leave experiments.prompt_style == "concise" unchanged (experiment equality expression)[32m 1[2mms[22m[39m
+       [32m✓[39m GitHub Actions expressions — without context — produce falsy condition [2m(3)[22m
+         [32m✓[39m should produce {{#if }} (falsy) for github.actor when context is unavailable[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for steps.sanitized.outputs.text when env var is absent[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for steps.foo.outputs.bar when env var is absent[32m 1[2mms[22m[39m
+       [32m✓[39m GitHub Actions expressions — with context — produce boolean sentinel [2m(5)[22m
+         [32m✓[39m should produce {{#if true}} (truthy sentinel) for github.actor when actor is set[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for github.event.issue.number when event has no issue[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if true}} (truthy) for github.event.issue.number when aw_context item_type is issue[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if }} (falsy) for github.event.issue.number when aw_context item_type is discussion[32m 1[2mms[22m[39m
+         [32m✓[39m should produce {{#if true}} (truthy) for github.event.discussion.number when aw_context item_type is discussion[32m 1[2mms[22m[39m
+       [32m✓[39m boolean/null literals — must be left unchanged for direct isTruthy() evaluation [2m(3)[22m
+         [32m✓[39m should leave {{#if true}} unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if false}} unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave {{#if null}} unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m already-processed expressions — must be left unchanged [2m(3)[22m
+         [32m✓[39m should leave already-wrapped ${{ }} expression unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave __PLACEHOLDER__ reference unchanged[32m 1[2mms[22m[39m
+         [32m✓[39m should leave ${ENV_VAR} reference unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m should handle multiple conditionals in one string[32m 1[2mms[22m[39m
+     [32m✓[39m extractAndReplacePlaceholders [2m(10)[22m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: env.INPUT_GITHUB-TOKEN[33m 439[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: env.PRIVATE[33m 414[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: env['PRIVATE'][33m 399[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: github.actor && env.PRIVATE[33m 432[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: secrets.PRIVATE[33m 415[2mms[22m[39m
+       [33m[2m✓[22m[39m rejects restricted expressions before creating conditional placeholders: vars.PRIVATE[33m 426[2mms[22m[39m
+       [32m✓[39m should convert {{#if ${{ github.actor }} }} to __GH_AW_GITHUB_ACTOR__[32m 1[2mms[22m[39m
+       [32m✓[39m should convert nested expression github.event.issue.number[32m 1[2mms[22m[39m
+       [32m✓[39m should convert steps.sanitized.outputs.text[32m 1[2mms[22m[39m
+       [32m✓[39m should leave content without wrapped expressions unchanged[32m 1[2mms[22m[39m
+     [32m✓[39m generatePlaceholderName [2m(6)[22m
+       [32m✓[39m should generate GH_AW_GITHUB_ACTOR from github.actor[32m 1[2mms[22m[39m
+       [32m✓[39m should generate GH_AW_GITHUB_EVENT_ISSUE_NUMBER from github.event.issue.number[32m 1[2mms[22m[39m
+       [32m✓[39m should generate GH_AW_NEEDS_FOO_OUTPUTS_BAR from needs.foo.outputs.bar[32m 1[2mms[22m[39m
+       [32m✓[39m should return GH_AW_TRUE for true[32m 1[2mms[22m[39m
+       [32m✓[39m should return GH_AW_FALSE for false[32m 1[2mms[22m[39m
+       [32m✓[39m should return GH_AW_NULL for null[32m 1[2mms[22m[39m
+     [32m✓[39m processRuntimeImport — expression wrapping integration [2m(4)[22m
+       [33m[2m✓[22m[39m should preserve {{#if .}} when imported (dot-only, not a GitHub expression)[33m 420[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve {{#if 1.5}} when imported (digit-start, not a GitHub expression)[33m 464[2mms[22m[39m
+       [33m[2m✓[22m[39m should inline evaluate {{#if github.actor}} to the actor value when context is set[33m 450[2mms[22m[39m
+       [33m[2m✓[22m[39m should preserve inline doc text containing {{#if ...}} exactly (regression test)[33m 464[2mms[22m[39m
+     [32m✓[39m processRuntimeImports — import tree building [2m(7)[22m
+       [33m[2m✓[22m[39m should not build a tree when parentTreeChildren is null (default)[33m 419[2mms[22m[39m
+       [33m[2m✓[22m[39m should populate tree children for a single import[33m 475[2mms[22m[39m
+       [33m[2m✓[22m[39m should mark optional imports correctly in the tree[33m 467[2mms[22m[39m
+       [33m[2m✓[22m[39m should capture nested imports as children in the tree[33m 515[2mms[22m[39m
+       [33m[2m✓[22m[39m should record cached imports with cached:true and no children[33m 439[2mms[22m[39m
+       [33m[2m✓[22m[39m cached import rawContent should be pre-expansion content, not the expanded result[33m 462[2mms[22m[39m
+       [33m[2m✓[22m[39m should populate multiple top-level imports in order[33m 453[2mms[22m[39m
+ [32m✓[39m unified_session_payload.test.cjs [2m([22m[2m235 tests[22m[2m)[22m[33m 19717[2mms[22m[39m
+   [32m✓[39m essential unified session payloads [2m(212)[22m
+     [33m[2m✓[22m[39m falls back from an invalid native clock to a valid archived message clock false[33m 971[2mms[22m[39m
+     [33m[2m✓[22m[39m falls back from an invalid native clock to a valid archived message clock {"value":0}[33m 792[2mms[22m[39m
+     [33m[2m✓[22m[39m falls back from an invalid native clock to a valid archived message clock "yesterday"[33m 581[2mms[22m[39m
+     [33m[2m✓[22m[39m falls back from an invalid native clock to a valid archived message clock "2026-02-30T00:00:00Z"[33m 665[2mms[22m[39m
+     [33m[2m✓[22m[39m falls back from an invalid native clock to a valid archived message clock null[33m 609[2mms[22m[39m
+     [33m[2m✓[22m[39m falls back from an invalid native clock to a valid archived message clock null[33m 571[2mms[22m[39m
+     [33m[2m✓[22m[39m does not promote invalid native or archived message clocks "yesterday"[33m 398[2mms[22m[39m
+     [33m[2m✓[22m[39m does not promote invalid native or archived message clocks "2026-11-09T00:27:23.729"[33m 426[2mms[22m[39m
+     [33m[2m✓[22m[39m does not promote invalid native or archived message clocks "2026-02-30T00:00:00Z"[33m 404[2mms[22m[39m
+     [33m[2m✓[22m[39m does not promote invalid native or archived message clocks 8640000000000001[33m 382[2mms[22m[39m
+     [33m[2m✓[22m[39m does not promote invalid native or archived message clocks null[33m 339[2mms[22m[39m
+     [33m[2m✓[22m[39m does not promote invalid native or archived message clocks {"value":0}[33m 393[2mms[22m[39m
+     [33m[2m✓[22m[39m normalizes safe nested harness metadata and attempt events idempotently[33m 377[2mms[22m[39m
+   [32m✓[39m AWF model routing candidate and request metadata [2m(11)[22m
+     [33m[2m✓[22m[39m projects recorded model-routing goldens with only the intended metadata additions[33m 440[2mms[22m[39m
+   [32m✓[39m AWF model inventories with unknown endpoints and live reasoning metadata [2m(12)[22m
+     [33m[2m✓[22m[39m limits recorded model-routing golden changes to corrected inventory events[33m 985[2mms[22m[39m
+ [32m✓[39m send_otlp_span_transport.test.cjs [2m([22m[2m62 tests[22m[2m)[22m[33m 7063[2mms[22m[39m
+   [32m✓[39m bounded curl response status [2m(62)[22m
+     [33m[2m✓[22m[39m bounds real curl traces http/json stalled HTTP 0 responses without retrying known acceptance[33m 400[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/json stalled HTTP 503 responses without retrying known acceptance[33m 422[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/protobuf stalled HTTP 0 responses without retrying known acceptance[33m 395[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl traces http/protobuf stalled HTTP 503 responses without retrying known acceptance[33m 387[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/json stalled HTTP 0 responses without retrying known acceptance[33m 398[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/json stalled HTTP 503 responses without retrying known acceptance[33m 398[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/protobuf stalled HTTP 0 responses without retrying known acceptance[33m 386[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds real curl logs http/protobuf stalled HTTP 503 responses without retrying known acceptance[33m 394[2mms[22m[39m
+CAPIError: 502 Bad Gateway
+TypeError: private-driver-payload
+CAPIError: 502 Bad Gateway
+CAPIError: 503 Service Unavailable
+TypeError: private-driver-payload
+TypeError: private-driver-payload
+{"type":"assistant.message","data":{"content":"TypeError: private-driver-payload"}}
+ [31m❯[39m handle_agent_failure.test.cjs [2m([22m[2m656 tests[22m[2m | [22m[31m33 failed[39m[2m)[22m[33m 6076[2mms[22m[39m
+   [31m❯[39m handle_agent_failure [2m(656)[22m
+     [32m✓[39m typed diagnostic reports [2m(3)[22m
+       [32m✓[39m keeps generated diagnostics literal until the publication render[32m 21[2mms[22m[39m
+       [32m✓[39m parses original permission templates with block lists and scalar code content[32m 17[2mms[22m[39m
+       [32m✓[39m retains authoritative failure metadata when diagnostic text is sized[32m 29[2mms[22m[39m
+     [32m✓[39m model/endpoint mismatch context [2m(10)[22m
+       [32m✓[39m reads only the unified session and uses the dedicated grouping category[32m 25[2mms[22m[39m
+       [32m✓[39m does not rescan logs when unified evidence is missing[32m 3[2mms[22m[39m
+       [32m✓[39m does not rescan logs when unified evidence is malformed[32m 2[2mms[22m[39m
+       [32m✓[39m does not rescan logs when unified evidence is headerless[32m 3[2mms[22m[39m
+       [32m✓[39m does not rescan logs when unified evidence is agent-forged[32m 2[2mms[22m[39m
+       [32m✓[39m does not rescan logs when unified evidence is wrong-phase[32m 2[2mms[22m[39m
+       [32m✓[39m does not rescan logs when unified evidence is wrong-path[32m 2[2mms[22m[39m
+       [32m✓[39m does not rescan logs when unified evidence is invalid[32m 2[2mms[22m[39m
+       [32m✓[39m bounds and redacts mismatch details and omits absent optional observations[32m 36[2mms[22m[39m
+       [32m✓[39m renders hostile model, endpoint, and detail values as literal redacted diagnostics[32m 13[2mms[22m[39m
+     [31m❯[39m invalidated PR merge-ref checkout [2m(39)[22m
+       [32m✓[39m preserves native checkout invalidation reporting with 0 queue Claims instead of using Work payload issue numbers[32m 21[2mms[22m[39m
+       [32m✓[39m preserves native checkout invalidation reporting with 1 queue Claims instead of using Work payload issue numbers[32m 4[2mms[22m[39m
+       [32m✓[39m preserves native checkout invalidation reporting with 2 queue Claims instead of using Work payload issue numbers[32m 4[2mms[22m[39m
+       [32m✓[39m does not resolve a native PR for non-integer numeric identity "42"[32m 1[2mms[22m[39m
+       [32m✓[39m does not resolve a native PR for non-integer numeric identity null[32m 1[2mms[22m[39m
+       [32m✓[39m does not resolve a native PR for non-integer numeric identity undefined[32m 1[2mms[22m[39m
+       [32m✓[39m does not resolve a native PR for non-integer numeric identity {}[32m 1[2mms[22m[39m
+       [32m✓[39m does not resolve a native PR for non-integer numeric identity 42.5[32m 1[2mms[22m[39m
+       [32m✓[39m does not resolve a native PR for non-integer numeric identity null[32m 1[2mms[22m[39m
+       [32m✓[39m keeps trusted native failure reporting available when the queue snapshot is missing without accepting raw outputs[32m 6[2mms[22m[39m
+       [32m✓[39m keeps trusted native failure reporting available when the queue snapshot is malformed without accepting raw outputs[32m 21[2mms[22m[39m
+       [32m✓[39m preserves main's disabled loader-exception behavior instead of inventing queue diagnostics[32m 2[2mms[22m[39m
+[31m       [31m×[31m reports a real native agent failure even when strict queue output parsing throws, without treating raw safe outputs as effects[39m[32m 81[2mms[22m[39m
+       [32m✓[39m skips failure reporting when a PR closes before its merge-ref checkout fails[32m 3[2mms[22m[39m
+       [32m✓[39m does not classify a checkout that failed before the PR closed as invalidated[32m 1[2mms[22m[39m
+       [32m✓[39m decodes ArrayBuffer job logs before checking merge-ref invalidation[32m 1[2mms[22m[39m
+       [32m✓[39m decodes Uint8Array job logs before checking merge-ref invalidation[32m 1[2mms[22m[39m
+       [32m✓[39m decodes Buffer job logs before checking merge-ref invalidation[32m 1[2mms[22m[39m
+       [32m✓[39m decodes Uint8Array subarray job logs before checking merge-ref invalidation[32m 1[2mms[22m[39m
+       [32m✓[39m does not suppress binary logs without this PR's missing-ref evidence: fatal: Authentication failed[32m 1[2mms[22m[39m
+       [32m✓[39m does not suppress binary logs without this PR's missing-ref evidence: remote: Permission denied[32m 1[2mms[22m[39m
+       [32m✓[39m does not suppress binary logs without this PR's missing-ref evidence: fatal: unable to access origin: network error[32m 1[2mms[22m[39m
+       [32m✓[39m does not suppress binary logs without this PR's missing-ref evidence: unknown git error[32m 1[2mms[22m[39m
+       [32m✓[39m does not suppress binary logs without this PR's missing-ref evidence: fatal: couldn't find remote ref refs/pull/99/merge[32m 1[2mms[22m[39m
+       [32m✓[39m does not coerce unsupported job log bodies into evidence[32m 1[2mms[22m[39m
+       [32m✓[39m keeps a failed checkout visible without missing-ref evidence: "fatal: Authentication failed"[32m 1[2mms[22m[39m
+       [32m✓[39m keeps a failed checkout visible without missing-ref evidence: "remote: Permission denied"[32m 9[2mms[22m[39m
+       [32m✓[39m keeps a failed checkout visible without missing-ref evidence: ""[32m 1[2mms[22m[39m
+       [32m✓[39m keeps a failed checkout visible without missing-ref evidence: null[32m 1[2mms[22m[39m
+       [32m✓[39m keeps a failed checkout visible when its logs cannot be read[32m 1[2mms[22m[39m
+       [32m✓[39m does not suppress a real agent failure after closure[32m 1[2mms[22m[39m
+       [32m✓[39m does not classify the actions-folder checkout as the default merge-ref checkout[32m 1[2mms[22m[39m
+       [32m✓[39m does not classify unrelated checkout steps with matching common names[32m 1[2mms[22m[39m
+       [32m✓[39m does not classify when compiler metadata says the default checkout was overridden[32m 1[2mms[22m[39m
+       [32m✓[39m does not classify open PRs or unrelated refs as invalidated[32m 1[2mms[22m[39m
+       [32m✓[39m logs invalid closure timestamps without logging API payloads[32m 1[2mms[22m[39m
+       [32m✓[39m logs invalid checkout completion timestamps and keeps failures reportable[32m 1[2mms[22m[39m
+       [32m✓[39m keeps reporting when PR state cannot be checked[32m 1[2mms[22m[39m
+       [32m✓[39m warns when permission errors prevent checking PR merge-ref invalidation[32m 1[2mms[22m[39m
+     [32m✓[39m getActionFailureIssueExpiresHours [2m(5)[22m
+       [32m✓[39m returns default when env var is missing[32m 1[2mms[22m[39m
+       [32m✓[39m returns configured value when env var is a positive integer[32m 0[2mms[22m[39m
+       [32m✓[39m returns 0 (disabled) when the compiler explicitly opts out of expiration[32m 0[2mms[22m[39m
+       [32m✓[39m returns default for invalid values[32m 0[2mms[22m[39m
+       [32m✓[39m returns default for malformed values with numeric prefixes[32m 1[2mms[22m[39m
+     [32m✓[39m setFailureIssueOutputs [2m(1)[22m
+       [32m✓[39m publishes the created failure issue as step outputs[32m 0[2mms[22m[39m
+     [32m✓[39m failure diagnostics [2m(28)[22m
+       [32m✓[39m reports a failed merge-ref checkout as pre-agent with the step and ref[32m 8[2mms[22m[39m
+       [32m✓[39m attributes pre-agent setup failure to Start MCP Gateway without assuming the checkout ref[32m 2[2mms[22m[39m
+       [32m✓[39m attributes pre-agent setup failure to Checkout org/other without assuming the checkout ref[32m 1[2mms[22m[39m
+       [32m✓[39m ignores an unrelated Execute step before the generated checkout and execution steps[32m 1[2mms[22m[39m
+       [32m✓[39m does not classify a checkout after agent execution as pre-agent[32m 1[2mms[22m[39m
+       [32m✓[39m includes the runtime checkout rejection and remediation in failure diagnostics[32m 7[2mms[22m[39m
+       [32m✓[39m includes the last failed agent step when available[32m 1[2mms[22m[39m
+       [32m✓[39m explains when no failed agent job is found[32m 1[2mms[22m[39m
+       [32m✓[39m distinguishes a confirmed zero-job run from unavailable metadata[32m 2[2mms[22m[39m
+       [32m✓[39m does not treat invalid job metadata as a zero-job run[32m 1[2mms[22m[39m
+       [32m✓[39m explains when the agent job has no failed steps[32m 1[2mms[22m[39m
+       [32m✓[39m warns when the workflow run jobs API is inaccessible[32m 1[2mms[22m[39m
+       [32m✓[39m warns without exposing unexpected API error text[32m 1[2mms[22m[39m
+       [32m✓[39m uses only Actions metadata without downloading agent-generated log text[32m 6[2mms[22m[39m
+       [32m✓[39m reports the redaction step's own error instead of a generic driver exit[32m 9[2mms[22m[39m
+       [32m✓[39m accepts only the fixed emitted redactor diagnostic ERR_VALIDATION: Secret redaction failed: Secret redaction failed (stage=unlink, code=EACCES)[32m 2[2mms[22m[39m
+       [32m✓[39m accepts only the fixed emitted redactor diagnostic ERR_VALIDATION: Secret redaction failed: ERR_VALIDATION: Removed artifact sources after runtime mask collection failed[32m 1[2mms[22m[39m
+       [32m✓[39m accepts only the fixed emitted redactor diagnostic ERR_VALIDATION: Removed artifact sources after runtime mask collection failed[32m 1[2mms[22m[39m
+       [32m✓[39m keeps a redaction-specific explanation when its job log is unavailable[32m 1[2mms[22m[39m
+       [32m✓[39m includes the first failing startup step for a recorded not_started agent[32m 6[2mms[22m[39m
+       [32m✓[39m uses dependency results as the job fallback when the jobs API returns nothing[32m 6[2mms[22m[39m
+       [32m✓[39m does not report attribution unavailable when the visible agent job succeeded[32m 5[2mms[22m[39m
+       [32m✓[39m validates conclusions and safely renders Actions step names[32m 7[2mms[22m[39m
+       [32m✓[39m renders diagnostics for driver failures without changing classified failure reports[32m 5[2mms[22m[39m
+       [32m✓[39m renders a captured cause for generic agent failures[32m 6[2mms[22m[39m
+       [32m✓[39m states when no cause was captured[32m 5[2mms[22m[39m
+       [32m✓[39m keeps the job, step, and exit code together in one compact section[32m 6[2mms[22m[39m
+       [32m✓[39m explains the incomplete handoff without exposing agent diagnostic details[32m 7[2mms[22m[39m
+     [32m✓[39m does not handle an AI credits rate-limit signal when the agent succeeded[32m 4[2mms[22m[39m
+[31m     [31m×[31m handles an AI credits rate-limit signal when the agent failed[39m[32m 25[2mms[22m[39m
+     [32m✓[39m buildFailureIssueTitle [2m(65)[22m
+       [32m✓[39m returns expected title for isolated hasDailyAICExceeded[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasDailyAICGuardrailError[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated maxAICreditsExceeded[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated aiCreditsRateLimitError[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasEngineRateLimit429[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated http400ResponseError[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated unknownModelAICredits[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasAppTokenMintingFailed[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasLockdownCheckFailed[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasStaleLockFileFailed[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated shellExpansionGuardRejected[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated isTimedOut[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasToolDenialsExceeded[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasCacheMissMisconfiguration[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasReportIncomplete[32m 0[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasMissingSafeOutputs[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasMissingTool[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasMissingData[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated hasAssignmentErrors[32m 1[2mms[22m[39m
+       [32m✓[39m returns expected title for isolated copilotOrgBillingError[32m 1[2mms[22m[39m
+       [32m✓[39m falls back to generic failed title when no specific condition matches[32m 1[2mms[22m[39m
+       [32m✓[39m distinguishes agent_startup_failure from generic incompletion[32m 1[2mms[22m[39m
+       [32m✓[39m distinguishes engine_driver_failure from generic incompletion[32m 1[2mms[22m[39m
+       [32m✓[39m distinguishes safeoutputs_cli_error from generic incompletion[32m 1[2mms[22m[39m
+       [32m✓[39m distinguishes missing_terminal_safe_output from generic incompletion[32m 1[2mms[22m[39m
+       [32m✓[39m distinguishes invalid_safe_outputs from generic incompletion[32m 1[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause agent_startup_failure in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause driver_crash in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause secret_redaction_failure in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause engine_outage in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause request_rejection in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause prompt_exhaustion in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause missing_terminal_safe_output in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m uses the classified terminal-output cause unknown in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal agent_startup_failure above historical hasModelEndpointMismatch in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal agent_startup_failure above historical modelNotSupportedError in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal agent_startup_failure above historical http400ResponseError in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m keeps fatal agent_startup_failure above historical isTimedOut in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal agent_startup_failure above historical hasEngineRateLimit429 in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal agent_startup_failure above historical unknownModelAICredits in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m keeps fatal driver_crash above historical hasModelEndpointMismatch in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal driver_crash above historical modelNotSupportedError in the issue title[32m 7[2mms[22m[39m
+       [32m✓[39m keeps fatal driver_crash above historical http400ResponseError in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal driver_crash above historical isTimedOut in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal driver_crash above historical hasEngineRateLimit429 in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m keeps fatal driver_crash above historical unknownModelAICredits in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal secret_redaction_failure above historical hasModelEndpointMismatch in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m keeps fatal secret_redaction_failure above historical modelNotSupportedError in the issue title[32m 1[2mms[22m[39m
+       [32m✓[39m keeps fatal secret_redaction_failure above historical http400ResponseError in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m keeps fatal secret_redaction_failure above historical isTimedOut in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m keeps fatal secret_redaction_failure above historical hasEngineRateLimit429 in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m keeps fatal secret_redaction_failure above historical unknownModelAICredits in the issue title[32m 0[2mms[22m[39m
+       [32m✓[39m uses runtime evidence rather than a bare driver exit 1 to choose an outage title[32m 13[2mms[22m[39m
+       [32m✓[39m uses runtime evidence rather than a bare driver exit 137 to choose an outage title[32m 5[2mms[22m[39m
+       [32m✓[39m uses runtime evidence rather than a bare driver exit 139 to choose an outage title[32m 5[2mms[22m[39m
+       [32m✓[39m uses runtime evidence rather than a bare driver exit 1 to choose an outage title[32m 6[2mms[22m[39m
+       [32m✓[39m focuses on report_incomplete when missing terminal output is classified as prompt exhaustion[32m 1[2mms[22m[39m
+       [32m✓[39m prefers unknownModelAICredits over isTimedOut when both are true[32m 0[2mms[22m[39m
+       [32m✓[39m prefers shellExpansionGuardRejected over isTimedOut when both are true[32m 0[2mms[22m[39m
+       [32m✓[39m returns missing model pricing title with model name when missingModelPricingError is true[32m 1[2mms[22m[39m
+       [32m✓[39m returns missing model pricing title without model name when model name is empty[32m 0[2mms[22m[39m
+       [32m✓[39m sanitizes Copilot agent-not-found title content[32m 0[2mms[22m[39m
+       [32m✓[39m prefers missingModelPricingError over unknownModelAICredits when both are true[32m 1[2mms[22m[39m
+       [32m✓[39m prefers missingModelPricingError over http400ResponseError when both are true[32m 0[2mms[22m[39m
+       [32m✓[39m aiCreditsRateLimitError takes precedence over hasEngineRateLimit429 when both are true[32m 0[2mms[22m[39m
+     [32m✓[39m detection caution placement in main() [2m(5)[22m
+       [32m✓[39m prepends caution callout to existing-issue comment body and includes it only once[32m 44[2mms[22m[39m
+       [32m✓[39m prepends caution callout to new issue body and includes it only once[32m 57[2mms[22m[39m
+       [32m✓[39m includes AIC and ambient context metrics in the generated failure issue footer[32m 34[2mms[22m[39m
+       [32m✓[39m includes AIC in failure issue footer when resolved from audit log and GH_AW_AIC is unset[32m 35[2mms[22m[39m
+       [32m✓[39m includes AIC in failure comment footer when resolved from audit log and GH_AW_AIC is unset[32m 29[2mms[22m[39m
+     [32m✓[39m main() precise failure issue matching [2m(66)[22m
+       [32m✓[39m reuses terminal-output issues by workflow and classified cause instead of volatile categories[32m 3[2mms[22m[39m
+       [32m✓[39m reuses incomplete reports when supplemental diagnostics differ: {"existingCategories":["missing_tool","report_incomplete"],"currentCategories":["report_incomplete"]}[32m 2[2mms[22m[39m
+       [32m✓[39m reuses incomplete reports when supplemental diagnostics differ: {"existingCategories":["report_incomplete"],"currentCategories":["missing_tool","report_incomplete"]}[32m 2[2mms[22m[39m
+       [32m✓[39m reuses incomplete reports when supplemental diagnostics differ: {"existingCategories":["report_incomplete"],"currentCategories":["missing_data","report_incomplete"]}[32m 2[2mms[22m[39m
+       [32m✓[39m reuses incomplete reports when supplemental diagnostics differ: {"existingCategories":["missing_tool","report_incomplete"],"currentCategories":["missing_data","report_incomplete"]}[32m 2[2mms[22m[39m
+       [32m✓[39m publishes the selected failure through its include filter after driver success, despite historical model errors[32m 74[2mms[22m[39m
+       [32m✓[39m publishes the selected failure through its include filter after driver failure, despite historical model errors[32m 77[2mms[22m[39m
+       [32m✓[39m publishes the selected failure through its include filter after driver not_started, despite historical model errors[32m 77[2mms[22m[39m
+       [32m✓[39m publishes driver exit and classified stderr diagnostics for a simulated crash[32m 150[2mms[22m[39m
+       [32m✓[39m publishes driver exit and classified stderr diagnostics for a simulated outage[32m 132[2mms[22m[39m
+       [32m✓[39m keeps final driver crash title, cause and details despite historical GH_AW_MODEL_ENDPOINT_MISMATCH_ERROR[32m 70[2mms[22m[39m
+       [32m✓[39m keeps final driver crash title, cause and details despite historical GH_AW_MODEL_NOT_SUPPORTED_ERROR[32m 69[2mms[22m[39m
+       [32m✓[39m keeps final driver crash title, cause and details despite historical GH_AW_HTTP_400_RESPONSE_ERROR[32m 58[2mms[22m[39m
+       [32m✓[39m keeps final driver crash title, cause and details despite historical GH_AW_AGENTIC_ENGINE_TIMEOUT[32m 61[2mms[22m[39m
+       [32m✓[39m reports runtime checkout rejection despite empty jobs metadata with conclusion failure: Runtime checkout repository org/b is not permitted by allowed-repos[32m 40[2mms[22m[39m
+       [32m✓[39m reports runtime checkout rejection despite empty jobs metadata with conclusion failure: Runtime checkout of non-public repository org/b requires checkout.allow-private-repos: true[32m 36[2mms[22m[39m
+       [32m✓[39m reports runtime checkout rejection despite empty jobs metadata with conclusion failure: Public workflows cannot check out non-public repository org/b[32m 35[2mms[22m[39m
+       [32m✓[39m reports runtime checkout rejection despite empty jobs metadata with conclusion success: Runtime checkout repository org/b is not permitted by allowed-repos[32m 35[2mms[22m[39m
+       [32m✓[39m reports runtime checkout rejection despite empty jobs metadata with conclusion success: Runtime checkout of non-public repository org/b requires checkout.allow-private-repos: true[32m 34[2mms[22m[39m
+       [32m✓[39m reports runtime checkout rejection despite empty jobs metadata with conclusion success: Public workflows cannot check out non-public repository org/b[32m 37[2mms[22m[39m
+       [32m✓[39m reports an unnamed activation failure when the agent job was skipped[32m 39[2mms[22m[39m
+       [32m✓[39m keeps a named activation guardrail failure in its existing category[32m 47[2mms[22m[39m
+       [32m✓[39m does not report activation failure when activation was skipped[32m 3[2mms[22m[39m
+       [32m✓[39m adds a comment only when the existing issue metadata matches exactly[32m 22[2mms[22m[39m
+       [32m✓[39m publishes unified mismatch context and grouping in a failure report (reuse=false)[32m 38[2mms[22m[39m
+       [32m✓[39m publishes unified mismatch context and grouping in a failure report (reuse=true)[32m 29[2mms[22m[39m
+       [32m✓[39m reports a startup model endpoint error instead of the collector's engine outage when no session or terminal output exists[32m 38[2mms[22m[39m
+       [32m✓[39m reports a startup model unavailable error instead of the collector's engine outage when no session or terminal output exists[32m 40[2mms[22m[39m
+       [32m✓[39m reports a startup mismatch together with failed-step diagnostics when step data is available[32m 46[2mms[22m[39m
+       [32m✓[39m does not file a failure issue for a recovered sub-agent mismatch in a successful run[32m 6[2mms[22m[39m
+       [32m✓[39m omits agent-generated diagnostics from the final posted failure comment: &amp;#38;#96;[32m 36[2mms[22m[39m
+       [32m✓[39m omits agent-generated diagnostics from the final posted failure comment: & #96;[32m 35[2mms[22m[39m
+       [32m✓[39m omits agent-generated diagnostics from the final posted failure comment: &<!-- hidden -->#96;[32m 32[2mms[22m[39m
+       [32m✓[39m explains clean-exit incompletion and points to diagnostics without logging the agent payload[32m 11[2mms[22m[39m
+       [32m✓[39m points to the agent artifact when secret redaction suppresses the summary[32m 7[2mms[22m[39m
+       [32m✓[39m does not write an empty incomplete-result summary for invalid reason {}[32m 6[2mms[22m[39m
+       [32m✓[39m does not write an empty incomplete-result summary for invalid reason  [32m 6[2mms[22m[39m
+       [32m✓[39m deduplicates missing-output notices by workflow and reports the cause (existing issue: false)[32m 39[2mms[22m[39m
+       [32m✓[39m deduplicates missing-output notices by workflow and reports the cause (existing issue: true)[32m 37[2mms[22m[39m
+       [32m✓[39m deduplicates missing-output notices by workflow and reports the cause (existing issue: disabled)[32m 13[2mms[22m[39m
+       [32m✓[39m creates one report_incomplete issue across clean-exit runs with changing diagnostics[32m 86[2mms[22m[39m
+       [32m✓[39m reuses the steering issue instead of searching for or creating a failure issue[32m 28[2mms[22m[39m
+       [32m✓[39m skips failure issue creation when the runtime report flag resolves to false[32m 5[2mms[22m[39m
+       [32m✓[39m adds a comment when existing issue metadata contains commas in free-form values[32m 23[2mms[22m[39m
+       [32m✓[39m posts metadata-only generic diagnostics (missing job data: false, existing issue: false)[32m 46[2mms[22m[39m
+       [32m✓[39m posts metadata-only generic diagnostics (missing job data: false, existing issue: true)[32m 40[2mms[22m[39m
+       [32m✓[39m posts metadata-only generic diagnostics (missing job data: true, existing issue: false)[32m 41[2mms[22m[39m
+       [32m✓[39m posts metadata-only generic diagnostics (missing job data: true, existing issue: true)[32m 39[2mms[22m[39m
+       [32m✓[39m creates a new issue when an open issue only has workflow XML metadata without failure metadata[32m 29[2mms[22m[39m
+       [32m✓[39m creates a parent issue with the API version header when group reports are enabled[32m 49[2mms[22m[39m
+       [32m✓[39m creates a new parent issue when the existing parent issue has expired[32m 47[2mms[22m[39m
+       [32m✓[39m does not abort grouped handling when fetching parent issue body fails[32m 24[2mms[22m[39m
+       [32m✓[39m escapes workflow IDs before searching for legacy XML marker matches[32m 20[2mms[22m[39m
+       [32m✓[39m adds a comment when branch differs but workflow/category markers match[32m 23[2mms[22m[39m
+       [32m✓[39m creates a new issue instead of commenting on an expired issue[32m 24[2mms[22m[39m
+       [32m✓[39m creates a new issue when the only matching issue is older than 24 hours[32m 23[2mms[22m[39m
+       [32m✓[39m uses a precise timeout title when the agent times out[32m 23[2mms[22m[39m
+       [32m✓[39m uses shell expansion guard title instead of timeout when both flags are present[32m 29[2mms[22m[39m
+       [32m✓[39m uses a precise missing safe outputs title[32m 26[2mms[22m[39m
+       [32m✓[39m uses a precise report incomplete title[32m 34[2mms[22m[39m
+       [32m✓[39m reports proxy HTTP 403 at usage 240.22396 with the correct budget or billing category[32m 41[2mms[22m[39m
+       [32m✓[39m reports proxy HTTP 403 at usage 239.9 with the correct budget or billing category[32m 38[2mms[22m[39m
+       [32m✓[39m continues searching later pages until it finds an exact metadata match[32m 28[2mms[22m[39m
+       [32m✓[39m adds a comment when pull request metadata differs but workflow/category markers match[32m 24[2mms[22m[39m
+       [32m✓[39m creates a centralized rollup issue and adds a comment when per-category daily cap is reached[32m 24[2mms[22m[39m
+       [32m✓[39m reuses an existing rollup issue when per-category daily cap is reached[32m 22[2mms[22m[39m
+     [32m✓[39m main() writes failure_categories.json [2m(2)[22m
+       [32m✓[39m writes failure_categories.json with the computed failure categories[32m 26[2mms[22m[39m
+       [32m✓[39m includes timed_out category when GH_AW_AGENTIC_ENGINE_TIMEOUT is set[32m 19[2mms[22m[39m
+     [32m✓[39m agent failure templates [2m(2)[22m
+       [32m✓[39m renders report_incomplete context in both comment and issue templates[32m 28[2mms[22m[39m
+       [32m✓[39m renders only inferred failure status, not commands, capability names, or tool errors[32m 8[2mms[22m[39m
+     [32m✓[39m buildSecretVerificationContext [2m(9)[22m
+       [32m✓[39m returns empty string when verification did not fail[32m 1[2mms[22m[39m
+       [32m✓[39m buildAssignmentErrorsContext [2m(4)[22m
+         [32m✓[39m returns empty string when there are no assignment errors[32m 0[2mms[22m[39m
+         [32m✓[39m returns empty string for whitespace-only input[32m 0[2mms[22m[39m
+         [32m✓[39m preserves batch credential diagnostics without treating them as a PR target[32m 14[2mms[22m[39m
+         [32m✓[39m renders assignment failures with token guidance docs[32m 11[2mms[22m[39m
+       [32m✓[39m buildAssignCopilotFailureContext [2m(2)[22m
+         [32m✓[39m returns empty string when there are no copilot assignment failures[32m 1[2mms[22m[39m
+         [32m✓[39m renders standardized copilot assignment remediation guidance[32m 10[2mms[22m[39m
+       [32m✓[39m returns generic warning for engines with no failure message when verification failed[32m 3[2mms[22m[39m
+       [32m✓[39m returns copilot-specific message with copilot-requests: write permissions suggestion when verification failed[32m 5[2mms[22m[39m
+     [32m✓[39m buildCodePushFailureContext [2m(30)[22m
+       [32m✓[39m returns empty string when no errors[32m 1[2mms[22m[39m
+       [32m✓[39m shows protected file protection section for protected file errors[32m 7[2mms[22m[39m
+       [32m✓[39m shows protected file protection section for legacy 'package manifest files' error messages[32m 7[2mms[22m[39m
+       [32m✓[39m shows protected file protection section for push_to_pull_request_branch errors[32m 7[2mms[22m[39m
+       [32m✓[39m shows protected file protection for .github/ protected path errors[32m 7[2mms[22m[39m
+       [32m✓[39m includes PR link in protected file protection section when PR is provided[32m 8[2mms[22m[39m
+       [32m✓[39m shows generic code push failure section for non-manifest errors[32m 3[2mms[22m[39m
+       [32m✓[39m renders allowed-files errors with progressive disclosure[32m 4[2mms[22m[39m
+       [32m✓[39m falls back to raw error line for non-matching allowed-files text[32m 3[2mms[22m[39m
+       [32m✓[39m uses singular wording for one blocked file[32m 3[2mms[22m[39m
+       [32m✓[39m renders bundle remediation variant[32m 4[2mms[22m[39m
+       [32m✓[39m shows both sections when protected file and non-protected-file errors are mixed[32m 8[2mms[22m[39m
+       [32m✓[39m includes yaml remediation snippet in protected file protection section[32m 7[2mms[22m[39m
+       [32m✓[39m uses push-to-pull-request-branch key in yaml snippet for push type[32m 7[2mms[22m[39m
+       [32m✓[39m includes both yaml keys when both types have protected file errors[32m 8[2mms[22m[39m
+       [32m✓[39m shows patch size exceeded section for create_pull_request patch size error[32m 5[2mms[22m[39m
+       [32m✓[39m shows patch size exceeded section for push_to_pull_request_branch patch size error[32m 5[2mms[22m[39m
+       [32m✓[39m shows patch size exceeded yaml snippet with both types when both have patch size errors[32m 5[2mms[22m[39m
+       [32m✓[39m includes PR link in patch size exceeded section when PR is provided[32m 6[2mms[22m[39m
+       [32m✓[39m includes download instructions with run ID when runUrl is provided for patch size exceeded[32m 5[2mms[22m[39m
+       [32m✓[39m includes generic download instructions when no runUrl is provided for patch size exceeded[32m 6[2mms[22m[39m
+       [32m✓[39m does not show patch size section for generic errors[32m 3[2mms[22m[39m
+       [32m✓[39m shows both patch size and generic sections when mixed[32m 7[2mms[22m[39m
+       [32m✓[39m shows patch apply failed section for create_pull_request patch apply error[32m 3[2mms[22m[39m
+       [32m✓[39m shows patch apply failed section for push_to_pull_request_branch patch apply error[32m 4[2mms[22m[39m
+       [32m✓[39m includes PR link in patch apply failed section when PR is provided[32m 8[2mms[22m[39m
+       [32m✓[39m includes patch download instructions with run ID when runUrl is provided[32m 4[2mms[22m[39m
+       [32m✓[39m shows generic download instructions when runUrl is not provided[32m 4[2mms[22m[39m
+       [32m✓[39m shows both patch apply failed and generic sections when mixed[32m 5[2mms[22m[39m
+       [32m✓[39m does not show patch apply section for generic errors[32m 3[2mms[22m[39m
+     [32m✓[39m buildPushRepoMemoryFailureContext [2m(5)[22m
+       [32m✓[39m returns empty string when no failure[32m 1[2mms[22m[39m
+       [32m✓[39m shows generic failure message when failure but no patch size exceeded[32m 2[2mms[22m[39m
+       [32m✓[39m shows patch size exceeded message with front matter example when patch size exceeded[32m 3[2mms[22m[39m
+       [32m✓[39m includes all affected memory IDs in patch size exceeded message[32m 4[2mms[22m[39m
+       [32m✓[39m shows yaml front matter snippet for each affected memory ID[32m 4[2mms[22m[39m
+     [32m✓[39m buildAppTokenMintingFailedContext [2m(3)[22m
+       [32m✓[39m returns empty string when no failure[32m 1[2mms[22m[39m
+       [32m✓[39m returns formatted error message when app token minting failed[32m 7[2mms[22m[39m
+       [32m✓[39m includes actionable remediation steps[32m 7[2mms[22m[39m
+     [32m✓[39m buildLockdownCheckFailedContext [2m(4)[22m
+       [32m✓[39m returns empty string when no failure[32m 1[2mms[22m[39m
+       [32m✓[39m returns formatted error message when lockdown check failed[32m 9[2mms[22m[39m
+       [32m✓[39m includes token configuration guidance[32m 10[2mms[22m[39m
+       [32m✓[39m includes strict mode guidance[32m 10[2mms[22m[39m
+     [32m✓[39m buildStaleLockFileFailedContext [2m(5)[22m
+       [32m✓[39m returns empty string when check did not fail[32m 1[2mms[22m[39m
+       [32m✓[39m returns formatted context when stale lock file check failed[32m 18[2mms[22m[39m
+       [32m✓[39m includes recompile guidance[32m 17[2mms[22m[39m
+       [32m✓[39m includes guidance on how to disable the check[32m 16[2mms[22m[39m
+       [32m✓[39m includes debug logging guidance[32m 17[2mms[22m[39m
+     [32m✓[39m buildOAuthTokenCheckFailedContext [2m(5)[22m
+       [32m✓[39m returns empty string when check did not fail[32m 1[2mms[22m[39m
+       [32m✓[39m returns formatted context when OAuth token check failed[32m 7[2mms[22m[39m
+       [32m✓[39m includes OAuth token detection message[32m 8[2mms[22m[39m
+       [32m✓[39m includes fine-grained PAT replacement guidance[32m 7[2mms[22m[39m
+       [32m✓[39m includes run URL link[32m 8[2mms[22m[39m
+     [32m✓[39m buildTimeoutContext [2m(4)[22m
+       [32m✓[39m returns empty string when not timed out[32m 1[2mms[22m[39m
+       [32m✓[39m returns formatted error message when timed out[32m 3[2mms[22m[39m
+       [32m✓[39m uses default of 20 minutes when timeoutMinutes is empty[32m 2[2mms[22m[39m
+       [32m✓[39m suggests current + 10 minutes[32m 3[2mms[22m[39m
+     [32m✓[39m buildOptimizeTokenConsumptionContext [2m(6)[22m
+       [32m✓[39m returns empty string when no guardrail was triggered[32m 1[2mms[22m[39m
+       [32m✓[39m returns optimize context when maxAICreditsExceeded is true[32m 2[2mms[22m[39m
+       [32m✓[39m returns optimize context when hasDailyAICExceeded is true[32m 2[2mms[22m[39m
+       [32m✓[39m returns optimize context when hasToolDenialsExceeded is true[32m 2[2mms[22m[39m
+       [32m✓[39m returns optimize context when isTimedOut is true[32m 2[2mms[22m[39m
+       [32m✓[39m prefers maxAICreditsExceeded label when multiple guardrails are true[32m 2[2mms[22m[39m
+     [32m✓[39m timeout classification [2m(6)[22m
+       [32m✓[39m detects job-level timeout (agentConclusion === 'timed_out')[32m 0[2mms[22m[39m
+       [32m✓[39m detects step-level timeout (agentConclusion === 'failure' with agenticEngineTimeout)[32m 0[2mms[22m[39m
+       [32m✓[39m detects timeout when both indicators are present[32m 0[2mms[22m[39m
+       [32m✓[39m does not flag timeout for plain failure without engine timeout signal[32m 0[2mms[22m[39m
+       [32m✓[39m does not flag timeout for successful completion[32m 0[2mms[22m[39m
+       [32m✓[39m does not flag timeout for cancelled job[32m 0[2mms[22m[39m
+     [32m✓[39m shouldBuildEngineFailureContext [2m(6)[22m
+       [32m✓[39m returns true for plain failure without timeout or tool-denials-exceeded[32m 0[2mms[22m[39m
+       [32m✓[39m returns false when timeout is detected[32m 0[2mms[22m[39m
+       [32m✓[39m returns false when tool-denials-exceeded is present[32m 0[2mms[22m[39m
+       [32m✓[39m returns false when missing model pricing error is present[32m 0[2mms[22m[39m
+       [32m✓[39m returns false for classified terminal-output failures to keep raw engine logs out of issues[32m 0[2mms[22m[39m
+       [32m✓[39m returns false for non-failure conclusions[32m 0[2mms[22m[39m
+     [32m✓[39m isIssueWritePermissionError [2m(4)[22m
+       [32m✓[39m returns true for 403 Resource not accessible by integration[32m 0[2mms[22m[39m
+       [32m✓[39m returns true for 403 insufficient permissions[32m 0[2mms[22m[39m
+       [32m✓[39m returns true for 403 resource not accessible by personal access token[32m 0[2mms[22m[39m
+       [32m✓[39m returns false for non-403 errors[32m 0[2mms[22m[39m
+     [32m✓[39m buildSafeOutputsCliInvocationContext [2m(7)[22m
+       [32m✓[39m returns empty string when the transcript is missing[32m 1[2mms[22m[39m
+       [32m✓[39m returns empty string when the transcript has no safeoutputs commands[32m 1[2mms[22m[39m
+       [32m✓[39m lists safeoutputs commands found in the transcript[32m 3[2mms[22m[39m
+       [32m✓[39m diagnoses a dropped pipe before safeoutputs[32m 4[2mms[22m[39m
+       [32m✓[39m deduplicates repeated commands[32m 2[2mms[22m[39m
+       [32m✓[39m classifies piped and unpiped invocations[32m 1[2mms[22m[39m
+       [32m✓[39m does not render Markdown fence delimiters from command excerpts[32m 2[2mms[22m[39m
+     [32m✓[39m buildEngineFailureContext [2m(64)[22m
+       [32m✓[39m returns empty string when log file does not exist[32m 2[2mms[22m[39m
+       [32m✓[39m reports a nonzero driver exit even when the stdio log is missing[32m 4[2mms[22m[39m
+       [32m✓[39m uses only validated driver metadata in generic failures (exit 1)[32m 5[2mms[22m[39m
+       [32m✓[39m uses only validated driver metadata in generic failures (exit 127)[32m 5[2mms[22m[39m
+       [32m✓[39m uses only validated driver metadata in generic failures (exit 255)[32m 5[2mms[22m[39m
+       [32m✓[39m omits invalid driver metadata without falling back to log text: 0[32m 2[2mms[22m[39m
+       [32m✓[39m omits invalid driver metadata without falling back to log text: 256[32m 2[2mms[22m[39m
+       [32m✓[39m omits invalid driver metadata without falling back to log text: 1
+agent-generated diagnostic[32m 2[2mms[22m[39m
+       [32m✓[39m omits invalid driver metadata without falling back to log text: Error: agent-generated diagnostic[32m 2[2mms[22m[39m
+       [32m✓[39m reports the driver exit alongside stderr captured in the stdio log[32m 4[2mms[22m[39m
+       [32m✓[39m ignores invalid or successful driver exit codes[32m 2[2mms[22m[39m
+       [32m✓[39m returns empty string when log file is empty[32m 2[2mms[22m[39m
+       [32m✓[39m returns empty string when log file contains only whitespace[32m 2[2mms[22m[39m
+       [32m✓[39m detects ERROR: prefix pattern (Codex/generic CLI)[32m 4[2mms[22m[39m
+       [32m✓[39m returns dedicated context for engine 429/rate-limit failures in stdio logs[32m 4[2mms[22m[39m
+       [32m✓[39m returns dedicated context for max-runs guardrail failures in stdio logs[32m 5[2mms[22m[39m
+       [32m✓[39m returns dedicated context when only max-runs message text is present[32m 4[2mms[22m[39m
+       [32m✓[39m returns dedicated context for max-cache-misses failures in stdio logs[32m 4[2mms[22m[39m
+       [32m✓[39m returns dedicated context when max-cache-misses is only present in structured logs[32m 5[2mms[22m[39m
+       [32m✓[39m returns dedicated context for shell expansion guard rejections in stdio logs[32m 3[2mms[22m[39m
+       [32m✓[39m returns dedicated context when shell expansion guard rejection is only present in detection output[32m 5[2mms[22m[39m
+       [32m✓[39m suppresses engine 429 context when max-ai-credits-exceeded takes precedence[32m 4[2mms[22m[39m
+       [32m✓[39m returns dedicated context when 429/rate-limit is only present in OTLP mirror[32m 4[2mms[22m[39m
+       [32m✓[39m omits masked log tails and mask commands[32m 4[2mms[22m[39m
+       [32m✓[39m surfaces the harness terminal error instead of infrastructure noise[32m 5[2mms[22m[39m
+       [32m✓[39m omits infrastructure continuation lines and arbitrary agent output[32m 4[2mms[22m[39m
+       [32m✓[39m treats a log of infrastructure lines and their continuations as producing no output[32m 4[2mms[22m[39m
+       [32m✓[39m redacts masked values from engine error details[32m 4[2mms[22m[39m
+       [32m✓[39m redacts an entire runtime mask when built-in patterns match only its prefix[32m 4[2mms[22m[39m
+       [32m✓[39m cannot close the error code fence with embedded Markdown[32m 4[2mms[22m[39m
+       [32m✓[39m detects Error: prefix pattern (Node.js style)[32m 4[2mms[22m[39m
+       [32m✓[39m suppresses recovered no-deferred-marker retry errors without publishing the log tail[32m 4[2mms[22m[39m
+       [32m✓[39m still surfaces unrecovered no-deferred-marker errors[32m 4[2mms[22m[39m
+       [32m✓[39m surfaces a terminal no-deferred-marker error that follows a recovered one[32m 4[2mms[22m[39m
+       [32m✓[39m does not treat agent output quoting the recovery phrase as a harness recovery[32m 4[2mms[22m[39m
+       [32m✓[39m extracts AWF startup errors from dependency lines and container startup failures[32m 4[2mms[22m[39m
+       [32m✓[39m surfaces AWF fatal startup errors instead of a generic transient failure[32m 4[2mms[22m[39m
+       [32m✓[39m surfaces AWF model-routing exit 78 as the failure cause[32m 4[2mms[22m[39m
+       [32m✓[39m detects Fatal: prefix pattern[32m 4[2mms[22m[39m
+       [32m✓[39m detects FATAL: prefix pattern[32m 4[2mms[22m[39m
+       [32m✓[39m detects panic: prefix pattern (Go runtime)[32m 4[2mms[22m[39m
+       [32m✓[39m detects Reconnecting pattern[32m 4[2mms[22m[39m
+       [32m✓[39m deduplicates repeated error messages[32m 4[2mms[22m[39m
+       [32m✓[39m collects multiple distinct error messages[32m 4[2mms[22m[39m
+       [32m✓[39m links to diagnostics rather than copying logs when no known error patterns match[32m 4[2mms[22m[39m
+       [32m✓[39m does not publish any raw log lines, including unregistered secrets[32m 4[2mms[22m[39m
+       [32m✓[39m does not publish short logs separated by empty lines[32m 3[2mms[22m[39m
+       [32m✓[39m shows startup-failure message when log contains only AWF infrastructure lines[32m 4[2mms[22m[39m
+       [32m✓[39m does not publish mixed infrastructure and agent logs[32m 4[2mms[22m[39m
+       [32m✓[39m includes [entrypoint] and [health-check] infra lines in the infra filter[32m 5[2mms[22m[39m
+       [32m✓[39m includes engine ID in startup-failure message[32m 4[2mms[22m[39m
+       [32m✓[39m shows provider-agnostic status page guidance for non-copilot engines[32m 4[2mms[22m[39m
+       [32m✓[39m includes engine ID in failure message when GH_AW_ENGINE_ID is set[32m 4[2mms[22m[39m
+       [32m✓[39m includes engine ID in fallback message when GH_AW_ENGINE_ID is set[32m 4[2mms[22m[39m
+       [32m✓[39m uses generic 'AI engine' label when GH_AW_ENGINE_ID is not set[32m 4[2mms[22m[39m
+       [32m✓[39m returns dedicated cyber_policy_violation message when template exists[32m 3[2mms[22m[39m
+       [32m✓[39m falls back to generic message when cyber_policy_violation template is missing[32m 4[2mms[22m[39m
+       [32m✓[39m returns dedicated message when cyber_policy_violation appears among multiple errors[32m 3[2mms[22m[39m
+       [32m✓[39m detects AWF firewall startup failure with DNS failure (EAI_AGAIN)[32m 7[2mms[22m[39m
+       [32m✓[39m detects AWF firewall startup failure without DNS failure[32m 5[2mms[22m[39m
+       [32m✓[39m detects AWF firewall startup failure with diagnosis=unknown but no EAI_AGAIN[32m 6[2mms[22m[39m
+       [32m✓[39m detects AWF firewall startup failure from infra-only log with specific failure signal[32m 5[2mms[22m[39m
+       [32m✓[39m does not trigger AWF firewall detection for infra-only log with container lifecycle lines only[32m 4[2mms[22m[39m
+       [32m✓[39m does not trigger AWF firewall detection for unrelated awf-squid dependency failures[32m 4[2mms[22m[39m
+     [32m✓[39m detectAWFFirewallStartupFailureFromLog [2m(6)[22m
+       [32m✓[39m returns false when log file does not exist[32m 1[2mms[22m[39m
+       [32m✓[39m returns false for unrelated agent failures[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when log contains AWF firewall failed to start message[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when log contains awf-cli-proxy reference[32m 1[2mms[22m[39m
+       [32m✓[39m returns false for container lifecycle lines mentioning awf-cli-proxy (false-positive guard)[32m 1[2mms[22m[39m
+       [32m✓[39m returns false when log references other awf containers (e.g., awf-squid)[32m 1[2mms[22m[39m
+     [32m✓[39m hasEngineMaxRunsExceededSignal [2m(4)[22m
+       [32m✓[39m returns false for empty-like content[32m 0[2mms[22m[39m
+       [32m✓[39m returns true when max_runs_exceeded marker is present[32m 0[2mms[22m[39m
+       [32m✓[39m returns true when Maximum LLM invocations exceeded text is present[32m 0[2mms[22m[39m
+       [32m✓[39m returns false for unrelated content[32m 0[2mms[22m[39m
+     [32m✓[39m buildEngineMaxRunsExceededContext [2m(3)[22m
+       [32m✓[39m renders template content for a provided engine label[32m 3[2mms[22m[39m
+       [32m✓[39m falls back to AI when engine label is empty or whitespace[32m 5[2mms[22m[39m
+       [32m✓[39m trims leading/trailing whitespace from engine label[32m 3[2mms[22m[39m
+     [32m✓[39m buildEngineRateLimit429Context [2m(2)[22m
+       [32m✓[39m renders template content when engine rate-limit template exists[32m 3[2mms[22m[39m
+       [32m✓[39m throws when engine rate-limit template is missing[32m 2[2mms[22m[39m
+     [32m✓[39m detectEngineRateLimit429Failure [2m(5)[22m
+       [32m✓[39m returns true when stdio log contains a 429 rate-limit signal[32m 1[2mms[22m[39m
+       [32m✓[39m returns false when stdio log contains terminal_reason: completed even with a 429 signal[32m 1[2mms[22m[39m
+       [32m✓[39m returns false when stdio log contains terminal_reason: completed and no 429 signal[32m 1[2mms[22m[39m
+       [32m✓[39m returns false when stdio log has no 429 signal and OTLP mirror is absent[32m 1[2mms[22m[39m
+       [32m✓[39m returns false when log file does not exist and OTLP mirror is absent[32m 1[2mms[22m[39m
+     [32m✓[39m hasEngineMaxCacheMissesExceededSignal [2m(5)[22m
+       [32m✓[39m returns false for empty-like content[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when max_cache_misses_exceeded marker is present[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when Maximum consecutive cache misses exceeded text is present[32m 0[2mms[22m[39m
+       [32m✓[39m returns true for the exact error seen in production logs[32m 1[2mms[22m[39m
+       [32m✓[39m returns false for unrelated content[32m 1[2mms[22m[39m
+     [32m✓[39m buildEngineMaxCacheMissesExceededContext [2m(3)[22m
+       [32m✓[39m renders template content for a provided engine label[32m 10[2mms[22m[39m
+       [32m✓[39m falls back to AI when engine label is empty or whitespace[32m 9[2mms[22m[39m
+       [32m✓[39m trims leading/trailing whitespace from engine label[32m 5[2mms[22m[39m
+     [32m✓[39m buildMCPPolicyErrorContext [2m(4)[22m
+       [32m✓[39m returns empty string when no MCP policy error[32m 2[2mms[22m[39m
+       [32m✓[39m returns template content when MCP policy error and template exists[32m 3[2mms[22m[39m
+       [32m✓[39m includes link to official documentation when template exists[32m 4[2mms[22m[39m
+       [32m✓[39m throws when template is missing[32m 2[2mms[22m[39m
+     [32m✓[39m buildCopilotOrgBillingErrorContext [2m(13)[22m
+       [32m✓[39m returns billing and PAT guidance for a detected organization-billed failure[32m 11[2mms[22m[39m
+       [32m✓[39m returns no guidance when the combined error was not detected[32m 2[2mms[22m[39m
+       [32m✓[39m detects reported organization-billed Copilot error: [copilot-harness] awf-reflect: models fetch returned 403 for http://api-proxy:10002/models[32m 2[2mms[22m[39m
+       [32m✓[39m detects reported organization-billed Copilot error: Copilot requests authentication failed through the gh-aw API proxy (HTTP 403, model=auto, stage=listing models).[32m 2[2mms[22m[39m
+       [32m✓[39m detects reported organization-billed Copilot error: Authentication failed with provider at http://172.30.0.30:10002 (HTTP 403).[32m 2[2mms[22m[39m
+       [32m✓[39m does not classify PAT-based Copilot failures as organization billing errors[32m 2[2mms[22m[39m
+       [32m✓[39m detects provider auth failures against host-bridge proxy host host.docker.internal[32m 2[2mms[22m[39m
+       [32m✓[39m detects provider auth failures against host-bridge proxy host localhost[32m 2[2mms[22m[39m
+       [32m✓[39m detects provider auth failures against host-bridge proxy host 127.0.0.1[32m 2[2mms[22m[39m
+       [32m✓[39m detects provider auth failures against host-bridge proxy host 10.1.2.3[32m 2[2mms[22m[39m
+       [32m✓[39m detects provider auth failures against host-bridge proxy host 192.168.1.4[32m 2[2mms[22m[39m
+       [32m✓[39m does not classify generic inference access rejection Access denied by policy settings as an organization billing error[32m 2[2mms[22m[39m
+       [32m✓[39m does not classify generic inference access rejection invalid access to inference as an organization billing error[32m 2[2mms[22m[39m
+     [32m✓[39m buildCopilotAgentNotFoundContext [2m(11)[22m
+       [32m✓[39m detects a 'No such agent' failure with an available agents list[32m 2[2mms[22m[39m
+       [32m✓[39m detects a 'No such agent' failure with an empty available agents list[32m 2[2mms[22m[39m
+       [32m✓[39m returns null when the log does not contain the failure[32m 2[2mms[22m[39m
+       [32m✓[39m returns null for non-copilot engines even with a matching log line[32m 3[2mms[22m[39m
+       [32m✓[39m returns no guidance when no failure was detected[32m 2[2mms[22m[39m
+       [32m✓[39m renders the requested agent and available agents list[32m 13[2mms[22m[39m
+       [32m✓[39m sanitizes agent identifiers before rendering them[32m 15[2mms[22m[39m
+       [32m✓[39m renders a fallback message when no agents were reported as available[32m 14[2mms[22m[39m
+       [32m✓[39m includes plugin installation diagnostics when present[32m 14[2mms[22m[39m
+       [32m✓[39m reads the declared plugin diagnostics path when agent output is elsewhere[32m 15[2mms[22m[39m
+       [32m✓[39m sanitizes and bounds plugin diagnostics with a safe code fence[32m 20[2mms[22m[39m
+     [32m✓[39m buildModelNotSupportedErrorContext [2m(7)[22m
+       [32m✓[39m buildHTTP400ResponseErrorContext [2m(3)[22m
+         [32m✓[39m returns empty string when no HTTP 400 response error[32m 3[2mms[22m[39m
+         [32m✓[39m returns template content when HTTP 400 response error and template exists[32m 8[2mms[22m[39m
+         [32m✓[39m throws when template is missing[32m 3[2mms[22m[39m
+       [32m✓[39m returns empty string when no model-not-supported error[32m 2[2mms[22m[39m
+       [32m✓[39m returns template content when model-not-supported error and template exists[32m 3[2mms[22m[39m
+       [32m✓[39m explains a previously available model may require provider investigation[32m 11[2mms[22m[39m
+       [32m✓[39m throws when template is missing[32m 2[2mms[22m[39m
+     [32m✓[39m buildUnknownModelAICreditsContext [2m(3)[22m
+       [32m✓[39m returns empty string when no unknown_model_ai_credits error[32m 2[2mms[22m[39m
+       [32m✓[39m returns template content when error is true and template exists[32m 3[2mms[22m[39m
+       [32m✓[39m throws when template is missing[32m 2[2mms[22m[39m
+     [32m✓[39m models.dev pricing helpers [2m(2)[22m
+       [32m✓[39m prefers the inferred provider match before cross-provider fallback[32m 2[2mms[22m[39m
+       [32m✓[39m quotes model names when building frontmatter pricing snippets[32m 1[2mms[22m[39m
+     [32m✓[39m buildMissingModelPricingContext [2m(4)[22m
+       [32m✓[39m returns empty string when hasMissingModelPricingError is false[32m 2[2mms[22m[39m
+       [32m✓[39m returns template content with model name substituted when template exists[32m 5[2mms[22m[39m
+       [32m✓[39m renders the manual pricing fallback when no pricing snippet is available[32m 4[2mms[22m[39m
+       [32m✓[39m throws when template is missing and error is true[32m 3[2mms[22m[39m
+     [32m✓[39m resolveCacheMemoryRestored [2m(3)[22m
+       [32m✓[39m returns false when restore signals are absent[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when matched key exists[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when cache-hit is true[32m 1[2mms[22m[39m
+     [32m✓[39m buildMissingDataContext [2m(10)[22m
+       [32m✓[39m returns empty string when agent output file does not exist[32m 2[2mms[22m[39m
+       [32m✓[39m returns empty string when agent output has no missing_data items[32m 2[2mms[22m[39m
+       [32m✓[39m returns missing data context without cache warning when cacheMemoryEnabled is false[32m 5[2mms[22m[39m
+       [32m✓[39m appends cache configuration warning when cache restore matched and cache_memory_miss item present[32m 6[2mms[22m[39m
+       [32m✓[39m renders the runtime cache warning without assuming a restore match proves a path defect[32m 10[2mms[22m[39m
+       [32m✓[39m captures reason-only missing_data items (no data_type) and detects cache miss[32m 4[2mms[22m[39m
+       [32m✓[39m does not append cache configuration warning when cache restore did not match[32m 5[2mms[22m[39m
+       [32m✓[39m shows generic missing-data context for non-cache items while still appending cache warning[32m 6[2mms[22m[39m
+       [32m✓[39m keeps cache warning and report_incomplete context without duplicate missing-data section[32m 8[2mms[22m[39m
+       [32m✓[39m does not append cache warning for unrelated missing_data reasons when cacheMemoryEnabled is true[32m 5[2mms[22m[39m
+     [32m✓[39m buildReportIncompleteContext [2m(17)[22m
+       [32m✓[39m does not trust driver stderr summary text in failure reports[32m 67[2mms[22m[39m
+       [32m✓[39m does not trust driver stderr summary text in failure reports[32m 66[2mms[22m[39m
+       [32m✓[39m does not trust driver stderr summary text in failure reports[32m 58[2mms[22m[39m
+       [32m✓[39m does not trust driver stderr summary text in failure reports[32m 64[2mms[22m[39m
+       [32m✓[39m renders a driver failure classification supported by runtime evidence for exit 1[32m 11[2mms[22m[39m
+       [32m✓[39m renders a driver failure classification supported by runtime evidence for exit 137[32m 11[2mms[22m[39m
+       [32m✓[39m renders a driver failure classification supported by runtime evidence for exit 139[32m 12[2mms[22m[39m
+       [32m✓[39m renders a driver failure classification supported by runtime evidence for exit 1[32m 11[2mms[22m[39m
+       [32m✓[39m distinguishes a missing terminal signal from incomplete work[32m 24[2mms[22m[39m
+       [32m✓[39m labels declared reasons separately from runtime evidence and omits multiline diagnostics[32m 6[2mms[22m[39m
+       [32m✓[39m redacts and bounds declared reasons while keeping hostile Markdown literal and tainted[32m 10[2mms[22m[39m
+       [32m✓[39m ignores invalid and blank declared reasons[32m 1[2mms[22m[39m
+       [32m✓[39m does not render agent-controlled code fences[32m 5[2mms[22m[39m
+       [32m✓[39m omits all agent details rather than relying on secret redaction or truncation[32m 5[2mms[22m[39m
+       [32m✓[39m returns no details section when there are no incompletion signals[32m 1[2mms[22m[39m
+       [32m✓[39m includes observed runtime evidence for explicit incompletion alongside an ordinary safe output[32m 8[2mms[22m[39m
+       [32m✓[39m rebuilds collector descriptions from evidence rather than trusting forged structured-looking text[32m 8[2mms[22m[39m
+     [32m✓[39m buildMissingToolContext [2m(9)[22m
+       [32m✓[39m returns empty string when agent output file does not exist[32m 2[2mms[22m[39m
+       [32m✓[39m returns empty string when agent output has no missing_tool items[32m 2[2mms[22m[39m
+       [32m✓[39m returns missing tool context with tool name and reason[32m 4[2mms[22m[39m
+       [32m✓[39m returns missing tool context for tool with alternatives[32m 6[2mms[22m[39m
+       [32m✓[39m skips missing_tool items without a reason field[32m 2[2mms[22m[39m
+       [32m✓[39m handles multiple missing_tool items[32m 5[2mms[22m[39m
+       [32m✓[39m suppresses generic context for repeated permission denied missing_tool entries[32m 2[2mms[22m[39m
+       [32m✓[39m does not suppress tool/permission entry when denied_commands is empty[32m 5[2mms[22m[39m
+       [32m✓[39m keeps non-permission missing tools when permission-denied entries are present[32m 4[2mms[22m[39m
+     [32m✓[39m buildPermissionDeniedContext [2m(11)[22m
+       [32m✓[39m returns empty string when agent output file does not exist[32m 2[2mms[22m[39m
+       [32m✓[39m returns empty string when there are no tool/permission items[32m 2[2mms[22m[39m
+       [32m✓[39m returns empty string when tool/permission item has no denied_commands[32m 2[2mms[22m[39m
+       [32m✓[39m renders template with denied command[32m 5[2mms[22m[39m
+       [32m✓[39m renders template with denied commands listed[32m 5[2mms[22m[39m
+       [32m✓[39m parses denied commands from alternatives when denied_commands is omitted[32m 5[2mms[22m[39m
+       [32m✓[39m parses denied commands from Daily SPDD Spec Planner alternatives[32m 7[2mms[22m[39m
+       [32m✓[39m deduplicates denied commands across multiple tool/permission items[32m 7[2mms[22m[39m
+       [32m✓[39m collapses read(path) denials to a single read(...) entry[32m 5[2mms[22m[39m
+       [32m✓[39m throws when permission_denied_context template is missing[32m 2[2mms[22m[39m
+       [32m✓[39m renders template when permission_denied_context.md is available[32m 4[2mms[22m[39m
+     [32m✓[39m array command previews [2m(3)[22m
+       [32m✓[39m preserves literal whitespace, empty arguments, quotes, and shell syntax[32m 1[2mms[22m[39m
+       [32m✓[39m retains legacy string normalization and command priority[32m 1[2mms[22m[39m
+       [32m✓[39m retains the preview length cap and rejects malformed arrays[32m 2[2mms[22m[39m
+     [32m✓[39m tool_denials_exceeded context [2m(8)[22m
+       [32m✓[39m uses longer Markdown delimiters rather than changing literal backticks[32m 11[2mms[22m[39m
+       [32m✓[39m loads guard.tool_denials_exceeded events from copilot session events.jsonl[32m 3[2mms[22m[39m
+       [32m✓[39m renders dedicated context for tool denial threshold events[32m 10[2mms[22m[39m
+       [32m✓[39m normalizes Python 3 heredoc reason to a single-line summary[32m 10[2mms[22m[39m
+       [32m✓[39m captures only the last 5 tool calls before guard event[32m 4[2mms[22m[39m
+       [32m✓[39m captures shell command details for recent bash tool calls[32m 4[2mms[22m[39m
+       [32m✓[39m redacts inputs for recent Go, Make and shell MCP script calls[32m 2[2mms[22m[39m
+       [32m✓[39m sanitizes backticks in shell command previews[32m 3[2mms[22m[39m
+     [32m✓[39m normalizeDeniedPermissionCommand [2m(7)[22m
+       [32m✓[39m returns empty string for empty/non-string input[32m 1[2mms[22m[39m
+       [32m✓[39m collapses read(path) to read(...)[32m 1[2mms[22m[39m
+       [32m✓[39m returns non-read single-line commands unchanged[32m 1[2mms[22m[39m
+       [32m✓[39m collapses shell(python3 << 'EOF' ...) heredoc to shell(python3 ...)[32m 1[2mms[22m[39m
+       [32m✓[39m collapses shell(python3 << "EOF" ...) heredoc with double-quoted marker[32m 0[2mms[22m[39m
+       [32m✓[39m collapses shell(python << 'EOF' ...) heredoc for unversioned python[32m 0[2mms[22m[39m
+       [32m✓[39m collapses any shell heredoc program, not just python3[32m 1[2mms[22m[39m
+     [32m✓[39m missing_tool and missing_data report-as-failure flags [2m(3)[22m
+       [32m✓[39m buildMissingToolContext returns context when GH_AW_MISSING_TOOL_REPORT_AS_FAILURE is not set (default true)[32m 5[2mms[22m[39m
+       [32m✓[39m buildMissingToolContext returns context when GH_AW_MISSING_TOOL_REPORT_AS_FAILURE is true[32m 3[2mms[22m[39m
+       [32m✓[39m buildMissingToolContext still returns context when GH_AW_MISSING_TOOL_REPORT_AS_FAILURE is false (context building is independent of flag)[32m 3[2mms[22m[39m
+     [32m✓[39m hasAgentTerminalReasonCompleted [2m(10)[22m
+       [32m✓[39m returns false when log file does not exist[32m 2[2mms[22m[39m
+       [32m✓[39m returns false when log file is empty[32m 1[2mms[22m[39m
+       [32m✓[39m returns true for plain JSON result line with terminal_reason: completed[32m 1[2mms[22m[39m
+       [32m✓[39m returns true for timestamp-prefixed result line[32m 1[2mms[22m[39m
+       [32m✓[39m returns false when terminal_reason is not completed[32m 1[2mms[22m[39m
+       [32m✓[39m returns false when log contains only non-JSON lines[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when terminal_reason: completed appears among other log lines[32m 1[2mms[22m[39m
+       [32m✓[39m returns true when JSON is truncated but substring is present in content[32m 1[2mms[22m[39m
+       [32m✓[39m returns true with no spaces around colon (compact JSON)[32m 1[2mms[22m[39m
+       [32m✓[39m returns true with one space on each side of colon[32m 1[2mms[22m[39m
+     [32m✓[39m buildEngineFailureContext with terminal_reason guard [2m(4)[22m
+       [32m✓[39m returns empty string when log contains terminal_reason: completed (plain JSON)[32m 1[2mms[22m[39m
+       [32m✓[39m returns empty string when log contains terminal_reason: completed with timestamp prefix[32m 1[2mms[22m[39m
+       [32m✓[39m still surfaces errors when terminal_reason is not completed[32m 5[2mms[22m[39m
+       [32m✓[39m reports unexpected termination without including a raw log tail[32m 5[2mms[22m[39m
+     [31m❯[39m main() hasCompletedDespiteJobFailure early-return [2m(39)[22m
+       [32m✓[39m skips failure issue creation when terminal_reason: completed and non-noop safe outputs present[32m 6[2mms[22m[39m
+       [32m✓[39m skips cancelled agents with collector-reported missing_terminal_safe_output[32m 3[2mms[22m[39m
+       [32m✓[39m skips cancelled agents with collector-reported agent_startup_failure[32m 3[2mms[22m[39m
+[31m       [31m×[31m preserves cancelled startup failure reporting with job-timeout evidence[39m[32m 35[2mms[22m[39m
+[31m       [31m×[31m preserves cancelled startup failure reporting with engine-timeout evidence[39m[32m 34[2mms[22m[39m
+[31m       [31m×[31m preserves cancelled startup failure reporting with annotations-denied evidence[39m[32m 38[2mms[22m[39m
+[31m       [31m×[31m preserves cancelled startup failure reporting with annotations-invalid evidence[39m[32m 39[2mms[22m[39m
+[31m       [31m×[31m preserves cancelled startup failure reporting with jobs-denied evidence[39m[32m 41[2mms[22m[39m
+[31m       [31m×[31m preserves cancelled startup classification alongside GH_AW_MODEL_ENDPOINT_MISMATCH_ERROR[39m[32m 45[2mms[22m[39m
+[31m       [31m×[31m preserves cancelled startup classification alongside GH_AW_MODEL_NOT_SUPPORTED_ERROR[39m[32m 43[2mms[22m[39m
+[31m       [31m×[31m reports agent-authored missing_terminal_safe_output without collector corroboration[39m[32m 42[2mms[22m[39m
+[31m       [31m×[31m reports agent-authored agent_startup_failure without collector corroboration[39m[32m 41[2mms[22m[39m
+[31m       [31m×[31m omits collector missing_terminal_safe_output diagnostics from mixed-output cancellation reports[39m[32m 42[2mms[22m[39m
+[31m       [31m×[31m omits collector agent_startup_failure diagnostics from mixed-output cancellation reports[39m[32m 47[2mms[22m[39m
+[31m       [31m×[31m preserves failure reporting for success agents with missing_terminal_safe_output[39m[32m 44[2mms[22m[39m
+[31m       [31m×[31m preserves failure reporting for failure agents with missing_terminal_safe_output[39m[32m 41[2mms[22m[39m
+[31m       [31m×[31m preserves failure reporting for timed_out agents with missing_terminal_safe_output[39m[32m 40[2mms[22m[39m
+[31m       [31m×[31m preserves failure reporting for success agents with agent_startup_failure[39m[32m 40[2mms[22m[39m
+[31m       [31m×[31m preserves failure reporting for failure agents with agent_startup_failure[39m[32m 39[2mms[22m[39m
+[31m       [31m×[31m preserves failure reporting for timed_out agents with agent_startup_failure[39m[32m 39[2mms[22m[39m
+[31m       [31m×[31m preserves failure reporting for cancelled agents with mcp_crash[39m[32m 36[2mms[22m[39m
+[31m       [31m×[31m creates a distinct failure issue for agent_startup_failure[39m[32m 29[2mms[22m[39m
+[31m       [31m×[31m creates a distinct failure issue for engine_driver_failure[39m[32m 26[2mms[22m[39m
+[31m       [31m×[31m creates a distinct failure issue for safeoutputs_cli_error[39m[32m 22[2mms[22m[39m
+       [32m✓[39m does not create or update any failure issue for a confirmed zero-job run with generic evidence[32m 3[2mms[22m[39m
+       [32m✓[39m does not create or update any failure issue for a confirmed zero-job run with collector evidence[32m 3[2mms[22m[39m
+       [32m✓[39m does not create or update any failure issue for a confirmed zero-job run with agent-reported evidence[32m 3[2mms[22m[39m
+[31m       [31m×[31m does not suppress failure reporting for denied job metadata[39m[32m 17[2mms[22m[39m
+[31m       [31m×[31m does not suppress failure reporting for invalid job metadata[39m[32m 16[2mms[22m[39m
+[31m       [31m×[31m does not suppress failure reporting for activation-only job metadata[39m[32m 16[2mms[22m[39m
+[31m       [31m×[31m does not trust agent-authored agent_startup_failure as collector evidence[39m[32m 22[2mms[22m[39m
+[31m       [31m×[31m does not trust agent-authored engine_driver_failure as collector evidence[39m[32m 26[2mms[22m[39m
+[31m       [31m×[31m does not trust agent-authored safeoutputs_cli_error as collector evidence[39m[32m 25[2mms[22m[39m
+[31m       [31m×[31m does not trust agent-authored invalid_safe_outputs as collector evidence[39m[32m 21[2mms[22m[39m
+[31m       [31m×[31m does not trust agent-authored missing_terminal_safe_output as collector evidence[39m[32m 22[2mms[22m[39m
+[31m       [31m×[31m keeps last-failed-step diagnostics for an agent-authored startup reason without collector evidence[39m[32m 26[2mms[22m[39m
+[31m       [31m×[31m keeps the step failed when failure issue creation fails after a successful agent reports incomplete[39m[32m 33[2mms[22m[39m
+       [32m✓[39m marks the step failed when failure issue reporting is disabled[32m 9[2mms[22m[39m
+       [32m✓[39m ignores report_incomplete when it only describes task_complete registration trouble after successful outputs[32m 3[2mms[22m[39m
+     [32m✓[39m parseFirewallAuthErrors [2m(14)[22m
+       [32m✓[39m returns empty array when file does not exist[32m 1[2mms[22m[39m
+       [32m✓[39m returns empty array when file is empty[32m 1[2mms[22m[39m
+       [32m✓[39m returns empty array when no 401/403 entries[32m 1[2mms[22m[39m
+       [32m✓[39m detects Copilot 401 auth rejection via hardcoded fallback[32m 2[2mms[22m[39m
+       [32m✓[39m detects OpenAI 401 auth rejection via hardcoded fallback[32m 2[2mms[22m[39m
+       [32m✓[39m detects Anthropic 403 auth rejection via hardcoded fallback[32m 1[2mms[22m[39m
+       [32m✓[39m detects Gemini 403 auth rejection via hardcoded fallback[32m 2[2mms[22m[39m
+       [32m✓[39m deduplicates multiple auth errors for the same provider[32m 1[2mms[22m[39m
+       [32m✓[39m reports multiple different providers[32m 1[2mms[22m[39m
+       [32m✓[39m skips non-JSON lines without throwing[32m 1[2mms[22m[39m
+       [32m✓[39m uses GH_AW_ENGINE_API_HOSTS env var when set[32m 1[2mms[22m[39m
+       [32m✓[39m uses engine label from ENGINE_ID_TO_LABEL when env var host matches[32m 2[2mms[22m[39m
+       [32m✓[39m uses engine ID as provider label when not in lookup table[32m 1[2mms[22m[39m
+       [32m✓[39m selective pre-scan: skips full parse when no 4xx entries in large file[32m 1[2mms[22m[39m
+     [32m✓[39m readTokenUsageMarkdown [2m(2)[22m
+       [32m✓[39m returns null when no token-usage.jsonl files exist[32m 1[2mms[22m[39m
+       [32m✓[39m returns markdown and model aliases when a valid token-usage.jsonl file is present[32m 9[2mms[22m[39m
+     [32m✓[39m buildCredentialAuthErrorContext [2m(5)[22m
+       [32m✓[39m returns empty string when audit.jsonl does not exist[32m 2[2mms[22m[39m
+       [32m✓[39m returns empty string when no auth errors in audit.jsonl[32m 2[2mms[22m[39m
+       [32m✓[39m returns credential alert when auth rejection found[32m 4[2mms[22m[39m
+       [32m✓[39m includes all affected providers in the output[32m 4[2mms[22m[39m
+       [32m✓[39m derives audit.jsonl path from GH_AW_AGENT_OUTPUT when no override provided[32m 5[2mms[22m[39m
+     [32m✓[39m detectAndHandleFailureCascade [2m(9)[22m
+       [32m✓[39m exports cascade constants with expected values[32m 1[2mms[22m[39m
+       [32m✓[39m does nothing when fewer than CASCADE_THRESHOLD issues are in the window[32m 1[2mms[22m[39m
+       [32m✓[39m creates a rollup issue and labels individual issues when CASCADE_THRESHOLD is met[32m 15[2mms[22m[39m
+       [32m✓[39m triggers cascade when triggering issue is not in search results (search indexing lag)[32m 13[2mms[22m[39m
+       [32m✓[39m updates existing rollup issue instead of creating a new one[32m 14[2mms[22m[39m
+       [32m✓[39m creates cascade-suspected label when it does not exist (404)[32m 14[2mms[22m[39m
+       [32m✓[39m rollup body includes affected workflow list[32m 15[2mms[22m[39m
+       [32m✓[39m filters out non-[aw] issues from findRecentFailureIssues[32m 1[2mms[22m[39m
+       [32m✓[39m is non-fatal: handles search API errors gracefully[32m 1[2mms[22m[39m
+     [32m✓[39m failure categories generation [2m(35)[22m
+       [32m✓[39m returns expected categories for agent failure[32m 1[2mms[22m[39m
+       [32m✓[39m returns timed_out category[32m 1[2mms[22m[39m
+       [32m✓[39m classifies an MCP watchdog failure without a generic agent failure[32m 0[2mms[22m[39m
+       [32m✓[39m classifies a selected redaction failure without a generic agent failure[32m 0[2mms[22m[39m
+       [32m✓[39m classifies MCP watchdog failures from structured unified-session events[32m 1[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: null[32m 1[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: 42[32m 0[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: undefined[32m 0[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: {"type":"agent.execution","data":{}}[32m 1[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: {"type":"agent.execution","data":null}[32m 1[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: {"type":"agent.execution","data":{"categories":["transport_wedge"],"errorCodes":[]}}[32m 0[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: {"type":"agent.execution","data":{"categories":"transport_wedge","errorCodes":[],"errorTypes":[]}}[32m 0[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: {"type":"agent.execution","data":{"categories":["transport_wedge",null],"errorCodes":[],"errorTypes":[]}}[32m 1[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: {"type":"agent.execution","data":{"categories":["transport_wedge","transport_wedge"],"errorCodes":[],"errorTypes":[]}}[32m 1[2mms[22m[39m
+       [32m✓[39m ignores malformed records before later MCP watchdog evidence: {"type":"agent.execution","data":{"categories":["transport_wedge"],"errorCodes":[],"errorTypes":[],"exitCode":-1}}[32m 1[2mms[22m[39m
+       [32m✓[39m returns missing_safe_outputs category[32m 1[2mms[22m[39m
+       [32m✓[39m returns report_incomplete category[32m 1[2mms[22m[39m
+       [32m✓[39m keeps agent_startup_failure distinct for failure issue deduplication[32m 1[2mms[22m[39m
+       [32m✓[39m keeps engine_driver_failure distinct for failure issue deduplication[32m 0[2mms[22m[39m
+       [32m✓[39m keeps safeoutputs_cli_error distinct for failure issue deduplication[32m 0[2mms[22m[39m
+       [32m✓[39m keeps missing_terminal_safe_output distinct for failure issue deduplication[32m 1[2mms[22m[39m
+       [32m✓[39m keeps invalid_safe_outputs distinct for failure issue deduplication[32m 0[2mms[22m[39m
+       [32m✓[39m does not use arbitrary agent text as a failure category[32m 0[2mms[22m[39m
+       [32m✓[39m does not add agent_failure when a specific category already exists[32m 1[2mms[22m[39m
+       [32m✓[39m returns sorted categories[32m 0[2mms[22m[39m
+       [32m✓[39m returns copilot_org_billing_error category instead of the agent_failure fallback[32m 1[2mms[22m[39m
+       [32m✓[39m returns http_400_response_error category[32m 0[2mms[22m[39m
+       [32m✓[39m returns daily_ai_credits_unknown category for guardrail accounting errors[32m 0[2mms[22m[39m
+       [32m✓[39m returns awf_firewall_startup_failed category when isAWFFirewallStartupFailed is true[32m 1[2mms[22m[39m
+       [32m✓[39m does not return awf_firewall_startup_failed category when isAWFFirewallStartupFailed is false[32m 0[2mms[22m[39m
+       [32m✓[39m returns missing_model_pricing category when missingModelPricingError is true[32m 0[2mms[22m[39m
+       [32m✓[39m returns shell_expansion_guard_rejected category when shellExpansionGuardRejected is true[32m 1[2mms[22m[39m
+       [32m✓[39m does not return missing_model_pricing category when missingModelPricingError is false[32m 0[2mms[22m[39m
+       [32m✓[39m returns engine_rate_limit_429 category when hasEngineRateLimit429 is true[32m 0[2mms[22m[39m
+       [32m✓[39m does not return engine_rate_limit_429 category when hasEngineRateLimit429 is false[32m 0[2mms[22m[39m
+     [32m✓[39m failure categories filter behavior [2m(9)[22m
+       [32m✓[39m does not create a grouped parent when the only failure category is excluded[32m 20[2mms[22m[39m
+       [32m✓[39m preserves required-input reporting for cache restored=false required=false[32m 3[2mms[22m[39m
+       [32m✓[39m preserves required-input reporting for cache restored=false required=true[32m 21[2mms[22m[39m
+       [32m✓[39m preserves required-input reporting for cache restored=true required=true[32m 22[2mms[22m[39m
+       [32m✓[39m include-only filter creates issue when …[32m 29[2mms[22m[39m
+       [32m✓[39m include-only filter skips issue when ca…[32m 23[2mms[22m[39m
+       [32m✓[39m include-only filter skips infra-classif…[32m 23[2mms[22m[39m
+       [32m✓[39m exclude-only filter skips issue when ca…[32m 21[2mms[22m[39m
+       [32m✓[39m mixed include+exclude filter skips issu…[32m 23[2mms[22m[39m
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mrejects malformed decision telemetry rather than treating it as a skip
+[22m[39mUnified session: invalid_harness_retry in agent/harness_retry.json
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mcollects and exports only run-scoped durable metadata without historical top-level content
+[22m[39mUnified session: invalid_durable_session in agent/durable-session.jsonl
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mremoves stale grading artifacts when the unified session cannot be published
+[22m[39mUnified session: unattributed_run_result in usage/graders/grader_results.json
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mpreserves eval alias precedence for { runId: '', runid: '123' } with current run 123
+[22m[39mUnified session: unattributed_run_result in evals.jsonl:1
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mpreserves eval alias precedence for { runId: null, runid: null, …(1) } with current run 123
+[22m[39mUnified session: unattributed_run_result in evals.jsonl:1
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2muses the usage copy when needed and skips malformed rate-limit lines without losing valid entries
+[22m[39mUnified session: malformed_jsonl in usage/github_rate_limits.jsonl:2
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mfalls back to stdio when native Copilot events are incomplete
+[22m[39mUnified session: native_session_unusable in sandbox/agent/logs/copilot-session-state/uuid/events.jsonl
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mfalls back to stdio when native Copilot events are incomplete
+[22m[39mUnified session: malformed_jsonl in sandbox/agent/logs/copilot-session-state/uuid/events.jsonl:2
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mdeduplicates identified stdio snapshots against retained initialization-only native evidence (answer: false)
+[22m[39mUnified session: native_session_unusable in sandbox/agent/logs/copilot-session-state/partial/events.jsonl
+
+[90mstderr[2m | unified_session.test.cjs[2m > [22m[2mUnified conclusion session[2m > [22m[2mdeduplicates identified stdio snapshots against retained initialization-only native evidence (answer: true)
+[22m[39mUnified session: native_session_unusable in sandbox/agent/logs/copilot-session-state/partial/events.jsonl
+
+ [32m✓[39m unified_session.test.cjs [2m([22m[2m284 tests[22m[2m)[22m[33m 6074[2mms[22m[39m
+   [32m✓[39m Unified conclusion session [2m(284)[22m
+     [33m[2m✓[22m[39m publishes typed skip decisions with file_reference_failed in the agent unified session without model inputs[33m 454[2mms[22m[39m
+     [33m[2m✓[22m[39m publishes typed skip decisions with sensitive_content_blocked in the agent unified session without model inputs[33m 354[2mms[22m[39m
+ [32m✓[39m unified_session_order.test.cjs [2m([22m[2m30 tests[22m[2m)[22m[33m 4889[2mms[22m[39m
+   [32m✓[39m Unified trace ordering [2m(30)[22m
+     [33m[2m✓[22m[39m orders saved Pi message metadata clocks without publishing the native envelope (0)[33m 451[2mms[22m[39m
+     [33m[2m✓[22m[39m orders saved Pi message metadata clocks without publishing the native envelope (2000)[33m 335[2mms[22m[39m
+     [33m[2m✓[22m[39m merges 32000 observations across 16 sources without losing payloads, indices, or nanosecond order[33m 456[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves source order across clock regressions and invalid clocks without rewriting timestamps[33m 363[2mms[22m[39m
+     [33m[2m✓[22m[39m merges OTLP nanoseconds and ISO fractional seconds without losing sub-millisecond ordering[33m 381[2mms[22m[39m
+ [32m✓[39m redact_secrets.test.cjs [2m([22m[2m190 tests[22m[2m)[22m[33m 1937[2mms[22m[39m
+   [32m✓[39m redact_secrets.cjs [2m(190)[22m
+     [33m[2m✓[22m[39m scans large nested file lists without overflowing the call stack[33m 342[2mms[22m[39m
+     [32m✓[39m file handling [2m(84)[22m
+       [33m[2m✓[22m[39m retains and sanitizes a private multi-megabyte artifact instead of failing closed on regex stack exhaustion[33m 835[2mms[22m[39m
+ [32m✓[39m git_simulator_memory.test.cjs [2m([22m[2m54 tests[22m[2m)[22m[33m 1094[2mms[22m[39m
+[info] Escaped mention: @everyone (not in allowed list)
+ [32m✓[39m setup_sh_file_lists.test.cjs [2m([22m[2m29 tests[22m[2m)[22m[33m 1191[2mms[22m[39m
+   [32m✓[39m setup.sh MCP_SCRIPTS_FILES [2m(5)[22m
+     [33m[2m✓[22m[39m loads redaction consumers from the deployed bundle without source-directory dependencies[33m 404[2mms[22m[39m
+   [32m✓[39m setup.sh SAFE_OUTPUTS_FILES [2m(10)[22m
+     [33m[2m✓[22m[39m loads Git generators and renders Claim-scoped footers from the deployed bundle without source-directory dependencies[33m 593[2mms[22m[39m
+ [32m✓[39m unified_session_otel.test.cjs [2m([22m[2m8 tests[22m[2m)[22m[33m 1192[2mms[22m[39m
+   [32m✓[39m Unified OTel observations [2m(8)[22m
+     [33m[2m✓[22m[39m imports and persists a single authoritative mirror interleaved with agent, AWF, MCPG and API records[33m 526[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps missing and invalid span-event clocks untimed instead of inheriting their span start[33m 380[2mms[22m[39m
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mrecords OTLP export failure host, status, and reason details
+[22m[39mOTLP export authorization failed: HTTP 401 Unauthorized. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mfalls back to HTTP status when curl reports non-2xx with statusText OK
+[22m[39mOTLP export authorization failed: HTTP 401. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2msanitizes OTLP export failure reasons before persisting them
+[22m[39mOTLP export error after 1 attempts: Failed to parse URL from https://user:secret@collector.example.com/v1/traces?token=abc
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mreturns one final result per endpoint
+[22m[39mOTLP export failed after 1 attempts: HTTP 500 status
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mcontinues to other endpoints when one fails
+[22m[39mOTLP export error after 1 attempts: connection refused
+
+ [32m✓[39m send_otlp_span.test.cjs [2m([22m[2m485 tests[22m[2m)[22m[33m 858[2mms[22m[39m
+[warning] Start MCP Gateway: startup attempt 1 failed; retrying once. ERR_SYSTEM: container exited
+[warning] Start MCP Gateway: startup attempt 1 failed; retrying once. ERR_SYSTEM: Gateway failed to become ready
+[warning] Start MCP Gateway: startup attempt 1 failed; retrying once. ERR_SYSTEM: transient launch failure
+[warning] MCP gateway health retry budget is 3s, which is below the 26s needed for the 1s backend startup timeout plus cleanup and registration; the health check may give up before the gateway is ready
+[warning] GH_AW_MCP_GATEWAY_HEALTH_BACKOFF_MULTIPLIER=0.5 is below 1, using 1 (constant delay)
+[warning] GH_AW_MCP_GATEWAY_HEALTH_MAX_DELAY_MS=500 is below GH_AW_MCP_GATEWAY_HEALTH_INITIAL_DELAY_MS=2000, using 2000
+[warning] Ignoring invalid GH_AW_MCP_GATEWAY_HEALTH_MAX_ATTEMPTS='not-a-number': expected a positive integer, using 150
+[warning] Ignoring invalid GH_AW_MCP_GATEWAY_HEALTH_MAX_ATTEMPTS='0': expected a positive integer, using 150
+[warning] Ignoring invalid GH_AW_MCP_GATEWAY_HEALTH_MAX_ATTEMPTS='-1': expected a positive integer, using 150
+[warning] Ignoring invalid GH_AW_MCP_GATEWAY_HEALTH_MAX_ATTEMPTS='1.5': expected a positive integer, using 150
+[warning] Ignoring invalid GH_AW_MCP_GATEWAY_HEALTH_MAX_ATTEMPTS='not-a-number': expected a positive integer, using 150
+[warning] Ignoring invalid GH_AW_MCP_GATEWAY_HEALTH_INITIAL_DELAY_MS='-5': expected a positive integer, using 250
+[warning] Ignoring invalid GH_AW_MCP_GATEWAY_HEALTH_BACKOFF_MULTIPLIER='0': expected a positive number, using 2
+[warning] GH_AW_MCP_GATEWAY_HEALTH_MAX_DELAY_MS=500 is below GH_AW_MCP_GATEWAY_HEALTH_INITIAL_DELAY_MS=2000, using 2000
+[warning] GH_AW_MCP_GATEWAY_HEALTH_BACKOFF_MULTIPLIER=0.5 is below 1, using 1 (constant delay)
+[warning] GH_AW_MCP_GATEWAY_HEALTH_MAX_ATTEMPTS=1000000000 exceeds the supported maximum, using 10000
+ [32m✓[39m start_mcp_gateway.test.cjs [2m([22m[2m229 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[33m 624[2mms[22m[39m
+ [32m✓[39m index.test.cjs [2m([22m[2m23 tests[22m[2m)[22m[33m 860[2mms[22m[39m
+   [32m✓[39m custom safe-output issue API [2m(23)[22m
+     [33m[2m✓[22m[39m fits oversized bodies after attribution while preserving the exact boundary and full footer[33m 305[2mms[22m[39m
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 430ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 392ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 735ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 377ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 666ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 271ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 539ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+ [32m✓[39m conclusion_admission.test.cjs [2m([22m[2m57 tests[22m[2m)[22m[33m 811[2mms[22m[39m
+   [32m✓[39m admission conclusion notification [2m(57)[22m
+     [33m[2m✓[22m[39m compacts the actual generated session without modifying the full artifact[33m 505[2mms[22m[39m
+ [32m✓[39m compact_unified_session.test.cjs [2m([22m[2m47 tests[22m[2m)[22m[33m 604[2mms[22m[39m
+   [32m✓[39m bounded compact session file reader [2m(12)[22m
+     [33m[2m✓[22m[39m skips multi-chunk oversized agent messages and retains subsequent accounting[33m 341[2mms[22m[39m
+ [32m✓[39m send_otlp_session_logs.test.cjs [2m([22m[2m74 tests[22m[2m)[22m[33m 478[2mms[22m[39m
+ [32m✓[39m parse_pi_log.test.cjs [2m([22m[2m28 tests[22m[2m)[22m[33m 360[2mms[22m[39m
+ [32m✓[39m parse_token_usage.test.cjs [2m([22m[2m84 tests[22m[2m)[22m[33m 421[2mms[22m[39m
+ [32m✓[39m model_routing_contract.test.cjs [2m([22m[2m41 tests[22m[2m)[22m[33m 415[2mms[22m[39m
+ [32m✓[39m route_slash_command.test.cjs [2m([22m[2m54 tests[22m[2m)[22m[32m 180[2mms[22m[39m
+ [32m✓[39m redact_evals_results.test.cjs [2m([22m[2m9 tests[22m[2m)[22m[32m 239[2mms[22m[39m
+ [32m✓[39m work_queue_telemetry.test.cjs [2m([22m[2m21 tests[22m[2m)[22m[32m 254[2mms[22m[39m
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 499ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 749ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[info] ✓ workflow admission succeeded on retry attempt 2
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[info] ✓ workflow admission succeeded on retry attempt 1
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 1/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 1/2 for workflow admission after 250ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed (attempt 2/3): ERR_ADMISSION: Workflow admission failed.
+[info] Retry attempt 2/2 for workflow admission after 500ms delay
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[warning] workflow admission failed after 2 retry attempts: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission request failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+[debug] workflow admission failed with non-retryable error: ERR_ADMISSION: Workflow admission failed.
+ [32m✓[39m check_admission.test.cjs [2m([22m[2m60 tests[22m[2m)[22m[32m 234[2mms[22m[39m
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrejects unbounded custom metric attributes without throwing
+[22m[39m[otlp] failed to emit custom metric
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export attempt 1/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export attempt 2/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mrecords metric endpoint failures locally and exports the failure counter to healthy endpoints
+[22m[39mOTLP export failed after 3 attempts: HTTP 500 error
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export attempt 1/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export attempt 2/3 failed: HTTP 500 error, retrying…
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mdoes not re-add failures already carried by the exported payload
+[22m[39mOTLP export failed after 3 attempts: HTTP 500 error
+
+[90mstderr[2m | otlp_metrics.test.cjs[2m > [22m[2mOTLP metrics export[2m > [22m[2mcaps unique custom metric series per process
+[22m[39m[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+[otlp] failed to emit custom metric
+
+ [32m✓[39m otlp_metrics.test.cjs [2m([22m[2m20 tests[22m[2m)[22m[32m 142[2mms[22m[39m
+ [32m✓[39m frontmatter_hash_pure.test.cjs [2m([22m[2m123 tests[22m[2m)[22m[32m 121[2mms[22m[39m
+ [32m✓[39m render_evals_summary.test.cjs [2m([22m[2m13 tests[22m[2m)[22m[32m 132[2mms[22m[39m
+ [32m✓[39m action_setup_otlp.test.cjs [2m([22m[2m74 tests[22m[2m)[22m[32m 136[2mms[22m[39m
+ [32m✓[39m pick_experiment.test.cjs [2m([22m[2m71 tests[22m[2m)[22m[32m 101[2mms[22m[39m
+ [32m✓[39m otlp_response.test.cjs [2m([22m[2m84 tests[22m[2m)[22m[32m 120[2mms[22m[39m
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=2ac3ac844d202b7a9ca498d1fdada495
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=327edf5bcdf8e12128eddac31d2e9420
+[info] [otlp] trace-id=327edf5bcdf8e12128eddac31d2e9420 written to GITHUB_OUTPUT
+[info] [otlp] span-id=da8f9d40010e3c67 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=68445f2939b9c791030171ee84ee8a24
+[info] [otlp] trace-id=68445f2939b9c791030171ee84ee8a24 written to GITHUB_OUTPUT
+[info] [otlp] span-id=052fd4294f5d0d2c written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa (will reuse activation trace)
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[info] [otlp] setup span sent (traceId=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, spanId=2778009c38129414)
+[info] [otlp] trace-id=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa written to GITHUB_OUTPUT
+[info] [otlp] span-id=2778009c38129414 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=3a6d6cd01f554e3a8df1f678213fb78c
+[info] [otlp] setup span sent (traceId=3a6d6cd01f554e3a8df1f678213fb78c, spanId=36a18b4205dd3517)
+[info] [otlp] trace-id=3a6d6cd01f554e3a8df1f678213fb78c written to GITHUB_OUTPUT
+[info] [otlp] span-id=36a18b4205dd3517 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+[info] [otlp] resolved trace-id=7a906d264ed03b199abb1cb3b2e7bfa1
+[info] [otlp] trace-id=7a906d264ed03b199abb1cb3b2e7bfa1 written to GITHUB_OUTPUT
+[info] [otlp] span-id=c9d881a5a34d8e9f written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=7479b52a569a36f9d09975dbbb422bfe
+[info] [otlp] setup span sent (traceId=7479b52a569a36f9d09975dbbb422bfe, spanId=d455c8bd28d0f2a5)
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] INPUT_PARENT_SPAN_ID=abcdef1234567890 (will parent setup span)
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=19ba16bf1959e8b240cfca4bf627d461
+[info] [otlp] setup span sent (traceId=19ba16bf1959e8b240cfca4bf627d461, spanId=9910f79269501aea)
+[info] [otlp] trace-id=19ba16bf1959e8b240cfca4bf627d461 written to GITHUB_OUTPUT
+[info] [otlp] span-id=9910f79269501aea written to GITHUB_OUTPUT
+[info] [otlp] parent-span-id=abcdef1234567890 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=30e7d367cd220b6037e8b08396f54fcd
+[info] [otlp] setup span sent (traceId=30e7d367cd220b6037e8b08396f54fcd, spanId=815bd90e7141df3f)
+[info] [otlp] trace-id=30e7d367cd220b6037e8b08396f54fcd written to GITHUB_OUTPUT
+[info] [otlp] span-id=815bd90e7141df3f written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] INPUT_TRACE_ID not set, a new trace ID will be generated
+[info] [otlp] sending setup span to configured endpoints
+[info] [otlp] resolved trace-id=ee7306189e1ac1272bd0bc69a33c9d16
+[info] [otlp] setup span sent (traceId=ee7306189e1ac1272bd0bc69a33c9d16, spanId=863eee93a7f8b468)
+[info] [otlp] trace-id=ee7306189e1ac1272bd0bc69a33c9d16 written to GITHUB_OUTPUT
+[info] [otlp] span-id=863eee93a7f8b468 written to GITHUB_OUTPUT
+[info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+[info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+[info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping OTLP export (will attempt JSONL mirror)
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.agent.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+[info] [otlp] sending conclusion span "gh-aw.job.conclusion" to configured endpoints
+[info] [otlp] conclusion span export attempted
+ [32m✓[39m action_otlp.test.cjs [2m([22m[2m21 tests[22m[2m)[22m[32m 110[2mms[22m[39m
+ [32m✓[39m otlp_header_helpers.test.cjs [2m([22m[2m5 tests[22m[2m)[22m[32m 96[2mms[22m[39m
+ [32m✓[39m otlp_protobuf.test.cjs [2m([22m[2m67 tests[22m[2m)[22m[32m 79[2mms[22m[39m
+ [32m✓[39m otel_contract.test.cjs [2m([22m[2m6 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m generate_observability_summary.test.cjs [2m([22m[2m8 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m otlp.test.cjs [2m([22m[2m40 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m safe_outputs_mcp_server_http_call_workflow.test.cjs [2m([22m[2m15 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m codex_config.test.cjs [2m([22m[2m18 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m action_conclusion_otlp.test.cjs [2m([22m[2m36 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m actions_secret_masking.test.cjs [2m([22m[2m32 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m call_workflow.test.cjs [2m([22m[2m11 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m exchange_otlp_workload_identity.test.cjs [2m([22m[2m8 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 34 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22minvalidated PR merge-ref checkout[2m > [22mreports a real native agent failure even when strict queue output parsing throws, without treating raw safe outputs as effects
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called once, but got 0 times[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m429:50[22m[39m
+    [90m427|[39m         await main();
+    [90m428|[39m         expect(global.core.warning).toHaveBeenCalledWith(expect.string…
+    [90m429|[39m         expect(global.github.rest.issues.create).toHaveBeenCalledOnce(…
+    [90m   |[39m                                                  [31m^[39m
+    [90m430|[39m         expect(global.github.rest.issues.create).toHaveBeenCalledWith(…
+    [90m431|[39m         expect(global.github.rest.issues.create.mock.calls[0][0].body)…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mhandles an AI credits rate-limit signal when the agent failed
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ][90m
+
+Number of calls: [1m0[22m
+[31m[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m1070:31[22m[39m
+    [90m1068|[39m     try {
+    [90m1069|[39m       await main();
+    [90m1070|[39m       expect(createIssueMock).toHaveBeenCalledWith(expect.objectContai…
+    [90m   |[39m                               [31m^[39m
+    [90m1071|[39m     } finally {
+    [90m1072|[39m       fs.rmSync(path.dirname(agentOutputPath), { recursive: true, forc…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves cancelled startup failure reporting with job-timeout evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves cancelled startup failure reporting with engine-timeout evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves cancelled startup failure reporting with annotations-denied evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves cancelled startup failure reporting with annotations-invalid evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves cancelled startup failure reporting with jobs-denied evidence
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called once, but got 0 times[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7706:22[22m[39m
+    [90m7704|[39m       await mainFn();
+    [90m7705|[39m
+    [90m7706|[39m       expect(create).toHaveBeenCalledOnce();
+    [90m   |[39m                      [31m^[39m
+    [90m7707|[39m       expect(create.mock.calls[0][0].title).toBe("[aw] Test Workflow: …
+    [90m7708|[39m       const categories = JSON.parse(fs.readFileSync("/tmp/gh-aw/failur…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves cancelled startup classification alongside GH_AW_MODEL_ENDPOINT_MISMATCH_ERROR
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves cancelled startup classification alongside GH_AW_MODEL_NOT_SUPPORTED_ERROR
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called once, but got 0 times[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7748:22[22m[39m
+    [90m7746|[39m       await mainFn();
+    [90m7747|[39m
+    [90m7748|[39m       expect(create).toHaveBeenCalledOnce();
+    [90m   |[39m                      [31m^[39m
+    [90m7749|[39m       expect(create.mock.calls[0][0].title).toBe("[aw] Test Workflow: …
+    [90m7750|[39m       expect(create.mock.calls[0][0].body).toContain("Failure classifi…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mreports agent-authored missing_terminal_safe_output without collector corroboration
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mreports agent-authored agent_startup_failure without collector corroboration
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called at least once[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7776:31[22m[39m
+    [90m7774|[39m
+    [90m7775|[39m       expect(global.core.setFailed).toHaveBeenCalledWith(expect.string…
+    [90m7776|[39m       expect(createIssueMock).toHaveBeenCalled();
+    [90m   |[39m                               [31m^[39m
+    [90m7777|[39m     });
+    [90m7778|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22momits collector missing_terminal_safe_output diagnostics from mixed-output cancellation reports
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22momits collector agent_startup_failure diagnostics from mixed-output cancellation reports
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called once, but got 0 times[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7809:31[22m[39m
+    [90m7807|[39m       await mainFn();
+    [90m7808|[39m
+    [90m7809|[39m       expect(createIssueMock).toHaveBeenCalledOnce();
+    [90m   |[39m                               [31m^[39m
+    [90m7810|[39m       const { title, body } = createIssueMock.mock.calls[0][0];
+    [90m7811|[39m       expect(title).not.toContain("finished without a terminal safe ou…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves failure reporting for success agents with missing_terminal_safe_output
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves failure reporting for failure agents with missing_terminal_safe_output
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves failure reporting for timed_out agents with missing_terminal_safe_output
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves failure reporting for success agents with agent_startup_failure
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves failure reporting for failure agents with agent_startup_failure
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves failure reporting for timed_out agents with agent_startup_failure
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mpreserves failure reporting for cancelled agents with mcp_crash
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called at least once[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7856:31[22m[39m
+    [90m7854|[39m
+    [90m7855|[39m       expect(global.core.setFailed).toHaveBeenCalledWith(expect.string…
+    [90m7856|[39m       expect(createIssueMock).toHaveBeenCalled();
+    [90m   |[39m                               [31m^[39m
+    [90m7857|[39m     });
+    [90m7858|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mcreates a distinct failure issue for agent_startup_failure
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mcreates a distinct failure issue for engine_driver_failure
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mcreates a distinct failure issue for safeoutputs_cli_error
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ][90m
+
+Number of calls: [1m0[22m
+[31m[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7894:31[22m[39m
+    [90m7892|[39m       const { main: mainFn } = require("./handle_agent_failure.cjs");
+    [90m7893|[39m       await mainFn();
+    [90m7894|[39m       expect(createIssueMock).toHaveBeenCalledWith(expect.objectContai…
+    [90m   |[39m                               [31m^[39m
+    [90m7895|[39m       const categories = JSON.parse(fs.readFileSync("/tmp/gh-aw/failur…
+    [90m7896|[39m       expect(categories).toContain(reason);
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not suppress failure reporting for denied job metadata
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not suppress failure reporting for invalid job metadata
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not suppress failure reporting for activation-only job metadata
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called once, but got 0 times[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7953:22[22m[39m
+    [90m7951|[39m       const { main: mainFn } = require("./handle_agent_failure.cjs");
+    [90m7952|[39m       await mainFn();
+    [90m7953|[39m       expect(create).toHaveBeenCalledOnce();
+    [90m   |[39m                      [31m^[39m
+    [90m7954|[39m       expect(global.core.info).not.toHaveBeenCalledWith("Skipping fail…
+    [90m7955|[39m     });
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not trust agent-authored agent_startup_failure as collector evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not trust agent-authored engine_driver_failure as collector evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not trust agent-authored safeoutputs_cli_error as collector evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not trust agent-authored invalid_safe_outputs as collector evidence
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mdoes not trust agent-authored missing_terminal_safe_output as collector evidence
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ][90m
+
+Number of calls: [1m0[22m
+[31m[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m7972:31[22m[39m
+    [90m7970|[39m       const { main: mainFn } = require("./handle_agent_failure.cjs");
+    [90m7971|[39m       await mainFn();
+    [90m7972|[39m       expect(createIssueMock).toHaveBeenCalledWith(expect.objectContai…
+    [90m   |[39m                               [31m^[39m
+    [90m7973|[39m       const categories = JSON.parse(fs.readFileSync("/tmp/gh-aw/failur…
+    [90m7974|[39m       expect(categories).toContain("report_incomplete");
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mkeeps last-failed-step diagnostics for an agent-authored startup reason without collector evidence
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ][90m
+
+Number of calls: [1m0[22m
+[31m[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m8012:22[22m[39m
+    [90m8010|[39m       const { main: mainFn } = require("./handle_agent_failure.cjs");
+    [90m8011|[39m       await mainFn();
+    [90m8012|[39m       expect(create).toHaveBeenCalledWith(expect.objectContaining({ ti…
+    [90m   |[39m                      [31m^[39m
+    [90m8013|[39m       const body = create.mock.calls[0][0].body;
+    [90m8014|[39m       expect(body).toContain("Failing step:** `Post Run agent`");
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m handle_agent_failure.test.cjs[2m > [22mhandle_agent_failure[2m > [22mmain() hasCompletedDespiteJobFailure early-return[2m > [22mkeeps the step failed when failure issue creation fails after a successful agent reports incomplete
+[31m[1mAssertionError[22m: expected "renderReport" to be called 2 times, but got 1 times[39m
+[36m [2m❯[22m handle_agent_failure.test.cjs:[2m8059:24[22m[39m
+    [90m8057|[39m       try {
+    [90m8058|[39m         await mainFn();
+    [90m8059|[39m         expect(render).toHaveBeenCalledTimes(2);
+    [90m   |[39m                        [31m^[39m
+    [90m8060|[39m       } finally {
+    [90m8061|[39m         render.mockRestore();
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/34]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m runtime_import.test.cjs[2m > [22mruntime_import[2m > [22mExpression Validation and Rendering[2m > [22mrecursive imports[2m > [22mshould fuzz dedup across equivalent recursive self-import path spellings
+[31m[1mError[22m: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".[39m
+[36m [2m❯[22m runtime_import.test.cjs:[2m1681:9[22m[39m
+    [90m1679|[39m         });
+    [90m1680|[39m
+    [90m1681|[39m         it("should fuzz dedup across equivalent recursive self-import …
+    [90m   |[39m         [31m^[39m
+    [90m1682|[39m           const sharedDir = path.join(workflowsDir, "shared", "agent");
+    [90m1683|[39m           fs.mkdirSync(sharedDir, { recursive: true });
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/34]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m39 passed[39m[22m[90m (41)[39m
+[2m      Tests [22m [1m[31m34 failed[39m[22m[2m | [22m[1m[32m3708 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (3743)[39m
+[2m   Start at [22m 18:47:02
+[2m   Duration [22m 160.11s[2m (tests 94%, import 4%, transform 1%)[22m
+

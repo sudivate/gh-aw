@@ -1,0 +1,10 @@
+== mutation 2: rename metric gh_aw.tokens.input to gh_aw.tokens.input_tokens (otlp_metrics.cjs:449)
+     [32m✓[39m has a golden file for every scenario[32m 5[2mms[22m[39m
+[31m     [31m×[31m default output is a superset of the pre-alignment output (success)[39m[32m 159[2mms[22m[39m
+[31m     [31m×[31m an opt-in without gen_ai_latest_experimental keeps the pre-alignment output (success)[39m[32m 11[2mms[22m[39m
+     [32m✓[39m gen_ai_latest_experimental keeps every gh-aw and github attribute (success)[32m 10[2mms[22m[39m
+[31m     [31m×[31m default output is a superset of the pre-alignment output (failure)[39m[32m 11[2mms[22m[39m
+[31m     [31m×[31m an opt-in without gen_ai_latest_experimental keeps the pre-alignment output (failure)[39m[32m 7[2mms[22m[39m
+     [32m✓[39m gen_ai_latest_experimental keeps every gh-aw and github attribute (failure)[32m 7[2mms[22m[39m
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 4 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[2m      Tests [22m [1m[31m4 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (7)[39m

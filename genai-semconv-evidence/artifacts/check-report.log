@@ -1,0 +1,34 @@
+$ node actions/setup/js/conformance/check-report.mjs ~/work/evidence/conformance/weaver-reports
+check-report: ok (3 report(s); metrics seen: gen_ai.client.inference.usage.cache_read.input_tokens, gen_ai.client.inference.usage.cache_write.input_tokens, gen_ai.client.inference.usage.input_tokens, gen_ai.client.inference.usage.output_tokens, gen_ai.client.token.usage, gen_ai.invoke_agent.duration, gh_aw.job.duration, gh_aw.job.errors, gh_aw.run.duration, gh_aw.run.errors, gh_aw.tokens.cache_read, gh_aw.tokens.cache_write, gh_aw.tokens.input, gh_aw.tokens.output)
+rc=0
+$ node actions/setup/js/conformance/check-report.mjs per-scenario/agent_success_latest
+check-report: ok (1 report(s); metrics seen: gen_ai.client.inference.usage.cache_read.input_tokens, gen_ai.client.inference.usage.cache_write.input_tokens, gen_ai.client.inference.usage.input_tokens, gen_ai.client.inference.usage.output_tokens, gen_ai.invoke_agent.duration, gh_aw.job.duration, gh_aw.run.duration, gh_aw.tokens.cache_read, gh_aw.tokens.cache_write, gh_aw.tokens.input, gh_aw.tokens.output)
+rc=0
+$ node actions/setup/js/conformance/check-report.mjs per-scenario/agent_failure_latest
+check-report: ok (1 report(s); metrics seen: gen_ai.client.inference.usage.cache_read.input_tokens, gen_ai.client.inference.usage.cache_write.input_tokens, gen_ai.client.inference.usage.input_tokens, gen_ai.client.inference.usage.output_tokens, gen_ai.invoke_agent.duration, gh_aw.job.duration, gh_aw.job.errors, gh_aw.run.duration, gh_aw.run.errors, gh_aw.tokens.cache_read, gh_aw.tokens.cache_write, gh_aw.tokens.input, gh_aw.tokens.output)
+rc=0
+$ node actions/setup/js/conformance/check-report.mjs per-scenario/agent_success_compat
+check-report: ok (1 report(s); metrics seen: gen_ai.client.inference.usage.cache_read.input_tokens, gen_ai.client.inference.usage.cache_write.input_tokens, gen_ai.client.inference.usage.input_tokens, gen_ai.client.inference.usage.output_tokens, gen_ai.client.token.usage, gen_ai.invoke_agent.duration, gh_aw.job.duration, gh_aw.run.duration, gh_aw.tokens.cache_read, gh_aw.tokens.cache_write, gh_aw.tokens.input, gh_aw.tokens.output)
+rc=0
+# negative: compat report renamed as a *_latest scenario must fail (gen_ai.system etc. are not in the registry)
+check-report: 13 failure(s)
+  - compat_as_latest: missing_attribute names gen_ai.system (span gh-aw.agent.setup)
+  - compat_as_latest: missing_attribute names gen_ai.system (span gh-aw.agent.agent)
+  - compat_as_latest: missing_attribute names gen_ai.workflow.name (span gh-aw.agent.agent)
+  - compat_as_latest: missing_attribute names gen_ai.usage.cache_creation.input_tokens (span gh-aw.agent.agent)
+  - compat_as_latest: missing_attribute names gen_ai.usage.total_tokens (span gh-aw.agent.agent)
+  - compat_as_latest: missing_attribute names gen_ai.system (span gh-aw.agent.conclusion)
+  - compat_as_latest: missing_attribute names gen_ai.workflow.name (span gh-aw.agent.conclusion)
+  - compat_as_latest: missing_metric names gen_ai.client.token.usage (metric gen_ai.client.token.usage)
+  - compat_as_latest: missing_attribute names gen_ai.token.type (metric gen_ai.client.token.usage)
+  - compat_as_latest: missing_attribute names gen_ai.token.type (metric gh_aw.tokens.input)
+  - compat_as_latest: missing_attribute names gen_ai.token.type (metric gh_aw.tokens.output)
+  - compat_as_latest: missing_attribute names gen_ai.token.type (metric gh_aw.tokens.cache_read)
+  - compat_as_latest: missing_attribute names gen_ai.token.type (metric gh_aw.tokens.cache_write)
+rc=1
+# negative: empty dir
+check-report: 3 failure(s)
+  - no Weaver reports found in /home/sudivate/work/evidence/conformance/check-report-empty
+  - metric gen_ai.client.inference.usage.input_tokens was not seen in any scenario
+  - metric gen_ai.invoke_agent.duration was not seen in any scenario
+rc=1

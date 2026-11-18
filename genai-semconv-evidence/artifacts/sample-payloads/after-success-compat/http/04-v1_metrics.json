@@ -1,0 +1,1003 @@
+{
+  "resourceMetrics": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "gh-aw"
+            }
+          },
+          {
+            "key": "github.job",
+            "value": {
+              "stringValue": "agent"
+            }
+          },
+          {
+            "key": "gh-aw.repository",
+            "value": {
+              "stringValue": "github/gh-aw"
+            }
+          },
+          {
+            "key": "gh-aw.workflow.name",
+            "value": {
+              "stringValue": "CI"
+            }
+          },
+          {
+            "key": "gh-aw.engine.id",
+            "value": {
+              "stringValue": "copilot"
+            }
+          }
+        ]
+      },
+      "scopeMetrics": [
+        {
+          "scope": {
+            "name": "gh-aw",
+            "version": "unknown"
+          },
+          "metrics": [
+            {
+              "name": "gh_aw.job.duration",
+              "unit": "s",
+              "description": "Wall-clock job duration",
+              "histogram": {
+                "aggregationTemporality": 1,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "cicd.pipeline.task.run.result",
+                        "value": {
+                          "stringValue": "success"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "count": "1",
+                    "sum": 2.094692138671875,
+                    "min": 2.094692138671875,
+                    "max": 2.094692138671875,
+                    "bucketCounts": [
+                      "0",
+                      "1",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      1,
+                      5,
+                      15,
+                      30,
+                      60,
+                      120,
+                      300,
+                      600,
+                      1800,
+                      3600
+                    ],
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asDouble": 2.094692138671875
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gh_aw.run.duration",
+              "unit": "s",
+              "description": "Wall-clock job duration",
+              "histogram": {
+                "aggregationTemporality": 1,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "cicd.pipeline.task.run.result",
+                        "value": {
+                          "stringValue": "success"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "count": "1",
+                    "sum": 2.094692138671875,
+                    "min": 2.094692138671875,
+                    "max": 2.094692138671875,
+                    "bucketCounts": [
+                      "0",
+                      "1",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      1,
+                      5,
+                      15,
+                      30,
+                      60,
+                      120,
+                      300,
+                      600,
+                      1800,
+                      3600
+                    ],
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asDouble": 2.094692138671875
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.token.usage",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "input"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "10",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "10"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gh_aw.tokens.input",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "input"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "10",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "10"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.token.usage",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "output"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "3",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "3"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gh_aw.tokens.output",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "output"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "3",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "3"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.token.usage",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "input_cache_read"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "5",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "5"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gh_aw.tokens.cache_read",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "input_cache_read"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "5",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "5"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.token.usage",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "input_cache_write"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "2",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gh_aw.tokens.cache_write",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.type",
+                        "value": {
+                          "stringValue": "input_cache_write"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.engine.id",
+                        "value": {
+                          "stringValue": "copilot"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "2",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.inference.usage.input_tokens",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.provider.name",
+                        "value": {
+                          "stringValue": "github"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.modality",
+                        "value": {
+                          "stringValue": "unknown"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "17",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "17"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.inference.usage.output_tokens",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.provider.name",
+                        "value": {
+                          "stringValue": "github"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.modality",
+                        "value": {
+                          "stringValue": "unknown"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "3",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "3"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.inference.usage.cache_read.input_tokens",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.provider.name",
+                        "value": {
+                          "stringValue": "github"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.modality",
+                        "value": {
+                          "stringValue": "unknown"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "5",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "5"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.client.inference.usage.cache_write.input_tokens",
+              "unit": "{token}",
+              "sum": {
+                "aggregationTemporality": 1,
+                "isMonotonic": true,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.provider.name",
+                        "value": {
+                          "stringValue": "github"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.token.modality",
+                        "value": {
+                          "stringValue": "unknown"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "asInt": "2",
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asInt": "2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "gen_ai.invoke_agent.duration",
+              "unit": "s",
+              "description": "Duration of the built-in agent invocation",
+              "histogram": {
+                "aggregationTemporality": 1,
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "gh-aw.job.name",
+                        "value": {
+                          "stringValue": "agent"
+                        }
+                      },
+                      {
+                        "key": "gh-aw.workflow.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "invoke_agent"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.agent.name",
+                        "value": {
+                          "stringValue": "CI"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "gpt-5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1794970437058000000",
+                    "timeUnixNano": "1794970439152692000",
+                    "count": "1",
+                    "sum": 2.08793408203125,
+                    "min": 2.08793408203125,
+                    "max": 2.08793408203125,
+                    "bucketCounts": [
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "1",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      0.1,
+                      0.2,
+                      0.4,
+                      0.8,
+                      1.6,
+                      3.2,
+                      6.4,
+                      12.8,
+                      25.6,
+                      51.2,
+                      102.4,
+                      204.8,
+                      409.6,
+                      900,
+                      1800,
+                      3600,
+                      7200,
+                      14400,
+                      43200,
+                      86400
+                    ],
+                    "exemplars": [
+                      {
+                        "timeUnixNano": "1794970439152692000",
+                        "traceId": "1681de812b47e605e0da85ca7bd57fdb",
+                        "spanId": "b3941184ba5b44b4",
+                        "asDouble": 2.08793408203125
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

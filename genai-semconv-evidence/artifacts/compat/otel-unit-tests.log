@@ -1,0 +1,3 @@
+files: action_conclusion_otlp.test.cjs action_otlp.test.cjs action_setup_otlp.test.cjs exchange_otlp_workload_identity.test.cjs otel_contract.test.cjs otlp.test.cjs otlp_header_helpers.test.cjs otlp_metrics.test.cjs otlp_protobuf.test.cjs otlp_response.test.cjs send_otlp_session_logs.test.cjs send_otlp_span.test.cjs send_otlp_span_legacy_contract.test.cjs send_otlp_span_transport.test.cjs unified_session_otel.test.cjs 
+[2m Test Files [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m      Tests [22m [1m[32m1021 passed[39m[22m[90m (1021)[39m

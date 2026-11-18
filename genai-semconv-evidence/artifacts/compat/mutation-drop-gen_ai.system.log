@@ -1,0 +1,14 @@
+== mutation 1: drop gen_ai.system from conclusion and agent spans (send_otlp_span.cjs:2558)
+     [32m✓[39m has a golden file for every scenario[32m 4[2mms[22m[39m
+[31m     [31m×[31m default output is a superset of the pre-alignment output (success)[39m[32m 164[2mms[22m[39m
+[31m     [31m×[31m an opt-in without gen_ai_latest_experimental keeps the pre-alignment output (success)[39m[32m 15[2mms[22m[39m
+     [32m✓[39m gen_ai_latest_experimental keeps every gh-aw and github attribute (success)[32m 13[2mms[22m[39m
+[31m     [31m×[31m default output is a superset of the pre-alignment output (failure)[39m[32m 15[2mms[22m[39m
+[31m     [31m×[31m an opt-in without gen_ai_latest_experimental keeps the pre-alignment output (failure)[39m[32m 11[2mms[22m[39m
+     [32m✓[39m gen_ai_latest_experimental keeps every gh-aw and github attribute (failure)[32m 15[2mms[22m[39m
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 4 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[41m[1m FAIL [22m[49m send_otlp_span_legacy_contract.test.cjs[2m > [22mlegacy telemetry contract (T-OT-020)[2m > [22mdefault output is a superset of the pre-alignment output (success)
+[41m[1m FAIL [22m[49m send_otlp_span_legacy_contract.test.cjs[2m > [22mlegacy telemetry contract (T-OT-020)[2m > [22mdefault output is a superset of the pre-alignment output (failure)
+[41m[1m FAIL [22m[49m send_otlp_span_legacy_contract.test.cjs[2m > [22mlegacy telemetry contract (T-OT-020)[2m > [22man opt-in without gen_ai_latest_experimental keeps the pre-alignment output (success)
+[41m[1m FAIL [22m[49m send_otlp_span_legacy_contract.test.cjs[2m > [22mlegacy telemetry contract (T-OT-020)[2m > [22man opt-in without gen_ai_latest_experimental keeps the pre-alignment output (failure)
+[2m      Tests [22m [1m[31m4 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (7)[39m

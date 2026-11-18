@@ -1,0 +1,280 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "gh-aw"
+            }
+          },
+          {
+            "key": "service.version",
+            "value": {
+              "stringValue": "0123456789abcdef0123456789abcdef01234567"
+            }
+          },
+          {
+            "key": "github.repository",
+            "value": {
+              "stringValue": "github/gh-aw"
+            }
+          },
+          {
+            "key": "github.run_id",
+            "value": {
+              "stringValue": "1"
+            }
+          },
+          {
+            "key": "github.run_attempt",
+            "value": {
+              "stringValue": "1"
+            }
+          },
+          {
+            "key": "github.actions.run_url",
+            "value": {
+              "stringValue": "https://github.com/github/gh-aw/actions/runs/1"
+            }
+          },
+          {
+            "key": "github.ref_name",
+            "value": {
+              "stringValue": "main"
+            }
+          },
+          {
+            "key": "github.sha",
+            "value": {
+              "stringValue": "0123456789abcdef0123456789abcdef01234567"
+            }
+          },
+          {
+            "key": "github.job",
+            "value": {
+              "stringValue": "agent"
+            }
+          },
+          {
+            "key": "deployment.environment",
+            "value": {
+              "stringValue": "production"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "gh-aw",
+            "version": "0123456789abcdef0123456789abcdef01234567"
+          },
+          "spans": [
+            {
+              "traceId": "daedbaf8cc4de35c29c10fcf27e70a9d",
+              "spanId": "4a7e1db66ebd8089",
+              "parentSpanId": "298c1bb1c66ab0ad",
+              "name": "gh-aw.agent.conclusion",
+              "kind": 1,
+              "startTimeUnixNano": "1794970446288000000",
+              "endTimeUnixNano": "1794970448365000000",
+              "status": {
+                "code": 1
+              },
+              "attributes": [
+                {
+                  "key": "gh-aw.workflow.name",
+                  "value": {
+                    "stringValue": "CI"
+                  }
+                },
+                {
+                  "key": "gh-aw.run.id",
+                  "value": {
+                    "stringValue": "1"
+                  }
+                },
+                {
+                  "key": "gh-aw.run.attempt",
+                  "value": {
+                    "stringValue": "1"
+                  }
+                },
+                {
+                  "key": "gh-aw.run.actor",
+                  "value": {
+                    "stringValue": ""
+                  }
+                },
+                {
+                  "key": "gh-aw.repository",
+                  "value": {
+                    "stringValue": "github/gh-aw"
+                  }
+                },
+                {
+                  "key": "github.actions.run_url",
+                  "value": {
+                    "stringValue": "https://github.com/github/gh-aw/actions/runs/1"
+                  }
+                },
+                {
+                  "key": "gh-aw.cli.version",
+                  "value": {
+                    "stringValue": "0123456789abcdef0123456789abcdef01234567"
+                  }
+                },
+                {
+                  "key": "gh-aw.run.status",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                },
+                {
+                  "key": "gh-aw.error_count",
+                  "value": {
+                    "intValue": 0
+                  }
+                },
+                {
+                  "key": "gh-aw.warning_count",
+                  "value": {
+                    "intValue": 0
+                  }
+                },
+                {
+                  "key": "gh-aw.permission_denied_count",
+                  "value": {
+                    "intValue": 0
+                  }
+                },
+                {
+                  "key": "gh-aw.steering_event_count",
+                  "value": {
+                    "intValue": 0
+                  }
+                },
+                {
+                  "key": "gh-aw.action_minutes",
+                  "value": {
+                    "doubleValue": 0.03462522379557292
+                  }
+                },
+                {
+                  "key": "gh-aw.job.name",
+                  "value": {
+                    "stringValue": "agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "github_models"
+                  }
+                },
+                {
+                  "key": "gh-aw.engine.id",
+                  "value": {
+                    "stringValue": "copilot"
+                  }
+                },
+                {
+                  "key": "gen_ai.request.model",
+                  "value": {
+                    "stringValue": "gpt-5"
+                  }
+                },
+                {
+                  "key": "gh-aw.staged",
+                  "value": {
+                    "boolValue": false
+                  }
+                },
+                {
+                  "key": "gh-aw.episode.id",
+                  "value": {
+                    "stringValue": "1-1"
+                  }
+                },
+                {
+                  "key": "gh-aw.episode.kind",
+                  "value": {
+                    "stringValue": "run"
+                  }
+                },
+                {
+                  "key": "gh-aw.hop.id",
+                  "value": {
+                    "stringValue": "1-1"
+                  }
+                },
+                {
+                  "key": "gh-aw.workflow_call.id",
+                  "value": {
+                    "stringValue": "1-1"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.workflow.name",
+                  "value": {
+                    "stringValue": "CI"
+                  }
+                },
+                {
+                  "key": "gen_ai.response.finish_reasons",
+                  "value": {
+                    "arrayValue": {
+                      "values": [
+                        {
+                          "stringValue": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "key": "gh-aw.agent.conclusion",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                },
+                {
+                  "key": "gh-aw.otlp.export_errors",
+                  "value": {
+                    "intValue": 0
+                  }
+                },
+                {
+                  "key": "gh-aw.output.item_count",
+                  "value": {
+                    "intValue": 0
+                  }
+                },
+                {
+                  "key": "gh-aw.max_ai_credits_exceeded",
+                  "value": {
+                    "boolValue": false
+                  }
+                },
+                {
+                  "key": "gh-aw.ai_credits_rate_limit_error",
+                  "value": {
+                    "boolValue": false
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

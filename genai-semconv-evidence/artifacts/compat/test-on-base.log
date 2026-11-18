@@ -1,0 +1,9 @@
+== base 68df009 (default and unrelated opt-in)
+
+ [32m✓[39m send_otlp_span_legacy_contract.test.cjs [2m([22m[2m7 tests[22m[2m | [22m[33m2 skipped[39m[2m)[22m[32m 237[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m5 passed[39m[22m[2m | [22m[33m2 skipped[39m[90m (7)[39m
+[2m   Start at [22m 19:53:26
+[2m   Duration [22m 571ms[2m (tests 70%, transform 16%, setup 7%, worker 4%, import 3%)[22m
+

@@ -1,0 +1,5 @@
+INFO opentelemetry.conformance._model: Resolving the coverage model into /tmp/tmpix9jdg3p/coverage-model.json
+==== instrumented: gh-aw, instrumentation: gh-aw, package: conformance
+✔ scenario: agent_success_latest, status: ok
+✔ scenario: agent_failure_latest, status: ok
+✔ scenario: agent_success_compat, status: ok
