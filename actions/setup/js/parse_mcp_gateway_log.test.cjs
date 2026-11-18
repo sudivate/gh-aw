@@ -2422,6 +2422,20 @@ Some content here.`;
       expect(summary.totalAIC).toBeCloseTo(expectedAIC, 6);
     });
 
+    test.each([
+      ["openai", true, 1000],
+      ["openai", false, 1500],
+      ["openai", undefined, 1100],
+      ["anthropic", undefined, 1100],
+      ["some-new-provider", undefined, 1500],
+    ])("sums inclusive input tokens for provider %s with input_tokens_include_cache=%s", (provider, inputTokensIncludeCache, expected) => {
+      const record = { provider, model: "m", input_tokens: 1000, output_tokens: 100, cache_read_tokens: 400, cache_write_tokens: 100 };
+      if (inputTokensIncludeCache !== undefined) record.input_tokens_include_cache = inputTokensIncludeCache;
+      const summary = parseTokenUsageJsonl([record, record].map(r => JSON.stringify(r)).join("\n"));
+      expect(summary.inclusiveInputTokens).toBe(2 * expected);
+      expect(summary.tokenUsage.input_tokens).toBe(2000);
+    });
+
     test("distinguishes zero AWF-reported credits from absent fields", () => {
       const summary = parseTokenUsageJsonl(
         JSON.stringify({

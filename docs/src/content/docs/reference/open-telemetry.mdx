@@ -404,7 +404,7 @@ For agent jobs, gh-aw also emits the GenAI semantic-convention metrics:
 - `gen_ai.invoke_agent.duration` (histogram, `s`, by `gen_ai.operation.name`, `gen_ai.agent.name`, `gen_ai.request.model` and `error.type` on failure), with the 20 standard GenAI duration buckets from 0.1 s to 86400 s.
 
 :::note
-`gen_ai.client.inference.usage.input_tokens` includes cache-read and cache-write tokens. Do not add the cache counters to it, and do not sum it with `gen_ai.client.token.usage{gen_ai.token.type=input}`: that double-counts tokens.
+`gen_ai.client.inference.usage.input_tokens` includes cache-read and cache-write tokens, counted once: gh-aw uses each request's `input_tokens_include_cache` flag (or the same provider default as AI credits) to decide whether the reported input already contains them. When it cannot tell, it omits the input counter rather than guess. Do not add the cache counters to it, and do not sum it with `gen_ai.client.token.usage{gen_ai.token.type=input}`: that double-counts tokens.
 :::
 
 ### Opting in to the latest GenAI conventions

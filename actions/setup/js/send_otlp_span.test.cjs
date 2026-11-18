@@ -8304,7 +8304,7 @@ describe("GenAI semantic conventions", () => {
 
   it.each(["gen_ai_latest_experimental", "http, gen_ai_latest_experimental"])("emits the invoke_agent shape under OTEL_SEMCONV_STABILITY_OPT_IN=%s", async optIn => {
     process.env.OTEL_SEMCONV_STABILITY_OPT_IN = optIn;
-    const [agentPayload, conclusionPayload] = await runAgentConclusion({ usage: { input_tokens: 10, output_tokens: 3, cache_read_tokens: 5, cache_write_tokens: 2 } });
+    const [agentPayload, conclusionPayload] = await runAgentConclusion({ usage: { input_tokens: 10, output_tokens: 3, cache_read_tokens: 5, cache_write_tokens: 2, input_tokens_inclusive: 17 } });
     const agentSpan = spanOf(agentPayload);
     const conclusionSpan = spanOf(conclusionPayload);
     expect(agentSpan.name).toBe("invoke_agent CI");
@@ -8332,6 +8332,23 @@ describe("GenAI semantic conventions", () => {
       expect(resourceOf(payload)["deployment.environment.name"]).toBe("production");
       expect(payload.resourceSpans[0].scopeSpans[0].schemaUrl).toBe("https://opentelemetry.io/schemas/1.45.0");
     }
+  });
+
+  it.each([
+    [{ input_tokens: 10, cache_read_tokens: 5, cache_write_tokens: 2, input_tokens_inclusive: 12 }, 12],
+    [{ input_tokens: 10, cache_read_tokens: 5, cache_write_tokens: 2, input_tokens_include_cache: true }, 10],
+    [{ input_tokens: 10, cache_read_tokens: 5, cache_write_tokens: 2, input_tokens_include_cache: false }, 17],
+    [{ input_tokens: 10, cache_read_tokens: 0, cache_write_tokens: 0 }, 10],
+    [{ input_tokens: 10, cache_read_tokens: 5, cache_write_tokens: 2 }, undefined],
+  ])("resolves opt-in inclusive input tokens from %j without double-counting cache", async (usage, expected) => {
+    process.env.OTEL_SEMCONV_STABILITY_OPT_IN = "gen_ai_latest_experimental";
+    const [agentPayload] = await runAgentConclusion({ usage: { output_tokens: 3, ...usage } });
+    expect(attrsOf(spanOf(agentPayload))["gen_ai.usage.input_tokens"]).toBe(expected);
+  });
+
+  it("keeps the raw input_tokens span value without the opt-in", async () => {
+    const [agentPayload] = await runAgentConclusion({ usage: { input_tokens: 10, output_tokens: 3, cache_read_tokens: 5, cache_write_tokens: 2, input_tokens_inclusive: 12 } });
+    expect(attrsOf(spanOf(agentPayload))["gen_ai.usage.input_tokens"]).toBe(10);
   });
 
   it("puts invoke_agent on the conclusion span under the opt-in when there is no dedicated agent span", async () => {
