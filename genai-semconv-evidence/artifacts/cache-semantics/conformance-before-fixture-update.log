@@ -1,0 +1,13 @@
+Checking gh-aw telemetry against semantic-conventions-genai...
+INFO opentelemetry.conformance._model: Resolving the coverage model into /tmp/tmpfds9zcz0/coverage-model.json
+==== instrumented: gh-aw, instrumentation: gh-aw, package: conformance
+✖ scenario: agent_success_latest, status: FAIL
+✖ Failures:
+  - expected metrics ['gen_ai.client.inference.usage.input_tokens'] but they were not emitted
+✖ scenario: agent_failure_latest, status: FAIL
+✖ Failures:
+  - expected metrics ['gen_ai.client.inference.usage.input_tokens'] but they were not emitted
+✖ scenario: agent_success_compat, status: FAIL
+✖ Failures:
+  - expected metrics ['gen_ai.client.inference.usage.input_tokens'] but they were not emitted
+make: *** [Makefile:1218: validate-otel-conformance] Error 1

@@ -1,0 +1,8 @@
+Checking gh-aw telemetry against semantic-conventions-genai...
+INFO opentelemetry.conformance._model: Resolving the coverage model into /tmp/tmpey5zg3hm/coverage-model.json
+==== instrumented: gh-aw, instrumentation: gh-aw, package: conformance
+✔ scenario: agent_success_latest, status: ok
+✔ scenario: agent_failure_latest, status: ok
+✔ scenario: agent_success_compat, status: ok
+check-report: ok (3 report(s); metrics seen: gen_ai.client.inference.usage.cache_read.input_tokens, gen_ai.client.inference.usage.cache_write.input_tokens, gen_ai.client.inference.usage.input_tokens, gen_ai.client.inference.usage.output_tokens, gen_ai.client.token.usage, gen_ai.invoke_agent.duration, gh_aw.job.duration, gh_aw.job.errors, gh_aw.run.duration, gh_aw.run.errors, gh_aw.tokens.cache_read, gh_aw.tokens.cache_write, gh_aw.tokens.input, gh_aw.tokens.output)
+✓ OpenTelemetry semantic-convention conformance validated

@@ -1,0 +1,90 @@
+
+> check
+> node generate_attributes.mjs --check
+
+TypeSpec compiler v1.17.0
+
+- Compiling...
+✔ Compiling
+- Running @typespec/json-schema...
+✔ @typespec/json-schema 32ms ../../../../../../tmp/gh-aw-otel-GTEKFv/@typespec/json-schema/
+
+Compilation completed successfully.
+
+Validating gh-aw OpenTelemetry compatibility contract...
+
+> check
+> node generate_attributes.mjs --check
+
+TypeSpec compiler v1.17.0
+
+- Compiling...
+✔ Compiling
+- Running @typespec/json-schema...
+✔ @typespec/json-schema 27ms ../../../../../../tmp/gh-aw-otel-tqDZOL/@typespec/json-schema/
+
+Compilation completed successfully.
+
+ok  	github.com/github/gh-aw/pkg/parser	0.728s
+ok  	github.com/github/gh-aw/pkg/workflow	0.756s
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mrecords OTLP export failure host, status, and reason details
+[22m[39mOTLP export authorization failed: HTTP 401 Unauthorized. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mfalls back to HTTP status when curl reports non-2xx with statusText OK
+[22m[39mOTLP export authorization failed: HTTP 401. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2msanitizes OTLP export failure reasons before persisting them
+[22m[39mOTLP export error after 1 attempts: Failed to parse URL from https://user:secret@collector.example.com/v1/traces?token=abc
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mreturns one final result per endpoint
+[22m[39mOTLP export failed after 1 attempts: HTTP 500 status
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mcontinues to other endpoints when one fails
+[22m[39mOTLP export error after 1 attempts: connection refused
+
+✓ OpenTelemetry compatibility contract validated
+Validating gh-aw OpenTelemetry compatibility contract...
+
+> check
+> node generate_attributes.mjs --check
+
+TypeSpec compiler v1.17.0
+
+- Compiling...
+✔ Compiling
+- Running @typespec/json-schema...
+✔ @typespec/json-schema 32ms ../../../../../../tmp/gh-aw-otel-r8j3Uy/@typespec/json-schema/
+
+Compilation completed successfully.
+
+ok  	github.com/github/gh-aw/pkg/parser	0.718s
+ok  	github.com/github/gh-aw/pkg/workflow	0.826s
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mrecords OTLP export failure host, status, and reason details
+[22m[39mOTLP export authorization failed: HTTP 401 Unauthorized. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2mfalls back to HTTP status when curl reports non-2xx with statusText OK
+[22m[39mOTLP export authorization failed: HTTP 401. Check this collector's configured authorization header and write permissions; unchanged credentials will not be retried.
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPSpan[2m > [22m[2msanitizes OTLP export failure reasons before persisting them
+[22m[39mOTLP export error after 1 attempts: Failed to parse URL from https://user:secret@collector.example.com/v1/traces?token=abc
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mreturns one final result per endpoint
+[22m[39mOTLP export failed after 1 attempts: HTTP 500 status
+
+[90mstderr[2m | send_otlp_span.test.cjs[2m > [22m[2msendOTLPToAllEndpoints[2m > [22m[2mcontinues to other endpoints when one fails
+[22m[39mOTLP export error after 1 attempts: connection refused
+
+✓ OpenTelemetry compatibility contract validated
+
+> check
+> node generate_attributes.mjs --check
+
+TypeSpec compiler v1.17.0
+
+- Compiling...
+✔ Compiling
+- Running @typespec/json-schema...
+✔ @typespec/json-schema 44ms ../../../../../../tmp/gh-aw-otel-0UVwoe/@typespec/json-schema/
+
+Compilation completed successfully.
+

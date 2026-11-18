@@ -11,7 +11,8 @@
 | Base | `github/gh-aw` `main` at `68df0093b56e0e720e6df7e85deab7ff156ae4f9` |
 | Implementation branch | `genai-semconv-reference`, tip `39f10359f358776d1f841523b9be6e2ea91c0355` (9 commits). §2 tests ran on `a946ddf`; `f1e9fa0` and `378a8a9` change docs only; the §4.1 backward-compatibility checks ran on `39f1035` |
 | Rebased on current `main` | `genai-semconv-reference-main`, tip `4d47ca27da880f4c212ea4d9f8fa0c268146e974`: the same 9 commits on `main` at `a245939351ad690fdfb283144b1fb397eaab0871` (2026-11-18), plus a recompiled `smoke-otel-backends.lock.yml` (the only conflict). See §4.2 |
-| Evidence branch | `genai-semconv-evidence` = implementation + this folder (one commit) |
+| Cache-semantics fix (§4.3) | `b304234c5bd5c718787049b7d3b9670dc9ba83af` on `genai-semconv-reference-main`; the same change is `7957e7c028f83780111bd25435f143090284402d` on `genai-semconv-reference` |
+| Evidence branch | `genai-semconv-evidence` = implementation + this folder |
 | Diff | 29 files, +2054 / −77 (of which the T-OT-020 golden file is about 450 lines) |
 | Conventions | `open-telemetry/semantic-conventions-genai` at `e6658f1`; OTel semantic conventions v1.45.0 (`cicd.*`, `vcs.*`, schema URL) |
 | Conformance runner | `open-telemetry/semantic-conventions-conformance` at `a4321907b3768c468966538a459130ac6b095bdc` |
@@ -168,6 +169,51 @@ On 2026-11-18, `main` (`a245939`) was 19 commits ahead of `68df009`. None of the
 | T-OT-020 golden re-captured on unmodified `a245939` | Same facts as the `68df009` golden (202 success, 226 failure) | `artifacts/rebase-main/legacy-contract-captured-on-main.json` |
 
 The issue's baseline, the golden and the plan still apply to current `main`.
+
+### 4.3 Cache tokens counted once (input-token semantics)
+
+**Finding.** The first implementation computed the inclusive input count as `input_tokens + cache_read_tokens +
+cache_write_tokens` for every run. That is only right when the source's `input_tokens` excludes cache tokens. The
+AWF api-proxy marks each usage record with `input_tokens_include_cache` (true for OpenAI-style `prompt_tokens` and
+the Responses API), and gh-aw's AI-credits specification already uses that flag, then a per-provider default, to
+price cache tokens. For OpenAI and Copilot records the old sum counted cache reads twice.
+
+**Fix** (`b304234`, `fix(otel): count cache tokens once in inclusive GenAI input tokens`):
+
+- `model_costs.cjs`: new `computeInclusiveInputTokens`, using the same rule as `computeInferenceCostUSD`:
+  flag `true` → input; flag `false` → input + read + write; no flag and a provider whose input includes cache
+  reads → input + write; otherwise input + read + write.
+- `parse_mcp_gateway_log.cjs` sums it per record; `parse_token_usage.cjs` writes it to `agent_usage.json` as
+  `input_tokens_inclusive` (additive key) when every record reported all three counts.
+- `send_otlp_span.cjs` / `otlp_metrics.cjs`: the opt-in span `gen_ai.usage.input_tokens` and the
+  `gen_ai.client.inference.usage.input_tokens` counter use that value. Without it, they fall back to the
+  record-level flag, or to `input_tokens` when there are no cache tokens, and otherwise are omitted rather than
+  guessed.
+- Default (non-opt-in) output is unchanged: `gen_ai.usage.input_tokens` keeps the raw value, and T-OT-020 passes
+  with the unchanged golden and an `agent_usage.json` that lacks the new key.
+- Spec §6/§11.2 rows, §19 change log and the `open-telemetry.mdx` note now describe the per-record rule.
+
+What the counter reports for one request, before and after (`artifacts/cache-semantics/inclusive-input-demo.md`):
+
+| Record | input | cache read | cache write | Before (input + read + write) | After (AI-credits rule) | Overcount before |
+|---|---|---|---|---|---|---|
+| openai via AWF proxy (input_tokens_include_cache: true) | 1000 | 400 | 0 | 1400 | 1000 | 400 |
+| copilot via AWF proxy (input_tokens_include_cache: true) | 1000 | 400 | 100 | 1500 | 1000 | 500 |
+| anthropic via AWF proxy (input_tokens_include_cache: false) | 1000 | 400 | 100 | 1500 | 1500 | 0 |
+| legacy openai record, no flag (provider default: cache reads included) | 1000 | 400 | 100 | 1500 | 1100 | 400 |
+| legacy unknown provider, no flag (additive) | 1000 | 400 | 100 | 1500 | 1500 | 0 |
+
+| Check (`genai-semconv-reference-main` @ `b304234`) | Result | Log (`artifacts/cache-semantics/`) |
+|---|---|---|
+| 15 OTel vitest files + `parse_mcp_gateway_log`, `parse_token_usage`, `model_costs` | 18 files, 1,323 passed, 0 failed | `vitest-otel-and-usage.log` |
+| New tests | parser: 5 provider/flag cases; span: 5 resolution cases + raw value without opt-in; metric: caller value and omission; `agent_usage.json` key | in the log above |
+| T-OT-020 backward compatibility | 7/7 | `legacy-contract-T-OT-020.log` |
+| Wire test against the reference SDK | 10/10 | `protobuf-sdk.log` |
+| `make check-otel-attributes validate-otel-contract` | Pass | `check-otel-attributes-and-contract.log` |
+| `make validate-otel-conformance` | 3/3 scenarios ok; `check-report` ok | `conformance.log` |
+| Same, before the conformance fixture gained `input_tokens_inclusive` | `agent_success_compat` fails: input counter not emitted (the fixture had cache tokens and no semantics, so the value is correctly omitted) | `conformance-before-fixture-update.log` |
+| `npm run typecheck`, `prettier --check` on changed files | Pass | `typecheck.log`, `prettier.log` |
+| Same fix on `genai-semconv-reference` @ `7957e7c` (base `68df009`) | 18 files, 1,322 passed; conformance ok | `base-68df009-vitest.log`, `base-68df009-conformance.log` |
 
 ## 5. Opt-in reaches the conclusion step (D8)
 
