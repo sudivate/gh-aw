@@ -374,6 +374,11 @@ metric.
 
 Other values in the list MUST be ignored by gh-aw.
 
+Compatibility-only names are deprecated. They MUST stay emitted by default for at least three minor releases and
+six months after the release that adds this section, and each release in that window MUST note the deprecation.
+Making the opt-in behaviour the default, which removes them, is a breaking change that MUST NOT happen before the
+window ends or before semantic-conventions-genai publishes a release.
+
 ---
 
 ## 7. Context Propagation
@@ -1231,7 +1236,8 @@ This version follows semantic-conventions-genai at commit `e6658f1` (2026-11-06)
 - **Added**: A normative requirement (§10.8) that completed BinEval records MUST produce `eval.result` events on `gh-aw.evals.conclusion`; when a not-evaluated status marker is present it takes precedence and answers are not emitted.
 - **Added**: Non-normative follow-ups for PII redaction and exporter-failure test coverage, with tracked IDs T-OT-012 and T-OT-013.
 - **Added**: The §6.7 opt-in; the §8.1 standard resource attributes; `gen_ai.provider.name`, `gen_ai.agent.name`, `gen_ai.usage.cache_write.input_tokens` and `error.type` on built-in spans; the `gen_ai.client.inference.usage.*` and `gen_ai.invoke_agent.duration` metrics.
-- **Changed**: `gen_ai.system`, `gen_ai.usage.total_tokens`, `gen_ai.usage.cache_creation.input_tokens`, `gen_ai.workflow.name` and `gen_ai.client.token.usage` are now compatibility only; with the opt-in, the agent span is `invoke_agent` (`INTERNAL`) and `gen_ai.usage.input_tokens` includes cache tokens.
+- **Deprecated** (still emitted by default, §6.7 window): `gen_ai.system`, `gen_ai.usage.total_tokens`, `gen_ai.usage.cache_creation.input_tokens`, `gen_ai.workflow.name`, `gen_ai.client.token.usage`.
+- **Changed**: with the opt-in, the agent span is `invoke_agent` (`INTERNAL`) and `gen_ai.usage.input_tokens` includes cache tokens.
 
 ### Version 0.6.0 (Working Draft, November 5, 2026)
 
