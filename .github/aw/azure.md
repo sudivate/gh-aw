@@ -1,5 +1,5 @@
 ---
-description: Agent instructions for connecting gh-aw workflows to Azure and Microsoft Foundry services — which route to use, how identity and network are configured, and what is unsupported.
+description: Agent instructions for connecting gh-aw workflows to Azure and Microsoft Foundry services — which route to use, and how identity and network are configured.
 ---
 
 # Azure
@@ -27,7 +27,7 @@ reference page or the provider's documentation.
 | Read or change Azure DevOps work items | `azure-devops` connector | REST readers and writer keyless via a local `azure-oidc` declaration; the remote ADO MCP server stays on its delegated user token | Through safe outputs only | [declaration](../workflows/connectors/azure-devops.md) |
 | Read or post to Teams channels | `teams` connector | Graph reader keyless via a local `azure-oidc` declaration; bot writer and Teams app consent unchanged | Through safe outputs only | [declaration](../workflows/connectors/teams.md) |
 | Read Azure resource inventory | Azure MCP server, read-only tools | Client secret, or Azure CLI login inside the sandbox | No (`--read-only`) | [shared/mcp/azure.md](../workflows/shared/mcp/azure.md), [shared/azure-auth.md](../workflows/shared/azure-auth.md) |
-| Act on a user's Microsoft 365 data (Work IQ: mail, calendar, files, chats) | **Unsupported** | Requires a signed-in user | — | [Unsupported](#unsupported) |
+| Act on a user's Microsoft 365 data (Work IQ: mail, calendar, files, chats) | **Unsupported** | Requires a signed-in user; a CI runner has none | — | — |
 
 Prefer routes in this order: an existing connector for the service, then keyless `mcp-servers:`, then a stored
 token. A connector adds exact argument grants, response size caps, compile-time endpoint checks and safe-output
@@ -196,18 +196,3 @@ Notes:
 
 Prefer the first four rows. Treat `shared/azure-auth.md` as giving the agent the identity's full Azure
 permissions; it also cannot be combined with a federated connector reader, because it uses authored runner steps.
-
-## Unsupported
-
-- **Work IQ and other delegated Microsoft 365 data.** These need a signed-in user's token and consent. A CI runner
-  has no user; gh-aw does not forward delegated tokens. App-only Graph access is a different, broader permission
-  model; use a reviewed connector such as `teams` instead.
-- **Web IQ without an AppID.** The `azure-web-iq` connector needs an Entra app bound to a Web IQ AppID, with or
-  without federation. Use Toolbox `web_search` when that onboarding is not available.
-- **Delegated Azure DevOps MCP.** The remote Azure DevOps MCP server uses a delegated user token; app-only
-  federation is not a substitute.
-- **Toolbox connector.** None exists. Plain `mcp-servers:` is the route for read-only Toolboxes; a Toolbox with
-  write tools needs a connector so writes become safe outputs. `azure-oidc` now makes a keyless Toolbox connector
-  possible.
-- **Sovereign clouds.** Supported for `mcp-servers:` and `azure-oidc` via `azure-cloud`; the shipped Azure connector
-  endpoints are public-cloud only.
