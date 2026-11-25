@@ -27,7 +27,7 @@ reference page or the provider's documentation.
 | Read or change Azure DevOps work items | `azure-devops` connector | REST readers and writer keyless via a local `azure-oidc` declaration; the remote ADO MCP server stays on its delegated user token | Through safe outputs only | [declaration](../workflows/connectors/azure-devops.md) |
 | Read or post to Teams channels | `teams` connector | Graph reader keyless via a local `azure-oidc` declaration; bot writer and Teams app consent unchanged | Through safe outputs only | [declaration](../workflows/connectors/teams.md) |
 | Read Azure resource inventory | Azure MCP server, read-only tools | Client secret, or Azure CLI login inside the sandbox | No (`--read-only`) | [shared/mcp/azure.md](../workflows/shared/mcp/azure.md), [shared/azure-auth.md](../workflows/shared/azure-auth.md) |
-| Act on a user's Microsoft 365 data (Work IQ: mail, calendar, files, chats) | **Unsupported** | Requires a signed-in user; a CI runner has none | — | — |
+| Act on a user's Microsoft 365 data (Work IQ: mail, calendar, files, chats) | **No supported keyless path yet** | Work IQ exposes only delegated permissions. An Entra Agent ID agent user account may work but is unverified | — | — |
 
 Prefer routes in this order: an existing connector for the service, then keyless `mcp-servers:`, then a stored
 token. A connector adds exact argument grants, response size caps, compile-time endpoint checks and safe-output
