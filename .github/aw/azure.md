@@ -87,8 +87,11 @@ connector reads, because the MCP gateway and the connector broker exchange token
 Apply the identity controls on **both** runner types; network isolation adds to them, it does not replace them.
 
 - **Exact federated subject.** Trust `repo:ORG/REPO:environment:NAME` (or one branch ref), never a wildcard, an
-  organization or `pull_request`. A branch subject is shared by every workflow on that branch, so give each
-  identity only what all of them may use. Where possible, customize the OIDC subject to include `repository_id` and
+  organization or `pull_request`. A branch subject is shared by every workflow on that branch, so prefer an
+  environment. Top-level `environment:` applies to every compiled job, including `agent` and `safe_outputs`;
+  use `environment: { name: NAME, deployment: false }`, restrict the environment to the default branch, and do
+  not add required reviewers to a reader environment (each job would wait for approval). Give a federated writer
+  its own `safe-outputs.environment`. Where possible, customize the OIDC subject to include `repository_id` and
   `job_workflow_ref`.
 - **Narrowest role.** For example, Foundry User on one project, not on the account or subscription.
 - **Protected environment for writers.** Add required reviewers and deployment branch rules; only the writer app
