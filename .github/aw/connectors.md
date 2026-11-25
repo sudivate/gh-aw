@@ -27,6 +27,9 @@ defines the public declaration, selection, execution, and conformance contract.
 To add a provider, use the repository's
 [create-connector skill](../skills/create-connector/SKILL.md).
 
+For Azure and Microsoft Foundry services, start with the [Azure guide](azure.md). It chooses between a
+connector, a keyless `mcp-servers:` entry and engine authentication.
+
 Every included declaration currently sets `experimental: true`. Selecting a
 capability from an experimental connector emits a compile-time warning.
 Declarations accept boolean `true` or `false`; omission defaults to `false`.
