@@ -166,6 +166,10 @@ Integration auth setup:
 
 Never suggest committing plaintext tokens.
 
+For Azure or Microsoft Foundry services, follow `.github/aw/azure.md` instead of this checklist where it applies:
+prefer keyless GitHub OIDC federation, so the checklist lists Actions **variables** for tenant and client IDs
+and the Entra role to grant, not secrets.
+
 ## Data Strategy Mapping
 
 | User says... | Maps to |

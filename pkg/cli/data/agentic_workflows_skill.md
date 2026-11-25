@@ -38,6 +38,7 @@ After loading the matching workflow prompt or skill, follow it directly:
 - Select engine and inference: `.github/aw/agentic-engine.md`
 - Define a custom engine: `.github/aw/custom-declarative-agentic-engine.md`
 - Consume, author, or document third-party connectors: `.github/aw/connectors.md`
+- Azure or Microsoft Foundry services: `.github/aw/azure.md`
 - Create a new connector: `.github/aw/connectors.md#author-or-extend-a-declaration`, then the repository's `.github/skills/create-connector/SKILL.md` when available
 - Update existing workflows: `.github/aw/update-agentic-workflow.md`
 - Diagnose, patch, audit, or actively debug workflows: `.github/aw/debug-agentic-workflow.md` (local-first strategy, evidence triage and live gates)
