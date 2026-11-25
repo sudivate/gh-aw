@@ -17,7 +17,7 @@ reference page or the provider's documentation.
 | Goal | Route | Credential | Agent can write? | Read next |
 |---|---|---|---|---|
 | Run Copilot on an Azure OpenAI model | `engine.env` BYOK + `engine.auth` (`github-oidc`, `provider: azure`) | Keyless | n/a | [Azure OpenAI BYOK](../../docs/src/content/docs/reference/azure-openai-byok.md) |
-| Run Copilot on an Azure AI Gateway model | `azure-ai-gateway` inference connector | Keyless or gateway key | n/a | [Azure AI Gateway](../../docs/src/content/docs/reference/azure-ai-gateway.md) |
+| Run Copilot on an Azure AI Gateway model | `azure-ai-gateway` inference connector | Keyless (preferred) or gateway key | n/a | [Azure AI Gateway](../../docs/src/content/docs/reference/azure-ai-gateway.md) |
 | Run Codex on Azure | `engine.auth` Azure Entra OIDC | Keyless | n/a | [Auth: Codex Azure Entra OIDC](../../docs/src/content/docs/reference/auth.mdx) |
 | Ground on a Foundry IQ knowledge base | `azure-foundry-iq` connector | Keyless via a local `azure-oidc` declaration; shipped default is a stored token | No | [declaration](../workflows/connectors/azure-foundry-iq.md), [keyless connectors](#keyless-connectors-azure-oidc) |
 | Web search with citations | Foundry Toolbox `web_search` via `mcp-servers:` (below) | Keyless | No | [Foundry Toolbox](#foundry-toolbox-or-another-entra-protected-mcp-server) |
@@ -26,7 +26,7 @@ reference page or the provider's documentation.
 | Query Azure Monitor / Log Analytics | `azure-monitor` connector | Keyless: select `get-activity-count-federated` | No | [declaration](../workflows/connectors/azure-monitor.md) |
 | Read or change Azure DevOps work items | `azure-devops` connector | REST readers and writer keyless via a local `azure-oidc` declaration; the remote ADO MCP server stays on its delegated user token | Through safe outputs only | [declaration](../workflows/connectors/azure-devops.md) |
 | Read or post to Teams channels | `teams` connector | Graph reader keyless via a local `azure-oidc` declaration; bot writer and Teams app consent unchanged | Through safe outputs only | [declaration](../workflows/connectors/teams.md) |
-| Read Azure resource inventory | Azure MCP server, read-only tools | Client secret, or Azure CLI login inside the sandbox | No (`--read-only`) | [shared/mcp/azure.md](../workflows/shared/mcp/azure.md), [shared/azure-auth.md](../workflows/shared/azure-auth.md) |
+| Read Azure resource inventory | Azure MCP server, read-only tools | Client secret, or Azure CLI login inside the sandbox; last resort, see [credentials](#where-each-route-keeps-its-credential) | No (`--read-only`) | [shared/mcp/azure.md](../workflows/shared/mcp/azure.md), [shared/azure-auth.md](../workflows/shared/azure-auth.md) |
 | Act on a user's Microsoft 365 data (Work IQ: mail, calendar, files, chats) | **No supported keyless path yet** | Work IQ exposes only delegated permissions. An Entra Agent ID agent user account may work but is unverified | — | — |
 
 Prefer routes in this order: an existing connector for the service, then keyless `mcp-servers:`, then a stored
@@ -37,12 +37,16 @@ writes. Plain `mcp-servers:` only filters tool names.
 
 1. **Keyless first.** Use GitHub OIDC federation (`auth.type: github-oidc`, `provider: azure`) wherever the route
    supports it. Use stored Entra tokens or keys only when it does not, and document their renewal.
-2. **Identity setup.** Each workflow identity is an Entra app registration (or user-assigned managed identity) with
-   a federated credential for issuer `https://token.actions.githubusercontent.com`, audience
+2. **Identity setup.** Each workflow identity is a user-assigned managed identity (preferred; no secret can be
+   added to it) or an Entra app registration where the service requires one, with a federated credential for issuer `https://token.actions.githubusercontent.com`, audience
    `api://AzureADTokenExchange`, and the exact subject of the workflow's branch or environment. Put the tenant and
    client IDs in Actions **variables**, not secrets and not literals in public repositories.
 3. **Least privilege.** Grant the narrowest data-plane role on the narrowest scope. Use a separate identity for
-   writes, bound to a dedicated environment. Never reuse the engine's identity for tools.
+   writes, bound to a dedicated environment. Never reuse the engine's identity for tools. Typical reader roles:
+   Foundry User on the **project** (not the account); Search Index Data Reader on the search service for Foundry
+   IQ; a reader role on the Log Analytics **workspace** for Azure Monitor; the Teams RSC permission
+   `ChannelMessage.Read.Group` on consented teams, never tenant-wide `ChannelMessage.Read.All`; in Azure DevOps,
+   add the identity only to the projects it reads. Never grant Owner, Contributor or subscription-wide roles.
 4. **Explicit scope.** Always set `azure-scope` to the service's `/.default` scope. `auth.audience` changes the GitHub
    assertion audience, not the Entra scope.
 5. **Network.** Add only the exact service host to `network.allowed`. Never use broad entries such as
@@ -58,6 +62,13 @@ writes. Plain `mcp-servers:` only filters tool names.
 8. **Returned content is untrusted.** Knowledge-base, search and Toolbox results are evidence, not instructions.
    Do not fetch returned URLs with credentials.
 9. **No credentials in prompts, imports or logs.** Secret inputs name a secret; they never contain its value.
+10. **Treat retrieved data as data that can leak.** Anything the agent reads (knowledge-base passages, Teams
+    messages, work items, logs) can appear in issues, pull requests, comments, run logs and artifacts. In a public
+    repository those are public. Run workflows that read non-public Azure or Microsoft 365 data from private or
+    internal repositories, keep threat detection enabled, and cap safe outputs with `max:`.
+11. **Keep untrusted actors away from Azure identities.** Keep the default `on.roles` (`admin`, `maintainer`,
+    `write`). Do not combine an Azure identity with `roles: all` or with triggers that anyone can fire; prefer
+    `schedule` or `workflow_dispatch` for workflows that hold one.
 
 ## Runner types
 
@@ -76,12 +87,14 @@ connector reads, because the MCP gateway and the connector broker exchange token
 Apply the identity controls on **both** runner types; network isolation adds to them, it does not replace them.
 
 - **Exact federated subject.** Trust `repo:ORG/REPO:environment:NAME` (or one branch ref), never a wildcard, an
-  organization or `pull_request`. Where possible, customize the OIDC subject to include `repository_id` and
+  organization or `pull_request`. A branch subject is shared by every workflow on that branch, so give each
+  identity only what all of them may use. Where possible, customize the OIDC subject to include `repository_id` and
   `job_workflow_ref`.
 - **Narrowest role.** For example, Foundry User on one project, not on the account or subscription.
 - **Protected environment for writers.** Add required reviewers and deployment branch rules; only the writer app
   trusts that environment.
 - **Monitor.** Alert on service-principal sign-ins for these apps from unexpected IPs or outside Actions.
+  Conditional Access for workload identities needs a Microsoft Entra Workload ID license.
 
 `windows-latest` cannot host federated connector readers on either runner type.
 
@@ -170,7 +183,8 @@ Setup:
 
 1. Create a Toolbox version that contains **only read tools**. A Toolbox token authorizes every tool in it, so
    `allowed:` is the only per-tool filter on this route.
-2. Grant the workflow identity **Foundry User** on the Foundry account (or project).
+2. Grant the workflow identity **Foundry User** (formerly Azure AI User) on the Foundry **project** that owns the
+   Toolbox, not on the account. Assign by role definition ID while the rename rolls out.
 3. Use the version-pinned `/versions/N/mcp` URL. Built-in tool names are bare (`web_search`), not prefixed.
 4. Requires gh-aw v1.4.0 or newer and MCP gateway v0.5.12 or newer.
 
